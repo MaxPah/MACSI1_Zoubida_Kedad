@@ -1,3 +1,9 @@
+<?php 
+		session_start(); 
+		$dbconn = mysql_connect("localhost", "root", "");
+		$db = mysql_select_db("Cours_BD_WEB", $dbconn);
+?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -24,17 +30,17 @@
 					<li><a href="#">Phase</a></li>
 					<li><a href="#">Livrable</a></li>
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" placeholder="Rechercher">
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-default">Envoyer</button>
 				</form>
 			</div><!-- /.navbar-collapse -->
 			<!-- BARRE DE NAVIGATION-->
 		</nav>
 		<div id="Prez">
-			<div id="tache">tache</div>
+			<div id="tache">tache<br/><br/><br/><br/><br/></div>
 			<div id="lot">lot</div>
 			<div id="sousprojet">sous proj</div>
 			<div id="jalons">jalons</div>

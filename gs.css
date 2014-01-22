@@ -1,0 +1,22 @@
+body
+{
+	background-image : url(images/fond.jpg);
+	background-size: cover;
+	height:100%;
+}  
+
+#bloc_central
+{
+	min-width : 300px;
+	width : 500px;
+	text-align : center;
+	margin-left : 30%;
+	margin-top : 250px;
+}
+
+.btn 
+{
+	-moz-box-shadow: 0 0 1px 1px #888;
+	-webkit-box-shadow: 0 0 1px 1px #888;
+	box-shadow: 0 0 1px 1px #888;
+}
