@@ -1,7 +1,7 @@
 <?php 
 		session_start(); 
 		$dbconn = mysql_connect("localhost", "root", "");
-		$db = mysql_select_db("rugby", $dbconn);
+		$db = mysql_select_db("macsi1", $dbconn);
 ?>
 
 <!DOCTYPE html>
@@ -42,21 +42,21 @@
 				<br/>
 				<ul>
 					<?php
-					$message ='';
-							$sql = "SELECT id_club,nom_club 
-									FROM club";
+					
+							$sql = "SELECT id_lot,nom 
+									FROM lot where id_lot = 1";
 							$req = mysql_query($sql);
-							while($result = mysql_fetch_assoc($req))
+							while($result = mysql_fetch_array($req))
 							{	
-								echo "<li>".$result['nom_club']."<ul>";
+								echo "<li>".$result['nom']."<ul>";
 									
-											$sql2 = "SELECT id_joueur,nom_joueur FROM joueur where id_club = ".$result['id_club'];
+											$sql2 = "SELECT id_sousprojet,nom FROM sousprojet where id_lot = ".$result['id_lot'];
 											$req2 = mysql_query($sql2);
 											while($result2 = mysql_fetch_assoc($req2))
 											{
-												echo "<li>&nbsp;&nbsp;&nbsp;".$result2['nom_joueur']."<ul>";
+												echo "<li>&nbsp;&nbsp;&nbsp;".$result2['nom']."<ul>";
 												
-													$sql3 = "SELECT nom FROM competences where id_joueur = ".$result2['id_joueur'];
+													$sql3 = "SELECT nom FROM tache where id_sousprojet = ".$result2['id_sousprojet'];
 													$req3 = mysql_query($sql3);
 													while($result3 = mysql_fetch_assoc($req3))
 													{
