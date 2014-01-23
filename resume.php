@@ -39,31 +39,37 @@
 			</div><!-- /.navbar-collapse -->
 			<!-- BARRE DE NAVIGATION-->
 		</nav>
-		
-		<div id="Prez">
-			<div id="tache">Club</div>
-			<?php
-			$message ='';
-					$sql = "SELECT nom_club 
-							FROM club";
-					$req = mysql_query($sql);
-					while($result = mysql_fetch_assoc($req))
-					{	echo "<br/>".$result['nom_club'];
-					}
-			?>
-			<br/>
-			<div id="lot">Joueur</div>
-			
-			<?php
-					$sql = "SELECT nom_joueur 
-							FROM joueur $message";
-					$req = mysql_query($sql);
-					while($result = mysql_fetch_assoc($req))
-					{	echo "<br/>".$result['nom_joueur'];
-					}
-			?>
-			</div>
-		
-		
+				<br/>
+				<ul>
+					<?php
+					$message ='';
+							$sql = "SELECT id_club,nom_club 
+									FROM club";
+							$req = mysql_query($sql);
+							while($result = mysql_fetch_assoc($req))
+							{	
+								echo "<li>".$result['nom_club']."<ul>";
+									
+											$sql2 = "SELECT id_joueur,nom_joueur FROM joueur where id_club = ".$result['id_club'];
+											$req2 = mysql_query($sql2);
+											while($result2 = mysql_fetch_assoc($req2))
+											{
+												echo "<li>&nbsp;&nbsp;&nbsp;".$result2['nom_joueur']."<ul>";
+												
+													$sql3 = "SELECT nom FROM competences where id_joueur = ".$result2['id_joueur'];
+													$req3 = mysql_query($sql3);
+													while($result3 = mysql_fetch_assoc($req3))
+													{
+														echo "<li>&nbsp;&nbsp;&nbsp;".$result3['nom']."</li>";
+													}
+																								echo "</ul>";
+											}
+												echo "</li>
+																</ul>
+										</li>";
+							}
+					?>
+				</ul>
+				<br/>		
 	</body>
 </html>
