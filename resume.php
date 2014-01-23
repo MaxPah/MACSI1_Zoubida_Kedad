@@ -1,7 +1,7 @@
 <?php 
 		session_start(); 
 		$dbconn = mysql_connect("localhost", "root", "");
-		$db = mysql_select_db("Cours_BD_WEB", $dbconn);
+		$db = mysql_select_db("rugby", $dbconn);
 ?>
 
 <!DOCTYPE html>
@@ -12,11 +12,11 @@
         <meta name="description" content=""/>
 		<meta name="keywords" content=""/>
         <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen"/>
+        <link rel="stylesheet" href="gs.css" type="text/css" media="screen"/>
 		<link rel="icon" type="image/png" href="favicon.png" />
 		<!--[if lte IE 8]>
 			<script src="js/html5.js" type="text/javascript"></script>
 		<![endif]-->
-
 </head>
    	<body>
 		<!-- BARRE DE NAVIGATION-->
@@ -39,14 +39,31 @@
 			</div><!-- /.navbar-collapse -->
 			<!-- BARRE DE NAVIGATION-->
 		</nav>
+		
 		<div id="Prez">
-			<div id="tache">tache<br/><br/><br/><br/><br/></div>
-			<div id="lot">lot</div>
-			<div id="sousprojet">sous proj</div>
-			<div id="jalons">jalons</div>
-			<div id="phase">phase</div>
-			<div id="livrable">livrable</div>
-		</div>
+			<div id="tache">Club</div>
+			<?php
+			$message ='';
+					$sql = "SELECT nom_club 
+							FROM club";
+					$req = mysql_query($sql);
+					while($result = mysql_fetch_assoc($req))
+					{	echo "<br/>".$result['nom_club'];
+					}
+			?>
+			<br/>
+			<div id="lot">Joueur</div>
+			
+			<?php
+					$sql = "SELECT nom_joueur 
+							FROM joueur $message";
+					$req = mysql_query($sql);
+					while($result = mysql_fetch_assoc($req))
+					{	echo "<br/>".$result['nom_joueur'];
+					}
+			?>
+			</div>
+		
 		
 	</body>
 </html>

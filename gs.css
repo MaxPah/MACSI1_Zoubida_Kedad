@@ -20,3 +20,74 @@ body
 	-webkit-box-shadow: 0 0 1px 1px #888;
 	box-shadow: 0 0 1px 1px #888;
 }
+
+
+#Prez{
+	color:030303;
+	min-width:1000px;
+}
+
+#tache{
+	color:white;
+	width:100px;
+	margin-left:5px;
+	float:left;
+	background-color:#077000;
+}
+
+#lot{
+	color:white;
+	width:200px;
+	margin-left:5px;
+	display:inline;
+	background-color:#985589;
+}
+
+#sousprojet{
+	color:white;
+	display:inline;
+	width:50px;
+	margin-left:5px;
+	background-color:#077000;
+}
+
+#jalons{
+	display:inline;
+	color:white;
+	width:50px;
+	margin-left:5px;
+	background-color:#985589;
+}
+
+#phase{
+	display:inline;
+	color:white;
+	width:50px;
+	margin-left:5px;
+	background-color:#077000;
+}
+
+#livrable{
+	display:inline;
+	color:white;
+	min-width:50px;
+	max-width:50px;
+	margin-left:5px;
+	background-color:#985589;
+}
+
+#bloc_central
+{
+	min-width : 300px;
+	width : 500px;
+	text-align : center;
+	margin-left : 30%;
+	margin-top : 250px;
+}
+
+.btn 
+{
+	-moz-box-shadow: 0 0 1px 1px #888;
+	-webkit-box-shadow: 0 0 1px 1px #888;
+	box-shadow: 0 0 1px 1px #888;
+}
