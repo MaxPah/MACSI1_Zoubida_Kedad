@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php 
+		session_start(); 
+		$dbconn = mysql_connect("localhost", "root", "");
+		$db = mysql_select_db("macsi1", $dbconn);
+?>
 <html lang="fr">
 
 	<head>
@@ -14,26 +19,21 @@
 	
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<input type="title" class="form-control" id="intituleProjet" placeholder="Nom du nouveau projet"> <br/>
+				<input type="title" class="form-control" name="intituleProjet" placeholder="Nom du nouveau projet"> <br/>
 				<button class="btn btn-success" name="nouveau" type="submit"><span class="glyphicon glyphicon-plus"></span>    Lancer un nouveau projet</button>	<br/><br/>
 
 				<?php
-					/*$sql = "SELECT nom 
+					$sqlNameProject = "SELECT nom 
 							FROM projet";
-					$req = mysql_query($sql);
+					$reqNameProject = mysql_query($sqlNameProject);
 					echo "<select class='form-control' name='nom_projet'>";
-					while($result = mysql_fetch_assoc($req))
+					while($resultNameProject = mysql_fetch_array($reqNameProject))
 					{
-						echo "<option>".$result['nom']."</option>";
+						echo "<option>".$resultNameProject['nom']."</option>";
 					}
-					echo "</select>";*/
+					echo "</select>";
 				?>
-				<select class="form-control" >
-				  <option>Projet 1</option>
-				  <option>Projet 2</option>
-				  <option>Projet 3</option>
-				  <option>Projet 4</option>
-				</select> <br/>
+				<br/>
 
 				<button class="btn btn-primary" name="existant" type="submit"><span class="glyphicon glyphicon-circle-arrow-down"></span>    Choisir ce projet</button>				
 			</form>
