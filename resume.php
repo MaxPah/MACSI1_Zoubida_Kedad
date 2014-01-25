@@ -23,42 +23,67 @@
 		<nav class="navbar navbar-default" role="navigation">
  		    <div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Tache</a>
-						<ul class="niveau2">
-							<li><a href="#">Ajouter tache</a></li>
-							<li><a href="#">Voir tache</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Lot</a>
-						<ul class="niveau2">
-							<li><a href="#">Ajouter lot</a></li>
-							<li><a href="#">Voir lot</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Sous Projet</a>
-						<ul class="niveau2">
-							<li><a href="#">Ajouter sous projet</a></li>
-							<li><a href="#">Voir sous projet</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Jalons</a>
-						<ul class="niveau2">
-							<li><a href="#">Ajouter jalon</a></li>
-							<li><a href="#">Voir jalon</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Phase</a>
-						<ul class="niveau2">
-							<li><a href="#">Ajouter phase</a></li>
-							<li><a href="#">Voir phase</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Livrable</a>
-						<ul class="niveau2">
-							<li><a href="#">Ajouter livrable</a></li>
-							<li><a href="#">Voir livrable</a></li>
-						</ul>
-					</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lots  <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Voir Lots</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Action</li>
+							<li><a href="#">Ajouter Lot</a></li>
+							<li><a href="#">Supprimer Lot</a></li>
+						  </ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sous-Projets  <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Voir Sous-Projets</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Action</li>
+							<li><a href="#">Ajouter Sous-Projet</a></li>
+							<li><a href="#">Supprimer Sous-Projet</a></li>
+						  </ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Taches  <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Voir Taches</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Action</li>
+							<li><a href="#">Ajouter Tache</a></li>
+							<li><a href="#">Supprimer Tache</a></li>
+						  </ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jalons  <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Voir Jalons</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Action</li>
+							<li><a href="#">Ajouter Jalon</a></li>
+							<li><a href="#">Supprimer Jalon</a></li>
+						  </ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Phases  <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Voir Phases</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Action</li>
+							<li><a href="#">Ajouter Phase</a></li>
+							<li><a href="#">Supprimer Phase</a></li>
+						  </ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Livrables  <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Voir Livrables</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Action</li>
+							<li><a href="#">Ajouter Livrable</a></li>
+							<li><a href="#">Supprimer Livrable</a></li>
+						  </ul>
+						</li>
+					
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
@@ -106,6 +131,11 @@
 							mysql_close();
 					?>
 				</ul>
-				<br/>		
+				<br/>	
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>		
 	</body>
 </html>
