@@ -21,14 +21,44 @@
    	<body>
 		<!-- BARRE DE NAVIGATION-->
 		<nav class="navbar navbar-default" role="navigation">
- 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 		    <div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Tache</a></li>
-					<li><a href="#">Lot</a></li>
-					<li><a href="#">Sous Projet</a></li>
-					<li><a href="#">Jalons</a></li>
-					<li><a href="#">Phase</a></li>
-					<li><a href="#">Livrable</a></li>
+					<li><a href="#">Tache</a>
+						<ul class="niveau2">
+							<li><a href="#">Ajouter tache</a></li>
+							<li><a href="#">Voir tache</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Lot</a>
+						<ul class="niveau2">
+							<li><a href="#">Ajouter lot</a></li>
+							<li><a href="#">Voir lot</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Sous Projet</a>
+						<ul class="niveau2">
+							<li><a href="#">Ajouter sous projet</a></li>
+							<li><a href="#">Voir sous projet</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Jalons</a>
+						<ul class="niveau2">
+							<li><a href="#">Ajouter jalon</a></li>
+							<li><a href="#">Voir jalon</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Phase</a>
+						<ul class="niveau2">
+							<li><a href="#">Ajouter phase</a></li>
+							<li><a href="#">Voir phase</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Livrable</a>
+						<ul class="niveau2">
+							<li><a href="#">Ajouter livrable</a></li>
+							<li><a href="#">Voir livrable</a></li>
+						</ul>
+					</li>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
