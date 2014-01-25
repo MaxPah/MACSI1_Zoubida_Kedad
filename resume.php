@@ -19,10 +19,22 @@
 		<![endif]-->
 </head>
    	<body>
+	
+		<?php $nomprojet = $_POST['nom_projet'];
+		?>
 		<!-- BARRE DE NAVIGATION-->
 		<nav class="navbar navbar-default" role="navigation">
  		    <div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
+						<div class="navbar-header">
+						  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						  </button>
+						  <a class="navbar-brand" href="#"><?php echo $nomprojet;?></a>
+						</div>
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lots  <b class="caret"></b></a>
 						  <ul class="dropdown-menu">
