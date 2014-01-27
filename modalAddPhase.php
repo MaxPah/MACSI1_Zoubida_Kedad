@@ -1,7 +1,7 @@
 <div class="modal fade" id="addPhase" style="display: none;" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-		<form method="POST" action="addLot.php">
+		<form method="POST" action="addPhase.php">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<p>Ajouter une phase</p>

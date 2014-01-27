@@ -21,7 +21,7 @@
 					FROM phase
 					WHERE id_projet = '$idProject'";
 					$reqPhase=mysql_query($sqlPhase);
-					echo "<select class=\"form-control\" id=\"dPh\" name=\"nameL\">";
+					echo "<select class=\"form-control\" id=\"dPh\" name=\"namePh\">";
 					while($nomPhase = mysql_fetch_array($reqPhase))
 					{
 						echo "<option>".$nomPhase['nom']."</option>";
