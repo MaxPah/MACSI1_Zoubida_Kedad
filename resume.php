@@ -19,135 +19,69 @@
 		<![endif]-->
 </head>
    	<body>
-	
-		<?php $nomprojet = $_POST['nom_projet'];
+		<?php
+			/*** Création d'un nouveau projet ***/
+			if(isset($_POST['new'])) {
+				$nameProject = $_POST['nameP'];
+				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg) VALUES ("'.$nameProject.'", 0)';
+				mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
+			}
+			/***Création nouveu projet ***/
+			else if(isset($_POST['old'])) {
+				$nameProject = $_POST['nameP'];
+			}
 		?>
 		<!-- BARRE DE NAVIGATION-->
-		<nav class="navbar navbar-default" role="navigation">
- 		    <div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-						<div class="navbar-header">
-						  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						  </button>
-						  <a class="navbar-brand" href="#"><?php echo $nomprojet;?></a>
-						</div>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lots  <b class="caret"></b></a>
-						  <ul class="dropdown-menu">
-							<li><a href="#">Voir Lots</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Lot</a></li>
-							<li><a href="#">Supprimer Lot</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sous-Projets  <b class="caret"></b></a>
-						  <ul class="dropdown-menu">
-							<li><a href="#">Voir Sous-Projets</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Sous-Projet</a></li>
-							<li><a href="#">Supprimer Sous-Projet</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Taches  <b class="caret"></b></a>
-						  <ul class="dropdown-menu">
-							<li><a href="#">Voir Taches</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Tache</a></li>
-							<li><a href="#">Supprimer Tache</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jalons  <b class="caret"></b></a>
-						  <ul class="dropdown-menu">
-							<li><a href="#">Voir Jalons</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Jalon</a></li>
-							<li><a href="#">Supprimer Jalon</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Phases  <b class="caret"></b></a>
-						  <ul class="dropdown-menu">
-							<li><a href="#">Voir Phases</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Phase</a></li>
-							<li><a href="#">Supprimer Phase</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Livrables  <b class="caret"></b></a>
-						  <ul class="dropdown-menu">
-							<li><a href="#">Voir Livrables</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Livrable</a></li>
-							<li><a href="#">Supprimer Livrable</a></li>
-						  </ul>
-						</li>
-					
+		<?php include ('navigation.php');?>
+		<!-- BARRE DE NAVIGATION-->
+		<br/>
+		<br/>
+		<!--  A inclure en fin de fichier -->
+		
+		<!-- Ajouter lot -->
+		<?php 
+		include ('modalAddLot.php'); ?>
+		<!-- Ajouter lot -->
+		
+		<!-- Supprimer lot -->
+		<?php include ('modalDelLot.php'); ?>
+		<!-- Supprimer lot -->
+		
+		<br/>
+		<ul>
+		<?php
+			$sql = "SELECT id_lot,nom 
+					FROM lot where id_lot = 1";
+			$req = mysql_query($sql);			
+			while($result = mysql_fetch_array($req))
+			{	
+				echo "<li>".$result['nom']."<ul>";
+				$sql2 = "SELECT id_sousprojet,nom FROM sousprojet where id_lot = ".$result['id_lot'];
+				$req2 = mysql_query($sql2);
+				while($result2 = mysql_fetch_assoc($req2))
+				{
+					echo "<li>&nbsp;&nbsp;&nbsp;".$result2['nom']."<ul>";
+					$sql3 = "SELECT nom FROM tache where id_sousprojet = ".$result2['id_sousprojet'];
+					$req3 = mysql_query($sql3);
+					while($result3 = mysql_fetch_assoc($req3))
+					{
+						echo "<li>&nbsp;&nbsp;&nbsp;".$result3['nom']."</li>";
+					}
+					echo "</ul>";
+				}
+				echo "</li>
 				</ul>
-				<form class="navbar-form navbar-right" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Rechercher">
-					</div>
-					<button type="submit" class="btn btn-default">Envoyer</button>
-				</form>
-			</div><!-- /.navbar-collapse -->
-			<!-- BARRE DE NAVIGATION-->
-		</nav>
-				<br/>
-				<ul>
-					<?php
-							if(isset($_POST['nouveau'])) {
-								$nameProject = $_POST['intituleProjet'];
-								$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg) VALUES ("'.$nameProject.'", 0)';
-								mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
-							}
-							$sql = "SELECT id_lot,nom 
-									FROM lot where id_lot = 1";
-							$req = mysql_query($sql);
-							
-								while($result = mysql_fetch_array($req))
-								{	
-									echo "<li>".$result['nom']."<ul>";
-										
-												$sql2 = "SELECT id_sousprojet,nom FROM sousprojet where id_lot = ".$result['id_lot'];
-												$req2 = mysql_query($sql2);
-												while($result2 = mysql_fetch_assoc($req2))
-												{
-													echo "<li>&nbsp;&nbsp;&nbsp;".$result2['nom']."<ul>";
-													
-														$sql3 = "SELECT nom FROM tache where id_sousprojet = ".$result2['id_sousprojet'];
-														$req3 = mysql_query($sql3);
-														while($result3 = mysql_fetch_assoc($req3))
-														{
-															echo "<li>&nbsp;&nbsp;&nbsp;".$result3['nom']."</li>";
-														}
-																									echo "</ul>";
-												}
-													echo "</li>
-																	</ul>
-											</li>";
-								}
-							mysql_close();
-					?>
-				</ul>
-				<br/>	
+				</li>";
+			}
+			mysql_close();
+		?>
+		</ul>
+		<br/>	
 <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>		
+	
 	</body>
 </html>

@@ -18,15 +18,18 @@
 	<body>
 	
 		<div id="bloc_central">
+			<!-- Créer un nouveau projet-->
 			<form method="POST" action="resume.php">
-				<input type="title" class="form-control" name="intituleProjet" placeholder="Nom du nouveau projet"> <br/>
-				<button class="btn btn-success" name="nouveau" type="submit"><span class="glyphicon glyphicon-plus"></span>    Lancer un nouveau projet</button>	<br/><br/>
-
+				<input type="title" class="form-control" name="nameP" placeholder="Nom du nouveau projet"> <br/>
+				<button class="btn btn-success" name= "new" type="submit"><span class="glyphicon glyphicon-plus"></span>    Lancer un nouveau projet</button>	<br/><br/>
+			</form>
+			<!-- Lancer un projet existant-->
+			<form method="POST" action="resume.php">
 				<?php
 					$sqlNameProject = "SELECT nom 
-							FROM projet";
+										FROM projet";
 					$reqNameProject = mysql_query($sqlNameProject);
-					echo "<select class='form-control' name='nom_projet'>";
+					echo "<select class=\"form-control\" name=\"nameP\">";
 					while($resultNameProject = mysql_fetch_array($reqNameProject))
 					{
 						echo "<option>".$resultNameProject['nom']."</option>";
@@ -34,11 +37,9 @@
 					echo "</select>";
 				?>
 				<br/>
-
-				<button class="btn btn-primary" name="existant" type="submit"><span class="glyphicon glyphicon-circle-arrow-down"></span>    Choisir ce projet</button>				
+				<button class="btn btn-primary" name="old" type="submit"><span class="glyphicon glyphicon-circle-arrow-down"></span>    Choisir ce projet</button>				
 			</form>
 		</div>		
-	
 	<?php
 		
 	/*	if(isset($_POST['nouveau']))
