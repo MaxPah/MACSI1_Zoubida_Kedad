@@ -36,6 +36,43 @@
 						</ul>
 					</li>
 	";
+	echo "
+					<li class=\"dropdown\">
+						<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Phases  <b class=\"caret\"></b></a>
+						<ul class=\"dropdown-menu\">
+	";
+	$sqlIdProject= "	SELECT id_projet
+				FROM projet
+				WHERE nom = '$nameProject'";
+	$reqIdProject=mysql_query($sqlIdProject);
+	$idProjectArray= mysql_fetch_array($reqIdProject);
+	$idProject=$idProjectArray['id_projet'];
+	$sqlPhase= "	SELECT nom
+				FROM phase
+				WHERE id_projet = '$idProject'";
+	$reqPhase=mysql_query($sqlPhase);
+	while($nomPhase = mysql_fetch_array($reqPhase)) {
+		echo "<li><a href=\"#\">Voir ".$nomPhase['nom']."</a></li>";
+	}
+	echo "
+							<li class=\"divider\"></li>
+							<li class=\"dropdown-header\">Action</li>
+							<li><a data-toggle=\"modal\" href=\"#addPhase\">Ajouter Phase</a></li>
+							<li><a data-toggle=\"modal\" href=\"#delPhase\" >Supprimer Phase</a></li>
+						</ul>
+					</li>
+	";
+	
+					/*<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Phases  <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Voir Phases</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Action</li>
+							<li><a href="#">Ajouter Phase</a></li>
+							<li><a href="#">Supprimer Phase</a></li>
+						</ul>
+					</li>*/
 					/*<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sous-Projets  <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -66,16 +103,7 @@
 							<li><a href="#">Supprimer Jalon</a></li>
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Phases  <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Voir Phases</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Phase</a></li>
-							<li><a href="#">Supprimer Phase</a></li>
-						</ul>
-					</li>
+					
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Livrables  <b class="caret"></b></a>
 						<ul class="dropdown-menu">

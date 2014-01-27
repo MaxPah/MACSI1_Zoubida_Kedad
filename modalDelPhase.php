@@ -1,14 +1,14 @@
-<div class="modal fade" id="delLot" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="delPhase" style="display: none;" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-		<form method="POST" action="delLot.php">
+		<form method="POST" action="delPhase.php">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<p>Supprimer un lot</p>
+				<p>Supprimer une phase</p>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="dL" class="col-lg-2 control-label">Quel lot voulez-vous supprimer ?</label>
+					<label for="dPh" class="col-lg-2 control-label">Quelle phase voulez-vous supprimer ?</label>
 					<div class="col-lg-10">
 					<?php
 					$sqlIdProject= "	SELECT id_projet
@@ -17,14 +17,14 @@
 					$reqIdProject=mysql_query($sqlIdProject);
 					$idProjectArray= mysql_fetch_array($reqIdProject);
 					$idProject=$idProjectArray['id_projet'];
-					$sqlLot= "	SELECT nom
-					FROM lot
+					$sqlPhase= "	SELECT nom
+					FROM phase
 					WHERE id_projet = '$idProject'";
-					$reqLot=mysql_query($sqlLot);
-					echo "<select class=\"form-control\" id=\"dL\" name=\"nameL\">";
-					while($nomLot = mysql_fetch_array($reqLot))
+					$reqPhase=mysql_query($sqlPhase);
+					echo "<select class=\"form-control\" id=\"dPh\" name=\"nameL\">";
+					while($nomPhase = mysql_fetch_array($reqPhase))
 					{
-						echo "<option>".$nomLot['nom']."</option>";
+						echo "<option>".$nomPhase['nom']."</option>";
 					}
 					echo "</select>";
 					?>
@@ -34,7 +34,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<button type="submit" class="btn btn-primary" >Supprimer lot</button>
+				<button type="submit" class="btn btn-primary" >Supprimer phase</button>
 			</div>
 		</form>
     </div><!-- /.modal-content -->

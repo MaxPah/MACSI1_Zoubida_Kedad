@@ -37,15 +37,31 @@
 		<br/>
 		<br/>
 		<!--  A inclure en fin de fichier -->
+		<!-- Ajouts -->
+		
 		
 		<!-- Ajouter lot -->
 		<?php 
 		include ('modalAddLot.php'); ?>
-		<!-- Ajouter lot -->
+		<!--/. Ajouter lot -->
+		
+		<!-- Ajouter phase -->
+		<?php 
+		include ('modalAddPhase.php'); ?>
+		<!--/. Ajouter phase -->
+	
+		<!--Suppression -->
+		
 		
 		<!-- Supprimer lot -->
 		<?php include ('modalDelLot.php'); ?>
-		<!-- Supprimer lot -->
+		<!--/. Supprimer lot -->
+		
+		<!-- Supprimer phase -->
+		<?php include ('modalDelPhase.php'); ?>
+		<!--/. Supprimer phase -->
+		
+		
 		
 		<br/>
 		<ul>
