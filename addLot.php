@@ -26,8 +26,8 @@
 	$idProject=$idProjectArray['id_projet'];
 	if(isset($_POST['nameL'])) {
 		$nameLot = $_POST['nameL'];
-		//$reqSqlAddLot = 'INSERT INTO lot(nom,id_projet) VALUES ("'.$nameLot.'", "'.$idProject.'")';
-		//mysql_query($reqSqlAddLot) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
+		$reqSqlAddLot = 'INSERT INTO lot(nom,id_projet) VALUES ("'.$nameLot.'", "'.$idProject.'")';
+		mysql_query($reqSqlAddLot) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
 	}
 ?>
 	<body>
