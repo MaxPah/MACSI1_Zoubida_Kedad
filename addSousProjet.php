@@ -7,7 +7,7 @@
 <html lang="fr">
 
 	<head>
-			<title>Suppression d'une phase</title>
+			<title>Ajout d'un lot</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 			<link rel="icon" type="image/x-icon" href="img/favicon.png"/>
@@ -15,27 +15,27 @@
 			<link rel="stylesheet" href="gs.css" type="text/css" media="screen"/> 
 	</head>
 <?php
-	if(isset($_POST['nameP'])) {
-		$nameProject=$_POST['nameP'];
+	if(isset($_POST['nameL'])) {
+		$nameLot=$_POST['nameL'];
 	}
-	$sqlIdProject= "	SELECT id_projet
-				FROM projet
-				WHERE nom = '$nameProject'";
-	$reqIdProject=mysql_query($sqlIdProject);
-	$idProjectArray= mysql_fetch_array($reqIdProject);
-	$idProject=$idProjectArray['id_projet'];
-	if(isset($_POST['namePh'])) {
-		$namePhase=$_POST['namePh'];
-		$SqlDelPhase = 'DELETE FROM phase WHERE nom ="'.$namePhase.'" and id_projet="'.$idProject.'"';
-		mysql_query($SqlDelPhase) or die ('Erreur SQL !'.$SqlDelPhase.'<br />'.mysql_error());
+	$sqlIdLot= "SELECT id_lot
+				FROM lot
+				WHERE nom = '$nameLot'";
+	$reqIdLot=mysql_query($sqlIdLot);
+	$resIdLot= mysql_fetch_array($reqIdLot);
+	$idLot=$resIdLot['id_lot'];
+	if(isset($_POST['nameSP'])) {
+		$nameSousProjet = $_POST['nameSP'];
+		$reqSqlAddSousProjet = 'INSERT INTO sousprojet(nom,id_lot) VALUES ("'.$nameSousProjet.'", "'.$idLot.'")';
+		mysql_query($reqSqlAddSousProjet) or die ('Erreur SQL !'.$reqSqlAddSousProjet.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
 			<!-- Créer un nouveau projet-->
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$namePhase." a bien ete supprimer des phases</label>";
-				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>
+				<?php echo "<label class=\"form-control\">".$nameSousProjet." a bien ete ajoute aux sous-projets</label>";
+				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$_POST['nameP']."\">";?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>
 			</form>

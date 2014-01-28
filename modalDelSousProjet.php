@@ -8,8 +8,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="dPh" class="col-lg-2 control-label">Quelle phase voulez-vous supprimer ?</label>
-					<div class="col-lg-10">
+					<label for="dPh" class="control-label">Quelle phase voulez-vous supprimer ?</label>
 					<?php
 					$sqlPhase= "	SELECT nom
 					FROM phase
@@ -23,7 +22,6 @@
 					echo "</select>";
 					?>
 						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
-					</div>
 				</div>
 			</div>
 			<div class="modal-footer">

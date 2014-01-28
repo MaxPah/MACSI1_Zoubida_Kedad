@@ -33,7 +33,7 @@
 		?>
 		<!-- BARRE DE NAVIGATION-->
 		<?php include ('navigation.php');?>
-		<!-- BARRE DE NAVIGATION-->
+		<!--/. BARRE DE NAVIGATION-->
 		<br/>
 		<br/>
 		<!--  A inclure en fin de fichier -->
@@ -49,6 +49,11 @@
 		<?php 
 		include ('modalAddPhase.php'); ?>
 		<!--/. Ajouter phase -->
+		
+		<!-- Ajouter sous-projet -->
+		<?php 
+		include ('modalAddSousProjet.php'); ?>
+		<!--/. Ajouter sous-projet -->
 	
 		<!--Suppression -->
 		
@@ -86,7 +91,7 @@
 					echo "</ul>";
 				}
 				echo "</li>
-				</ul>
+					</ul>
 				</li>";
 			}
 			mysql_close();

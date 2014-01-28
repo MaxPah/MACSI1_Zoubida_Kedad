@@ -8,18 +8,18 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="nPh" class="col-lg-2 control-label">Nom de la phase</label>
+					<label for="nPh" class="control-label">Nom de la phase</label>
 					
-					<div class="col-lg-10">
+					
 						<input type="text" class="form-control" id="nPh" name="namePh" placeholder="Tapez le nom de la phase">
 						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
-					</div>
+					
 				</div>
 				<div class="form-group">
-					<label for="cPh" class="col-lg-2 control-label">Charge de la phase</label>
-					<div class="col-lg-10">
+					<label for="cPh" class="control-label">Charge de la phase</label>
+					
 						<input type="text" class="form-control" id="cPh" name="chargePh" placeholder="Entrer la charge de la phase">
-					</div>
+					
 				</div>
 			</div>
 			<div class="modal-footer">

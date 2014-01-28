@@ -37,7 +37,7 @@
 		<div id="bloc_central">
 			<!-- Créer un nouveau projet-->
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$namePhase." a bien ete ajoute aux lots</label>";
+				<?php echo "<label class=\"form-control\">".$namePhase." a bien ete ajoute aux phases</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>
