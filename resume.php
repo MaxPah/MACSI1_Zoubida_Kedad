@@ -7,7 +7,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-        <title>MACSI 1</title>
+        <title><?php $nameProject = $_POST['nameP'];
+					echo $nameProject; 
+				?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="description" content=""/>
 		<meta name="keywords" content=""/>
@@ -22,17 +24,18 @@
 		<?php
 			/*** Création d'un nouveau projet ***/
 			if(isset($_POST['new'])) {
-				$nameProject = $_POST['nameP'];
+				/*$nameProject = $_POST['nameP'];*/
 				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg) VALUES ("'.$nameProject.'", 0)';
 				mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
 			}
 			/***Création nouveu projet ***/
-			else if(isset($_POST['old'])) {
+			/*else if(isset($_POST['old'])) {
 				$nameProject = $_POST['nameP'];
-			}
+			}*/
 		?>
 		<!-- BARRE DE NAVIGATION-->
-		<?php include ('navigation.php');?>
+		
+		<?php $nameProject = $_POST['nameP']; include ('navigation.php');?>
 		<!--/. BARRE DE NAVIGATION-->
 		<br/>
 		<br/>

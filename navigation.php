@@ -6,10 +6,7 @@
 				<span class="sr-only">Toggle navigation</span>
 			</button>
 			<a class="navbar-brand" href="#">
-				<?php if ($nameProject = NULL)
-						$nameProject ="";
-					echo $nameProject; 
-				?>
+				<?php echo $nameProject; ?>
 			</a>
 		</div>
 		<li class="dropdown">
@@ -151,15 +148,15 @@
 							<li><a href="#">Supprimer Livrable</a></li>
 						</ul>
 					</li>
-					*/?>
-				<?php	echo "
-					</ul>
-		<form class=\"navbar-form navbar-right\" role=\"search\">
+					*/ 
+					echo "</ul>";
+				?>
+                
+		<form method="POST" class="navbar-form navbar-right" action="delProjet.php">
+			<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 			<div class=\"form-group\">
-				<input type=\"text\" class=\"form-control\" placeholder=\"Rechercher\">
+			<button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-plus"></span>    Supprimer ce projet</button>
 			</div>
-			<button type=\"submit\" class=\"btn btn-default\">Envoyer</button>
 		</form>
-			</div><!-- /.navbar-collapse -->
-		</nav>
-		";?>
+	</div>
+</nav>
