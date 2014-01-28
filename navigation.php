@@ -5,7 +5,12 @@
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a class="navbar-brand" href="#"><?php echo $nameProject; ?></a>
+			<a class="navbar-brand" href="#">
+				<?php if ($nameProject = NULL)
+						$nameProject ="";
+					echo $nameProject; 
+				?>
+			</a>
 		</div>
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Lots  <b class="caret"></b></a>

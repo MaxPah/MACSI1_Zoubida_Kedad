@@ -70,7 +70,8 @@
 		
 		<br/>
 		<ul>
-		<?php
+		<!--
+		<?php/*
 			$sql = "SELECT id_lot,nom 
 					FROM lot where id_lot = 1";
 			$req = mysql_query($sql);			
@@ -95,7 +96,7 @@
 				</li>";
 			}
 			mysql_close();
-		?>
+		*/?>-->
 		</ul>
 		<br/>	
 <!-- Bootstrap core JavaScript
