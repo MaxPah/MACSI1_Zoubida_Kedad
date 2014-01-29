@@ -1,26 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.0.6
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 24 Janvier 2014 à 16:39
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.16
+-- Généré le: Mer 29 Janvier 2014 à 10:21
+-- Version du serveur: 5.5.33
+-- Version de PHP: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Base de données: `macsi1`
 --
-CREATE DATABASE IF NOT EXISTS `macsi1` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `macsi1`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +20,7 @@ USE `macsi1`;
 -- Structure de la table `jalon`
 --
 
-CREATE TABLE IF NOT EXISTS `jalon` (
+CREATE TABLE `jalon` (
   `id_jalon` int(11) NOT NULL,
   `nom` varchar(20) DEFAULT NULL,
   `date` date DEFAULT NULL,
@@ -46,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `jalon` (
 -- Structure de la table `livrable`
 --
 
-CREATE TABLE IF NOT EXISTS `livrable` (
+CREATE TABLE `livrable` (
   `id_livrable` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_livrable`)
@@ -58,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `livrable` (
 -- Structure de la table `lot`
 --
 
-CREATE TABLE IF NOT EXISTS `lot` (
+CREATE TABLE `lot` (
   `id_lot` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) DEFAULT NULL,
   `id_projet` int(11) DEFAULT NULL,
@@ -72,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `lot` (
 -- Structure de la table `phase`
 --
 
-CREATE TABLE IF NOT EXISTS `phase` (
+CREATE TABLE `phase` (
   `id_phase` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) DEFAULT NULL,
   `charge` int(11) DEFAULT NULL,
@@ -87,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `phase` (
 -- Structure de la table `projet`
 --
 
-CREATE TABLE IF NOT EXISTS `projet` (
+CREATE TABLE `projet` (
   `id_projet` int(11) NOT NULL AUTO_INCREMENT,
   `nom` text NOT NULL,
   `enveloppe_budg` int(11) DEFAULT NULL,
@@ -109,7 +101,7 @@ INSERT INTO `projet` (`id_projet`, `nom`, `enveloppe_budg`) VALUES
 -- Structure de la table `ressource`
 --
 
-CREATE TABLE IF NOT EXISTS `ressource` (
+CREATE TABLE `ressource` (
   `id_ressource` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) DEFAULT NULL,
   `qualification` varchar(20) DEFAULT NULL,
@@ -123,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `ressource` (
 -- Structure de la table `sousprojet`
 --
 
-CREATE TABLE IF NOT EXISTS `sousprojet` (
+CREATE TABLE `sousprojet` (
   `id_sousprojet` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) DEFAULT NULL,
   `id_lot` int(11) DEFAULT NULL,
@@ -137,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `sousprojet` (
 -- Structure de la table `tache`
 --
 
-CREATE TABLE IF NOT EXISTS `tache` (
+CREATE TABLE `tache` (
   `id_tache` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) DEFAULT NULL,
   `cout` int(11) DEFAULT NULL,
@@ -145,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `tache` (
   `date_debut_tard` date DEFAULT NULL,
   `date_fin_tot` date DEFAULT NULL,
   `date_fin_tard` date DEFAULT NULL,
+  `duree` int(11) NOT NULL,
   `objectif` varchar(50) DEFAULT NULL,
   `journee_homme` varchar(3) DEFAULT NULL,
   `id_phase` int(11) DEFAULT NULL,
@@ -160,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `tache` (
 -- Structure de la table `tacheressource`
 --
 
-CREATE TABLE IF NOT EXISTS `tacheressource` (
+CREATE TABLE `tacheressource` (
   `id_tache` int(11) NOT NULL AUTO_INCREMENT,
   `id_ressource` int(11) NOT NULL DEFAULT '0',
   `duree` int(11) DEFAULT NULL,
@@ -175,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `tacheressource` (
 -- Structure de la table `tachetache`
 --
 
-CREATE TABLE IF NOT EXISTS `tachetache` (
+CREATE TABLE `tachetache` (
   `id_tache_base` int(11) NOT NULL,
   `id_tache_ref` int(11) NOT NULL,
   PRIMARY KEY (`id_tache_base`,`id_tache_ref`),
@@ -190,8 +183,8 @@ CREATE TABLE IF NOT EXISTS `tachetache` (
 -- Contraintes pour la table `jalon`
 --
 ALTER TABLE `jalon`
-  ADD CONSTRAINT `jalon_ibfk_3` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `jalon_ibfk_2` FOREIGN KEY (`id_projet`) REFERENCES `projet` (`id_projet`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `jalon_ibfk_2` FOREIGN KEY (`id_projet`) REFERENCES `projet` (`id_projet`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `jalon_ibfk_3` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `lot`
@@ -215,23 +208,19 @@ ALTER TABLE `sousprojet`
 -- Contraintes pour la table `tache`
 --
 ALTER TABLE `tache`
-  ADD CONSTRAINT `tache_ibfk_2` FOREIGN KEY (`id_sousprojet`) REFERENCES `sousprojet` (`id_sousprojet`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tache_ibfk_1` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tache_ibfk_1` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tache_ibfk_2` FOREIGN KEY (`id_sousprojet`) REFERENCES `sousprojet` (`id_sousprojet`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `tacheressource`
 --
 ALTER TABLE `tacheressource`
-  ADD CONSTRAINT `tacheressource_ibfk_2` FOREIGN KEY (`id_ressource`) REFERENCES `ressource` (`id_ressource`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tacheressource_ibfk_1` FOREIGN KEY (`id_tache`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tacheressource_ibfk_1` FOREIGN KEY (`id_tache`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tacheressource_ibfk_2` FOREIGN KEY (`id_ressource`) REFERENCES `ressource` (`id_ressource`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `tachetache`
 --
 ALTER TABLE `tachetache`
-  ADD CONSTRAINT `tachetache_ibfk_2` FOREIGN KEY (`id_tache_ref`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tachetache_ibfk_1` FOREIGN KEY (`id_tache_base`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  ADD CONSTRAINT `tachetache_ibfk_1` FOREIGN KEY (`id_tache_base`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tachetache_ibfk_2` FOREIGN KEY (`id_tache_ref`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE;
