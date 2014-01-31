@@ -85,19 +85,30 @@
     <script src="js/jquery-1.10.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>	
 	<script src="js/jquery.fn.gantt.js"></script>
-	<script>
-		$(function() {
+	<?php $sql = "SELECT * FROM recap";
+		$req=mysql_query($sql);
+		while($data=mysql_fetch_array($req));
+		{
+		$de = $data['de'];
+		$a = $data['a'];
+		$lot = $data['lot'];
+		$sousprojet = $data['sousprojet'];
+		$tache = $data['tache'];
+		}
+	?><script>
+	
+		$(function($de,$a,$lot,$sousprojet,$tache) {
 
 			"use strict";
 
 			$(".gantt").gantt({
 				source: [{
-					name: "Sprint 0",
-					desc: "Analysis",
+					name: lot,
+					desc: "sousprojet",
 					values: [{
 						from: "/Date(1320192000000)/",
 						to: "/Date(1322401600000)/",
-						label: "Requirement Gathering",
+						label: "tache",
 						customClass: "ganttRed"
 					}]
 				}],
@@ -107,6 +118,7 @@
 				
 			});
 		});
+	
 	</script>	
 	
 	</body>
