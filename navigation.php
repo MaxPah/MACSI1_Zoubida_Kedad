@@ -16,15 +16,16 @@
 						$estLot=false; //variable qui permet de voir si on a des lots existants
 						$estSousprojet=false; //variable qui permet de voir si on a des sousprojets existants
 						$sqlIdProject= "SELECT id_projet
-							FROM projet
-							WHERE nom = '$nameProject'";
+										FROM projet
+										WHERE nom = '$nameProject'";
 						$reqIdProject=mysql_query($sqlIdProject);
 						$idProjectArray= mysql_fetch_array($reqIdProject);
 						$idProject=$idProjectArray['id_projet'];
-						$sqlLot= "	SELECT nom
-							FROM lot
-							WHERE id_projet = '$idProject'";
+						$sqlLot= "  SELECT nom
+									FROM lot
+									WHERE id_projet = '$idProject'";
 						$reqLot=mysql_query($sqlLot);
+						
 						while($nomLot = mysql_fetch_array($reqLot)) {
 							echo "<li><a href=\"#\">Voir ".$nomLot['nom']."</a></li>";
 							$estLot=true;
@@ -51,6 +52,7 @@
 							FROM phase
 							WHERE id_projet = '$idProject'";
 						$reqPhase=mysql_query($sqlPhase);
+						
 						while($nomPhase = mysql_fetch_array($reqPhase)) {
 							echo "<li><a href=\"#\">Voir ".$nomPhase['nom']."</a></li>";
 							$estPhase=true;
@@ -111,12 +113,14 @@
 							FROM phase
 							WHERE id_projet='$idProject'";
 						$reqIdPhase=mysql_query($sqlIdPhase);
+						
 						while($resIdPhase=mysql_fetch_array($reqIdPhase)) {
 							$idPhase=$resIdPhase['id_phase'];
 							$sqlNomPhaseTmp= "SELECT nom
 								FROM phase
 								WHERE id_phase= '$idPhase'";
 							$reqNomPhaseTmp=mysql_query($sqlNomPhaseTmp);
+							
 							if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
 								echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
 								echo "<li class=\"divider\"></li>";
@@ -125,6 +129,7 @@
 								FROM jalon
 								WHERE id_phase = '$idPhase'";
 							$reqJalon=mysql_query($sqlJalon);
+							
 							while($nomJalon = mysql_fetch_array($reqJalon)) {
 								echo "<li><a href=\"#\">Voir ".$nomJalon['nom']."</a></li>";
 								}
@@ -136,8 +141,7 @@
 					<li><a data-toggle="modal" href="#delSousProjet" >Supprimer Jalon</a></li>
 				</ul>
 			</li>
-			<?php }?>
-			<?php
+			<?php }
 				if($estPhase && $estSousprojet) { // si on a des phases, on affiche les jalons
 			?>
 			<li class="dropdown">
@@ -151,24 +155,28 @@
 							FROM lot
 							WHERE id_projet='$idProject'";
 						$reqIdLot=mysql_query($sqlIdLot);
+						
 						while($resIdLot=mysql_fetch_array($reqIdLot)) {
 							$idLot=$resIdLot['id_lot'];
 							$sqlNomSousprojetTmp= "SELECT nom ,id_sousprojet
 								FROM sousprojet
 								WHERE id_lot= '$idLot'";
 							$reqNomSousprojetTmp=mysql_query($sqlNomSousprojetTmp);
+							
 							if($nomSousprojetTmp = mysql_fetch_array($reqNomSousprojetTmp)) {
 								$idSousprojet=$nomSousprojetTmp['id_sousprojet'];
 								echo "<li class=\"dropdown-header\">".$nomSousprojetTmp['nom'];
 								echo "<ul class =\"dropdown-header\">";
 							}
 							$reqIdPhase=mysql_query($sqlIdPhase);
+							
 							while($resIdPhase=mysql_fetch_array($reqIdPhase)) {
 								$idPhase=$resIdPhase['id_phase'];
 								$sqlNomPhaseTmp= "SELECT nom
 									FROM phase
 									WHERE id_phase= '$idPhase'";
 								$reqNomPhaseTmp=mysql_query($sqlNomPhaseTmp);
+								
 								if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
 									echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
 									echo "<li class=\"divider\"></li>";
@@ -178,6 +186,7 @@
 									WHERE id_phase = '$idPhase'
 									AND id_sousprojet = '$idSousprojet'";
 								$reqTache=mysql_query($sqlTache);
+								
 								while($nomTache = mysql_fetch_array($reqTache)) {
 									echo "<li><a href=\"#\">Voir ".$nomTache['nom']."</a></li>";
 								}
@@ -218,12 +227,5 @@
 					*/ 
 					echo "</ul>";
 				?>
-                
-		<form method="POST" class="navbar-form navbar-right" action="delProjet.php">
-			<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
-			<div class=\"form-group\">
-			<button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-plus"></span>    Supprimer ce projet</button>
-			</div>
-		</form>
 	</div>
 </nav>

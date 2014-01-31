@@ -62,7 +62,6 @@
 	
 		<!--Suppression -->
 		
-		
 		<!-- Supprimer lot -->
 		<?php include ('modalDelLot.php'); ?>
 		<!--/. Supprimer lot -->
@@ -71,8 +70,21 @@
 		<?php include ('modalDelPhase.php'); ?>
 		<!--/. Supprimer phase -->
 		
+		<!-- Supprimer projet -->
+		<form method="POST" class="supprProj" action="delProjet.php">
+			<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
+			<div class="form-group">
+				<button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-trash"></span>    Supprimer ce projet</button>
+			</div>
+		</form>
+		<!--/. Supprimer projet -->
 		
-		
+		<!-- Retour accueil -->
+			<span class="retourIndex">
+				<a href="index.php"><button class="btn btn-success btn-xs" name="del"><span class="glyphicon glyphicon-circle-arrow-left"></span>    Retour &agrave; l'accueil</button></a>
+			</span>
+		<!--/. Retour accueil -->
+
 		<br/>
 		<ul>
 		<!--
