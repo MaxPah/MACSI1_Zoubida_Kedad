@@ -100,15 +100,6 @@
 						label: "Requirement Gathering",
 						customClass: "ganttRed"
 					}]
-				},{
-					name: " ",
-					desc: "Warranty Period",
-					values: [{
-						from: "/Date(1336611200000)/",
-						to: "/Date(1349711200000)/",
-						label: "Warranty Period",
-						customClass: "ganttOrange"
-					}]
 				}],
 				navigate: "scroll",
 				maxScale: "hours",
