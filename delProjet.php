@@ -17,9 +17,26 @@
 
 <body>
 	<div id="bloc_central">
-
-	<?php
-		if(isset($_POST['del']))
+		<?php if(isset($_POST['verifDel'])) { ?>
+				<form method="POST" action="delProjet.php">
+					<label class="control-label">etes vous sur(e) de vouloir supprimer le projet ?</label>
+					<input type = "hidden" name="nameP" value="<?php echo $_POST['nameP'];?>">
+					<br/>
+					<button class="btn btn-success" name="del" type="submit" class="btn btn-primary" >Supprimer</button>
+					<button type="submit" name="annule" class="btn btn-default" >Annuler</button>
+				</form>
+				<br/>
+		<?php }
+		else if(isset($_POST['annule'])){
+		?>
+			<form name="formAnnule" method="POST" action="resume.php">
+				<input type = "hidden" name="nameP" value="<?php echo $_POST['nameP'];?>">
+			</form>
+			<script type="text/javascript"> 
+				document.formAnnule.submit(); //Envoie le formulaire vers resume.php 
+			</script>
+		<?php }
+		else if(isset($_POST['del']))
 		{
 			$nameProject = $_POST['nameP'];
 			
@@ -39,14 +56,12 @@
 							  
 			mysql_query($reqSqlDelProj) 
 					or die ('Erreur SQL !'.$reqSqlDelProj.'<br />'.mysql_error());
-		}
-		
-		echo "<label class=\"form-control\">Le projet ".$nameProject." a bien &eacute;t&eacute; supprim&eacute;</label><br/><br/><br/>";
-		echo "<form action=\"index.php\">";
-		echo "<button class=\"btn btn-success\" type=\"submit\" class=\"btn btn-primary\" >Retourner &agrave; l'accueil</button>";
-		echo "</form>";
-	?>
-	
+		?>
+			<label class="form-control">Le projet <?php echo $nameProject; ?> a bien &eacute;t&eacute; supprim&eacute;</label><br/><br/><br/>
+			<form action="index.php">
+				<button class="btn btn-success" type="submit" class="btn btn-primary" >Retourner &agrave; l'accueil</button>
+			</form>
+		<?php } ?>
 	</div>
 </body>
 </html>

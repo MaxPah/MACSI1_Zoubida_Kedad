@@ -10,6 +10,26 @@
 				</a>
 			</div>
 			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ressources  <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<?php
+						$estRessource=false; //variable qui permet de voir si on a des ressources existantes
+						$sqlRessource= "  SELECT nom
+									FROM ressource";
+						$reqRessource=mysql_query($sqlRessource);
+						
+						while($nomRessource = mysql_fetch_array($reqRessource)) {
+							echo "<li><a href=\"#\">Voir ".$nomRessource['nom']."</a></li>";
+							$estRessource=true;
+						}
+					?>
+					<li class="divider"></li>
+					<li class="dropdown-header">Action</li>
+					<li><a data-toggle="modal" href="#addLot">Ajouter Ressource</a></li>
+					<li><a data-toggle="modal" href="#delLot" >Supprimer Ressource</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Lots  <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<?php
@@ -75,12 +95,14 @@
 							FROM lot
 							WHERE id_projet='$idProject'";
 						$reqIdLot=mysql_query($sqlIdLot);
+						
 						while($resIdLot=mysql_fetch_array($reqIdLot)) {
 							$idLot=$resIdLot['id_lot'];
 							$sqlNomLotTmp= "SELECT nom
 								FROM lot
 								WHERE id_lot= '$idLot'";
 							$reqNomLotTmp=mysql_query($sqlNomLotTmp);
+							
 							if($nomLotTmp = mysql_fetch_array($reqNomLotTmp)) {
 								echo "<li class=\"dropdown-header\">".$nomLotTmp['nom']."</li>";
 								echo "<li class=\"divider\"></li>";
@@ -89,10 +111,11 @@
 								FROM sousprojet
 								WHERE id_lot = '$idLot'";
 							$reqSousProjet=mysql_query($sqlSousProjet);
+							
 							while($nomSousProjet = mysql_fetch_array($reqSousProjet)) {
 								echo "<li><a href=\"#\">Voir ".$nomSousProjet['nom']."</a></li>";
 								$estSousprojet=true;
-								}
+							}
 						}
 					?>
 					<li class="divider"></li>
@@ -142,15 +165,12 @@
 				</ul>
 			</li>
 			<?php }
-				if($estPhase && $estSousprojet) { // si on a des phases, on affiche les jalons
+				if($estPhase && $estSousprojet) { // si on a des phases et des sous projet, on affiche les taches
 			?>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tache  <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<?php
-						$sqlIdPhase = "SELECT id_phase
-								FROM phase
-								WHERE id_projet='$idProject'";
 						$sqlIdLot = "SELECT id_lot
 							FROM lot
 							WHERE id_projet='$idProject'";
@@ -163,36 +183,49 @@
 								WHERE id_lot= '$idLot'";
 							$reqNomSousprojetTmp=mysql_query($sqlNomSousprojetTmp);
 							
-							if($nomSousprojetTmp = mysql_fetch_array($reqNomSousprojetTmp)) {
+							while($nomSousprojetTmp = mysql_fetch_array($reqNomSousprojetTmp)) {
 								$idSousprojet=$nomSousprojetTmp['id_sousprojet'];
-								echo "<li class=\"dropdown-header\">".$nomSousprojetTmp['nom'];
-								echo "<ul class =\"dropdown-header\">";
-							}
-							$reqIdPhase=mysql_query($sqlIdPhase);
-							
-							while($resIdPhase=mysql_fetch_array($reqIdPhase)) {
-								$idPhase=$resIdPhase['id_phase'];
-								$sqlNomPhaseTmp= "SELECT nom
-									FROM phase
-									WHERE id_phase= '$idPhase'";
-								$reqNomPhaseTmp=mysql_query($sqlNomPhaseTmp);
+								$sqlEstTacheSousprojet ="SELECT nom
+										FROM tache
+										WHERE id_sousprojet = '$idSousprojet'";
+								$reqEstTacheSousprojet =mysql_query($sqlEstTacheSousprojet);
 								
-								if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
-									echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
-									echo "<li class=\"divider\"></li>";
-								}
-								$sqlTache= "SELECT nom
-									FROM tache
-									WHERE id_phase = '$idPhase'
-									AND id_sousprojet = '$idSousprojet'";
-								$reqTache=mysql_query($sqlTache);
+								if(mysql_fetch_array($reqEstTacheSousprojet)){
+									echo "<li class=\"dropdown-header\">".$nomSousprojetTmp['nom'];
+									echo "<ul class =\"dropdown-header\">";
+									$sqlIdPhase = "SELECT id_phase
+										FROM phase
+										WHERE id_projet='$idProject'";
+									$reqIdPhase=mysql_query($sqlIdPhase);
 								
-								while($nomTache = mysql_fetch_array($reqTache)) {
-									echo "<li><a href=\"#\">Voir ".$nomTache['nom']."</a></li>";
+									while($resIdPhase=mysql_fetch_array($reqIdPhase)) {
+										$idPhase=$resIdPhase['id_phase'];
+										$sqlTache= "SELECT nom
+											FROM tache
+											WHERE id_phase = '$idPhase'
+											AND id_sousprojet = '$idSousprojet'";
+										$reqTache=mysql_query($sqlTache);
+
+										if($nomTache = mysql_fetch_array($reqTache)) {
+											$sqlNomPhaseTmp= "SELECT nom
+												FROM phase
+												WHERE id_phase= '$idPhase'";
+											$reqNomPhaseTmp=mysql_query($sqlNomPhaseTmp);
+											
+											if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
+												echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
+												echo "<li class=\"divider\"></li>";
+											}
+											
+											do {
+												echo "<li><a href=\"#\">Voir ".$nomTache['nom']."</a></li>";
+											}while($nomTache = mysql_fetch_array($reqTache));
+										}
+									}
+									echo "</ul></li>";	
 								}
 							}
-						}
-						echo "</li></ul>";						
+						}											
 					?>
 					<li class="divider"></li>
 					<li class="dropdown-header">Action</li>
@@ -204,17 +237,6 @@
 			<?php
 					/*
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Taches  <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Voir Taches</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Tache</a></li>
-							<li><a href="#">Supprimer Tache</a></li>
-						</ul>
-					</li>
-					
-					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Livrables  <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Voir Livrables</a></li>
@@ -225,7 +247,7 @@
 						</ul>
 					</li>
 					*/ 
-					echo "</ul>";
-				?>
+			?>
+		</ul>
 	</div>
 </nav>
