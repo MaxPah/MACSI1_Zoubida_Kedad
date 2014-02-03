@@ -8,8 +8,10 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label class="control-label">Voulez vous vraiment supprimer ce projet ? (attention ce choix est définitif)</label>
-					<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
+					<label for="nL" class="col-lg-2 control-label">Voulez vous vraiment supprimer ce projet ? (attention ce choix est définitif)</label>
+					<div class="col-lg-10">
+						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">

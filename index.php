@@ -23,8 +23,6 @@
 				<input type="title" class="form-control" name="nameP" placeholder="Nom du nouveau projet"> <br/>
 				<button class="btn btn-success" name= "new" type="submit"><span class="glyphicon glyphicon-plus"></span>    Lancer un nouveau projet</button>	<br/><br/>
 			</form>
-			<!--/.Créer un nouveau projet-->
-			
 			<!-- Lancer un projet existant-->
 			<form method="POST" action="resume.php">
 				<?php
@@ -41,8 +39,6 @@
 				<br/>
 				<button class="btn btn-primary" name="old" type="submit"><span class="glyphicon glyphicon-circle-arrow-down"></span>    Choisir ce projet</button>				
 			</form>
-			<!--/.Lancer un projet existant-->
-			
 		</div>		
 	<?php
 		

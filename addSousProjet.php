@@ -7,7 +7,7 @@
 <html lang="fr">
 
 	<head>
-			<title>Ajout d'un sous-projet</title>
+			<title>Ajout d'un lot</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 			<link rel="icon" type="image/x-icon" href="img/favicon.png"/>
@@ -18,19 +18,9 @@
 	if(isset($_POST['nameL'])) {
 		$nameLot=$_POST['nameL'];
 	}
-	if(isset($_POST['nameP'])) {
-		$nomProjet=$_POST['nameP'];
-	}
-	$sqlIdProjet= "	SELECT id_projet
-				FROM projet
-				WHERE nom = '$nomProjet'";
-	$reqIdProjet=mysql_query($sqlIdProjet);
-	$idProjetArray= mysql_fetch_array($reqIdProjet);
-	$idProjet=$idProjetArray['id_projet'];
 	$sqlIdLot= "SELECT id_lot
 				FROM lot
-				WHERE nom = '$nameLot'
-				AND id_projet = '$idProjet'";
+				WHERE nom = '$nameLot'";
 	$reqIdLot=mysql_query($sqlIdLot);
 	$resIdLot= mysql_fetch_array($reqIdLot);
 	$idLot=$resIdLot['id_lot'];
