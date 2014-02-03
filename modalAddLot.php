@@ -8,8 +8,8 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="nL" class="col-lg-2 control-label">Nom du lot</label>
-					<div class="col-lg-10">
+					<label for="nL" class="control-label">Nom du lot</label>
+					<div>
 						<input type="text" class="form-control" id="nL" name="nameL" placeholder="Tapez le nom du lot">
 						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 					</div>
