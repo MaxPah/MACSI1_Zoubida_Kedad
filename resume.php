@@ -15,12 +15,14 @@
 		<meta name="keywords" content=""/>
         <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen"/>
         <link rel="stylesheet" href="gs.css" type="text/css" media="screen"/>
+		<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>		
+	
+		
 		<link rel="icon" type="image/png" href="favicon.png" />
 		<!--[if lte IE 8]>
 			<script src="js/html5.js" type="text/javascript"></script>
 		<![endif]-->
-		
-		
 </head>
    	<body>
 		<?php
@@ -70,6 +72,7 @@
 		<?php include ('modalDelPhase.php'); ?>
 		<!--/. Supprimer phase -->
 		
+	<?php include ('test_bord.php'); ?>	
 		<!-- Supprimer projet -->
 		<span class="supprProj">
 			<a data-toggle="modal" href="#ValidSupprProjet" ><button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-trash"></span>    Supprimer ce projet</button></a>
@@ -82,7 +85,7 @@
 			<a href="index.php"><button class="btn btn-success btn-xs" name="del"><span class="glyphicon glyphicon-circle-arrow-left"></span>    Retour &agrave; l'accueil</button></a>
 		</span>
 		<!--/. Retour accueil -->
-
+				
 		<br/>
 		<ul>
 		<!--
@@ -117,8 +120,7 @@
 <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>		
-	
+    
+		
 	</body>
 </html>
