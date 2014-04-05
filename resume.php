@@ -48,18 +48,19 @@
 		
 		
 		<!-- Ajouter lot -->
-		<?php 
-		include ('modalAddLot.php'); ?>
+		<?php include ('modalAddLot.php'); ?>
 		<!--/. Ajouter lot -->
 		
 		<!-- Ajouter phase -->
-		<?php 
-		include ('modalAddPhase.php'); ?>
+		<?php include ('modalAddPhase.php'); ?>
 		<!--/. Ajouter phase -->
 		
 		<!-- Ajouter sous-projet -->
-		<?php 
-		include ('modalAddSousProjet.php'); ?>
+		<?php include ('modalAddSousProjet.php'); ?>
+		<!--/. Ajouter sous-projet -->
+		
+		<!-- Ajouter sous-projet -->
+		<?php include ('modalAddTache.php'); ?>
 		<!--/. Ajouter sous-projet -->
 	
 		<!--Suppression -->
@@ -72,7 +73,7 @@
 		<?php include ('modalDelPhase.php'); ?>
 		<!--/. Supprimer phase -->
 		
-	<?php include ('test_bord.php'); ?>	
+		<?php include ('test_bord.php'); ?>	
 		<!-- Supprimer projet -->
 		<span class="supprProj">
 			<a data-toggle="modal" href="#ValidSupprProjet" ><button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-trash"></span>    Supprimer ce projet</button></a>

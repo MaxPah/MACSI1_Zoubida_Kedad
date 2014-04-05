@@ -222,14 +222,14 @@
 											}while($nomTache = mysql_fetch_array($reqTache));
 										}
 									}
-									echo "</ul></li>";	
+									//echo "</ul></li>";	
 								}
 							}
 						}											
 					?>
 					<li class="divider"></li>
 					<li class="dropdown-header">Action</li>
-					<li><a data-toggle="modal" href="#addSousProjet">Ajouter Tache</a></li>
+					<li><a data-toggle="modal" href="#addTache">Ajouter Tache</a></li>
 					<li><a data-toggle="modal" href="#delSousProjet" >Supprimer Tache</a></li>
 				</ul>
 			</li>

@@ -2,22 +2,22 @@
 -- version 4.0.6
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mer 29 Janvier 2014 à 10:21
--- Version du serveur: 5.5.33
--- Version de PHP: 5.5.3
+-- Host: localhost
+-- Generation Time: Apr 05, 2014 at 12:37 PM
+-- Server version: 5.5.33
+-- PHP Version: 5.5.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Base de données: `macsi1`
+-- Database: `macsi1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `jalon`
+-- Table structure for table `jalon`
 --
 
 CREATE TABLE `jalon` (
@@ -32,10 +32,17 @@ CREATE TABLE `jalon` (
   KEY `id_projet` (`id_projet`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jalon`
+--
+
+INSERT INTO `jalon` (`id_jalon`, `nom`, `date`, `evenement`, `id_phase`, `id_projet`) VALUES
+(1, 'Jalon 1', '2014-04-25', 'Livrable rendu', 1, 9);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `livrable`
+-- Table structure for table `livrable`
 --
 
 CREATE TABLE `livrable` (
@@ -47,7 +54,7 @@ CREATE TABLE `livrable` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `lot`
+-- Table structure for table `lot`
 --
 
 CREATE TABLE `lot` (
@@ -56,12 +63,19 @@ CREATE TABLE `lot` (
   `id_projet` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_lot`),
   KEY `id_projet` (`id_projet`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `lot`
+--
+
+INSERT INTO `lot` (`id_lot`, `nom`, `id_projet`) VALUES
+(1, 'Lot 1', 9);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `phase`
+-- Table structure for table `phase`
 --
 
 CREATE TABLE `phase` (
@@ -71,12 +85,19 @@ CREATE TABLE `phase` (
   `id_projet` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_phase`),
   KEY `id_projet` (`id_projet`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `phase`
+--
+
+INSERT INTO `phase` (`id_phase`, `nom`, `charge`, `id_projet`) VALUES
+(1, 'Phase 1', 1000, 9);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `projet`
+-- Table structure for table `projet`
 --
 
 CREATE TABLE `projet` (
@@ -87,7 +108,7 @@ CREATE TABLE `projet` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Contenu de la table `projet`
+-- Dumping data for table `projet`
 --
 
 INSERT INTO `projet` (`id_projet`, `nom`, `enveloppe_budg`) VALUES
@@ -98,7 +119,7 @@ INSERT INTO `projet` (`id_projet`, `nom`, `enveloppe_budg`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ressource`
+-- Table structure for table `ressource`
 --
 
 CREATE TABLE `ressource` (
@@ -112,7 +133,7 @@ CREATE TABLE `ressource` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sousprojet`
+-- Table structure for table `sousprojet`
 --
 
 CREATE TABLE `sousprojet` (
@@ -121,12 +142,19 @@ CREATE TABLE `sousprojet` (
   `id_lot` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_sousprojet`),
   KEY `id_lot` (`id_lot`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `sousprojet`
+--
+
+INSERT INTO `sousprojet` (`id_sousprojet`, `nom`, `id_lot`) VALUES
+(1, 'Sous Proj 1', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tache`
+-- Table structure for table `tache`
 --
 
 CREATE TABLE `tache` (
@@ -150,7 +178,7 @@ CREATE TABLE `tache` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tacheressource`
+-- Table structure for table `tacheressource`
 --
 
 CREATE TABLE `tacheressource` (
@@ -165,7 +193,7 @@ CREATE TABLE `tacheressource` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tachetache`
+-- Table structure for table `tachetache`
 --
 
 CREATE TABLE `tachetache` (
@@ -176,50 +204,50 @@ CREATE TABLE `tachetache` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `jalon`
+-- Constraints for table `jalon`
 --
 ALTER TABLE `jalon`
   ADD CONSTRAINT `jalon_ibfk_2` FOREIGN KEY (`id_projet`) REFERENCES `projet` (`id_projet`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `jalon_ibfk_3` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `lot`
+-- Constraints for table `lot`
 --
 ALTER TABLE `lot`
   ADD CONSTRAINT `lot_ibfk_1` FOREIGN KEY (`id_projet`) REFERENCES `projet` (`id_projet`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `phase`
+-- Constraints for table `phase`
 --
 ALTER TABLE `phase`
   ADD CONSTRAINT `phase_ibfk_1` FOREIGN KEY (`id_projet`) REFERENCES `projet` (`id_projet`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `sousprojet`
+-- Constraints for table `sousprojet`
 --
 ALTER TABLE `sousprojet`
   ADD CONSTRAINT `sousprojet_ibfk_1` FOREIGN KEY (`id_lot`) REFERENCES `lot` (`id_lot`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tache`
+-- Constraints for table `tache`
 --
 ALTER TABLE `tache`
   ADD CONSTRAINT `tache_ibfk_1` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tache_ibfk_2` FOREIGN KEY (`id_sousprojet`) REFERENCES `sousprojet` (`id_sousprojet`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tacheressource`
+-- Constraints for table `tacheressource`
 --
 ALTER TABLE `tacheressource`
   ADD CONSTRAINT `tacheressource_ibfk_1` FOREIGN KEY (`id_tache`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tacheressource_ibfk_2` FOREIGN KEY (`id_ressource`) REFERENCES `ressource` (`id_ressource`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `tachetache`
+-- Constraints for table `tachetache`
 --
 ALTER TABLE `tachetache`
   ADD CONSTRAINT `tachetache_ibfk_1` FOREIGN KEY (`id_tache_base`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE,
