@@ -8,7 +8,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="lPh" class="control-label">Dans quelle phase ajouter cette t&circ;che ?</label>
+					<label for="lPh" class="control-label">Dans quelle phase ajouter cette t&acirc;che ?</label>
 					<?php
 						echo "<select class=\"form-control\" id=\"lPh\" name=\"nameL\">";
 						
@@ -25,13 +25,14 @@
 						echo "</select>";
 					?>
 					<br/>
-					<label for="lSP" class="control-label">Dans quel sous-projet ajouter cette t&circ;che ?</label>
+					<label for="lSP" class="control-label">Dans quel sous-projet ajouter cette t&acirc;che ?</label>
 					<?php
 						echo "<select class=\"form-control\" id=\"lSP\" name=\"nameL\">";
 						
-						$sqlSP= "		SELECT nom
-										FROM sousprojet
-										WHERE id_projet = '$idProject'";
+						$sqlSP= "		SELECT s.nom
+										FROM sousprojet s, lot l
+										WHERE s.id_lot= l.id_lot 
+										AND l.id_projet = '$idProject'";
 										
 						$reqSP=mysql_query($sqlSP);
 						
@@ -42,24 +43,6 @@
 						echo "</select>";
 					?>
 					<br/>
-					<label for="lJ" class="control-label">Quel jalon associer &agrave; cette t&circ;che ?</label>
-					<?php
-						echo "<select class=\"form-control\" id=\"lJ\" name=\"nameL\">";
-						
-						$sqlJ= "		SELECT nom
-										FROM jalon
-										WHERE id_projet = '$idProject'";
-										
-						$reqJ=mysql_query($sqlJ);
-						
-						while($nomJ = mysql_fetch_array($reqJ))
-						{
-							echo "<option>".$nomJ['nom']."</option>";
-						}
-						echo "</select>";
-					?>
-					<br/>
-					<!-- RESTE A FAIRE LE LIEN AVEC ID_PHASE_DEP, JE SAIS PLUS TROP CE QUE C'EST-->
 					<label for="nSP" class="control-label">Nom de la nouvelle t&acirc;che</label>
 						<input type="text" class="form-control" id="nT" name="nameT" placeholder="Tapez le nom de la t&acirc;che">
 					<br/>	
