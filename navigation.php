@@ -105,7 +105,7 @@
 							
 							if($nomLotTmp = mysql_fetch_array($reqNomLotTmp)) {
 								echo "<li class=\"dropdown-header\">".$nomLotTmp['nom']."</li>";
-								echo "<li class=\"divider\"></li>";
+								
 							}
 							$sqlSousProjet= "SELECT nom
 								FROM sousprojet
@@ -146,7 +146,6 @@
 							
 							if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
 								echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
-								echo "<li class=\"divider\"></li>";
 							}
 							$sqlJalon= "SELECT nom
 								FROM jalon
@@ -155,6 +154,7 @@
 							
 							while($nomJalon = mysql_fetch_array($reqJalon)) {
 								echo "<li><a href=\"#\">Voir ".$nomJalon['nom']."</a></li>";
+								echo "<li class=\"divider\"></li>";
 								}
 						}
 					?>
@@ -192,7 +192,7 @@
 								
 								if(mysql_fetch_array($reqEstTacheSousprojet)){
 									echo "<li class=\"dropdown-header\">".$nomSousprojetTmp['nom'];
-									echo "<ul class =\"dropdown-header\">";
+									
 									$sqlIdPhase = "SELECT id_phase
 										FROM phase
 										WHERE id_projet='$idProject'";
@@ -214,23 +214,22 @@
 											
 											if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
 												echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
-												echo "<li class=\"divider\"></li>";
-											}
+												}
 											
 											do {
 												echo "<li><a href=\"#\">Voir ".$nomTache['nom']."</a></li>";
 											}while($nomTache = mysql_fetch_array($reqTache));
+											echo "<li class=\"divider\"></li>";
 										}
 									}
-									//echo "</ul></li>";	
+									;	
 								}
 							}
 						}											
 					?>
-					<li class="divider"></li>
 					<li class="dropdown-header">Action</li>
 					<li><a data-toggle="modal" href="#addTache">Ajouter Tache</a></li>
-					<li><a data-toggle="modal" href="#delSousProjet" >Supprimer Tache</a></li>
+					<li><a data-toggle="modal" href="#delTache" >Supprimer Tache</a></li>
 				</ul>
 			</li>
 			<?php }?>
