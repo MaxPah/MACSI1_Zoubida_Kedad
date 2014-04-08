@@ -10,7 +10,7 @@
 				<div class="form-group">
 					<label for="lPh" class="control-label">Dans quelle phase ajouter cette t&acirc;che ?</label>
 					<?php
-						echo "<select class=\"form-control\" id=\"lPh\" name=\"nameL\">";
+						echo "<select class=\"form-control\" id=\"lPh\" name=\"namePh\">";
 						
 						$sqlPhase= "	SELECT nom
 										FROM phase
@@ -27,7 +27,7 @@
 					<br/>
 					<label for="lSP" class="control-label">Dans quel sous-projet ajouter cette t&acirc;che ?</label>
 					<?php
-						echo "<select class=\"form-control\" id=\"lSP\" name=\"nameL\">";
+						echo "<select class=\"form-control\" id=\"lSP\" name=\"nameSP\">";
 						
 						$sqlSP= "		SELECT s.nom
 										FROM sousprojet s, lot l
