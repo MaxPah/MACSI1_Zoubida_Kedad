@@ -170,69 +170,12 @@
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tache  <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<?php
-						$sqlIdLot = "SELECT id_lot
-							FROM lot
-							WHERE id_projet='$idProject'";
-						$reqIdLot=mysql_query($sqlIdLot);
-						
-						while($resIdLot=mysql_fetch_array($reqIdLot)) {
-							$idLot=$resIdLot['id_lot'];
-							$sqlNomSousprojetTmp= "SELECT nom ,id_sousprojet
-								FROM sousprojet
-								WHERE id_lot= '$idLot'";
-							$reqNomSousprojetTmp=mysql_query($sqlNomSousprojetTmp);
-							
-							while($nomSousprojetTmp = mysql_fetch_array($reqNomSousprojetTmp)) {
-								$idSousprojet=$nomSousprojetTmp['id_sousprojet'];
-								$sqlEstTacheSousprojet ="SELECT nom
-										FROM tache
-										WHERE id_sousprojet = '$idSousprojet'";
-								$reqEstTacheSousprojet =mysql_query($sqlEstTacheSousprojet);
-								
-								if(mysql_fetch_array($reqEstTacheSousprojet)){
-									echo "<li class=\"dropdown-header\">".$nomSousprojetTmp['nom'];
-									
-									$sqlIdPhase = "SELECT id_phase
-										FROM phase
-										WHERE id_projet='$idProject'";
-									$reqIdPhase=mysql_query($sqlIdPhase);
-								
-									while($resIdPhase=mysql_fetch_array($reqIdPhase)) {
-										$idPhase=$resIdPhase['id_phase'];
-										$sqlTache= "SELECT nom
-											FROM tache
-											WHERE id_phase = '$idPhase'
-											AND id_sousprojet = '$idSousprojet'";
-										$reqTache=mysql_query($sqlTache);
-
-										if($nomTache = mysql_fetch_array($reqTache)) {
-											$sqlNomPhaseTmp= "SELECT nom
-												FROM phase
-												WHERE id_phase= '$idPhase'";
-											$reqNomPhaseTmp=mysql_query($sqlNomPhaseTmp);
-											
-											if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
-												echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
-												}
-											
-											do {
-												echo "<li><a href=\"#\">Voir ".$nomTache['nom']."</a></li>";
-											}while($nomTache = mysql_fetch_array($reqTache));
-											echo "<li class=\"divider\"></li>";
-										}
-									}
-									;	
-								}
-							}
-						}											
-					?>
 					<li class="dropdown-header">Action</li>
 					<li><a data-toggle="modal" href="#addTache">Ajouter Tache</a></li>
 					<li><a data-toggle="modal" href="#delTache" >Supprimer Tache</a></li>
 				</ul>
 			</li>
-			<?php }?>
+			<?php } ?>
 			<?php
 					/*
 					<li class="dropdown">

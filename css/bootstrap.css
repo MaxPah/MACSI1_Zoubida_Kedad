@@ -5518,6 +5518,9 @@ a.thumbnail.active {
 .list-group {
   padding-left: 0;
   margin-bottom: 20px;
+  max-width:600px;
+  min-width:400px;
+  
 }
 
 .list-group-item {

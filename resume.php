@@ -74,6 +74,12 @@
 		<!--/. Supprimer phase -->
 		
 		<?php include ('test_bord.php'); ?>	
+		
+		<!-- Liste Tache -->
+		<?php include ('listtache.php'); ?>
+		<!--/. Liste Tache -->
+		
+		
 		<!-- Supprimer projet -->
 		<span class="supprProj">
 			<a data-toggle="modal" href="#ValidSupprProjet" ><button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-trash"></span>    Supprimer ce projet</button></a>
