@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
 		session_start(); 
-		$dbconn = mysql_connect("localhost", "root", "");
+		$dbconn = mysql_connect("localhost", "root", "root");
 		$db = mysql_select_db("macsi1", $dbconn);
 ?>
 <html lang="fr">

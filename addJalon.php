@@ -7,7 +7,7 @@
 <html lang="fr">
 
 	<head>
-			<title>Ajout d'une t&acirc;che</title>
+			<title>Ajout d'un jalon</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 			<link rel="icon" type="image/x-icon" href="img/favicon.png"/>
@@ -15,6 +15,18 @@
 			<link rel="stylesheet" href="gs.css" type="text/css" media="screen"/> 
 	</head>
 <?php
+	// Récupération de l'id du projet
+	if(isset($_POST['nameP'])) {
+		$nameProject=$_POST['nameP'];
+	}
+	$sqlIdProject= "	SELECT id_projet
+						FROM projet
+						WHERE nom = '$nameProject'";
+	$reqIdProject=mysql_query($sqlIdProject);
+	$idProjectArray= mysql_fetch_array($reqIdProject);
+	$idProject=$idProjectArray['id_projet'];
+	
+	
 	// Récupération de l'id de la phase
 	if(isset($_POST['namePh'])) { 
 		$namePhase=$_POST['namePh'];
@@ -26,37 +38,20 @@
 	$resIdPhase= mysql_fetch_array($reqIdPhase);
 	$idPhase=$resIdPhase['id_phase'];
 	
-	// Récupération de l'id du sous projet
-	if(isset($_POST['nameSP'])) { 
-		$nameSousProj=$_POST['nameSP'];
-	}
-	$sqlIdSousProj= " 	SELECT id_sousprojet
-						FROM sousprojet
-						WHERE nom = '$nameSousProj'";
-	$reqIdSousProj=mysql_query($sqlIdSousProj);
-	$resIdSousProj= mysql_fetch_array($reqIdSousProj);
-	$idSousProj=$resIdSousProj['id_sousprojet'];
-	
 	// Récupération de toutes les autres valeurs à insérer 
-	if(isset($_POST['nameT'])) {
-		$nameTache = $_POST['nameT'];
-		$coutTache = $_POST['coutT'];
-		$ddtoTache = $_POST['ddtoT'];
-		$ddtaTache = $_POST['ddtaT'];
-		$dftoTache = $_POST['dftoT'];
-		$dftaTache = $_POST['dftaT'];
-		$dureeTache = $_POST['dureeT'];
-		$objTache = $_POST['objT'];
-		$jhTache = $_POST['jhT'];
-		$reqSqlAddTache = " INSERT INTO tache(nom, cout, date_debut_tot, date_debut_tard, date_fin_tot, date_fin_tard, duree, objectif, journee_homme, id_phase, id_sousprojet)
-							VALUES ('$nameTache', '$coutTache', '$ddtoTache', '$ddtaTache', '$dftoTache', '$dftaTache', '$dureeTache', '$objTache', '$jhTache', '$idPhase', '$idSousProj')";
-		mysql_query($reqSqlAddTache) or die ('Erreur SQL !'.$reqSqlAddTache.'<br />'.mysql_error());
+	if(isset($_POST['nameJ'])) {
+		$nameJalon = $_POST['nameJ'];
+		$dateJalon = $_POST['dateJ'];
+		$descJalon = $_POST['nDJ'];
+		$reqSqlAddJalon = " INSERT INTO jalon(nom, date, evenement, id_phase, id_projet)
+							VALUES ('$nameJalon', '$dateJalon', '$descJalon', '$idPhase', '$idProject')";
+		mysql_query($reqSqlAddJalon) or die ('Erreur SQL !'.$reqSqlAddJalon.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$nameTache." a bien &eacute;t&eacute; ajout&eacute; aux t&acirc;ches</label>";
+				<?php echo "<label class=\"form-control\">".$nameJalon." a bien &eacute;t&eacute; ajout&eacute; aux jalons</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$_POST['nameP']."\">";?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>

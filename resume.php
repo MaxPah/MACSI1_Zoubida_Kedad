@@ -1,6 +1,6 @@
 <?php 
 		session_start(); 
-		$dbconn = mysql_connect("localhost", "root", "");
+		$dbconn = mysql_connect("localhost", "root", "root");
 		$db = mysql_select_db("macsi1", $dbconn);
 ?>
 
@@ -59,9 +59,13 @@
 		<?php include ('modalAddSousProjet.php'); ?>
 		<!--/. Ajouter sous-projet -->
 		
-		<!-- Ajouter sous-projet -->
+		<!-- Ajouter jalon -->
+		<?php include ('modalAddJalon.php'); ?>
+		<!--/. Ajouter jalon -->
+		
+		<!-- Ajouter tache -->
 		<?php include ('modalAddTache.php'); ?>
-		<!--/. Ajouter sous-projet -->
+		<!--/. Ajouter tache -->
 	
 		<!--Suppression -->
 		
