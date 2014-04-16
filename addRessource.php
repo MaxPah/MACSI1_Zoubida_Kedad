@@ -14,6 +14,7 @@
 	</head>
 <?php
 		$nameRess = $_POST['nameRess'];
+		$nameProject = $_POST['nameP'];
 		$nameQual = $_POST['nameQual'];
 		$nameCout = $_POST['nameCout'];
 		$reqSqlAddRess = 'INSERT INTO ressource(nom,qualification,cout) VALUES ("'.$nameRess.'", "'.$nameQual.'", "'.$nameCout.'")';
