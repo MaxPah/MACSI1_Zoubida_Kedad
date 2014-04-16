@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-	include("connection.php");
+	include("connexion.php");
 ?>
 <html lang="fr">
 
