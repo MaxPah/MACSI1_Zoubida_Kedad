@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le : Mer 16 Avril 2014 à 15:08
+-- Généré le : Mer 16 Avril 2014 à 18:10
 -- Version du serveur: 5.5.16
 -- Version de PHP: 5.3.8
 
@@ -213,13 +213,13 @@ INSERT INTO `tache` (`id_tache`, `nom`, `cout`, `date_debut_tot`, `date_debut_ta
 --
 
 CREATE TABLE IF NOT EXISTS `tacheressource` (
-  `id_tache` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tache` int(11) NOT NULL,
   `id_ressource` int(11) NOT NULL DEFAULT '0',
   `duree` int(11) DEFAULT NULL,
   `taux_affectation` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_tache`,`id_ressource`),
   KEY `id_ressource` (`id_ressource`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

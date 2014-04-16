@@ -20,6 +20,30 @@
 	<?php $nameProject = $_GET['nameP']; include ('navigation.php');?>
 		
 	<?php include ('includesNavBar.php'); ?>
+	
+	
+	<!-- /*****************************************************-->
+		<?php 
+		if(isset($_POST['youlo'])) {
+		$nameR = $_POST['nameR'];
+			$sql = 'SELECT id_ressource as idress 
+								   FROM ressource 
+								   WHERE nom="'.$nameR.'"';
+					
+				$req = mysql_query($sql) or die('Erreur requete : '.mysql_error());
+				$result = mysql_fetch_array($req) or die('Erreur result : '.mysql_error());
+		$idTache=$_POST['idtache'];
+		$duree = $_POST['duree'];
+		$taux = $_POST['taux'];
+		$idress= $result['idress'];
+		$reqSql = 'INSERT INTO tacheressource(id_tache,id_ressource,duree,taux_affectation) VALUES ("'.$idTache.'","'.$idress.'","'.$duree.'", "'.$taux.'")';
+		mysql_query($reqSql) or die ('Erreur SQL'.mysql_error());
+		}
+		?>
+		<!-- /*****************************************************-->
+	
+	
+	
 		
 	<!-- INFOS SUR LA TACHE -->
 	<div class="panel panel-default">
@@ -90,9 +114,10 @@
 		<li class=\"list-group-item\">
 		<strong>Affecter une nouvelle ressource &agrave; cette t&acirc;che :  </strong>
 		<br/><br/>
-		<form method="POST">
 			<?php
-				$sqlNameRess = "SELECT nom 
+			echo" <form method=\"POST\" action=\"infoTache.php?idT=".$idTache."&nameP=".$nameProject."\">";
+		
+				$sqlNameRess = "SELECT nom,id_ressource as idress 
 								   FROM ressource";
 				$reqNameRess = mysql_query($sqlNameRess);
 				echo "<select class=\"form-control\" name=\"nameR\">";
@@ -103,11 +128,13 @@
 				echo "</select>";
 			?>
 			<br/>
-			<input type="text" placeholder="Duree" size="10">
-			<input type="text" placeholder="Taux d'affectation" size="15">
-			<button class="btn btn-primary btn-sm" name="old" type="submit"><span class="glyphicon glyphicon-plus"></span>Affecter cette ressource</button>				
+			<input type="text" placeholder="Duree" size="10" name="duree">
+			<input type="text" placeholder="Taux d'affectation" size="15" name="taux">			
+			<input type="hidden" name="idtache" value="<?php echo $idTache;?>">			
+			<button class="btn btn-primary btn-sm" name="youlo" type="submit"><span class="glyphicon glyphicon-plus"></span>Affecter cette ressource</button>				
 			<br/><br/>
 		</form>
+			
 		</li>
 			<?php 
 			$sqlTR = 'SELECT r.nom, r.cout, r.qualification, tr.taux_affectation as ta, tr.duree
