@@ -30,7 +30,7 @@
 				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg) VALUES ("'.$nameProject.'", 0)';
 				mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
 			}
-			/***Création nouveu projet ***/
+			/***Création nouveau projet ***/
 			/*else if(isset($_POST['old'])) {
 				$nameProject = $_POST['nameP'];
 			}*/
