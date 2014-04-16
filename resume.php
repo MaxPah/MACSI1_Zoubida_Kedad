@@ -44,6 +44,9 @@
 		<!--  A inclure en fin de fichier -->
 		<!-- Ajouts -->
 		
+		<!-- Ajouter lot -->
+		<?php include ('modalAddRessource.php'); ?>
+		<!--/. Ajouter lot -->		
 		
 		<!-- Ajouter lot -->
 		<?php include ('modalAddLot.php'); ?>

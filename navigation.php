@@ -25,8 +25,8 @@
 					?>
 					<li class="divider"></li>
 					<li class="dropdown-header">Action</li>
-					<li><a data-toggle="modal" href="#addLot">Ajouter Ressource</a></li>
-					<li><a data-toggle="modal" href="#delLot" >Supprimer Ressource</a></li>
+					<li><a data-toggle="modal" href="#addRessource">Ajouter Ressource</a></li>
+					<li><a data-toggle="modal" href="#delRessource" >Supprimer Ressource</a></li>
 				</ul>
 			</li>
 			<li class="dropdown">
