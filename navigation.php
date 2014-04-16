@@ -5,25 +5,11 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<a class="navbar-brand" href="#">
-					<?php echo $nameProject; ?>
-				</a>
+				<?php echo "<a class=\"navbar-brand\" href=\"resume.php?nameP=".$nameProject."\">".$nameProject."</a>"; ?>
 			</div>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ressources  <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<?php
-						$estRessource=false; //variable qui permet de voir si on a des ressources existantes
-						$sqlRessource= "  SELECT nom
-									FROM ressource";
-						$reqRessource=mysql_query($sqlRessource);
-						
-						while($nomRessource = mysql_fetch_array($reqRessource)) {
-							echo "<li><a href=\"#\">Voir ".$nomRessource['nom']."</a></li>";
-							$estRessource=true;
-						}
-					?>
-					<li class="divider"></li>
 					<li class="dropdown-header">Action</li>
 					<li><a data-toggle="modal" href="#addRessource">Ajouter Ressource</a></li>
 					<li><a data-toggle="modal" href="#delRessource" >Supprimer Ressource</a></li>

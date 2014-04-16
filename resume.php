@@ -37,48 +37,21 @@
 		?>
 		<!-- BARRE DE NAVIGATION-->
 		
-		<?php $nameProject = $_POST['nameP']; include ('navigation.php');?>
+		<?php 
+			if(isset($_POST['nameP']))
+				$nameProject = $_POST['nameP']; 
+			else if(isset($_GET['nameP']))
+				$nameProject = $_GET['nameP']; 
+
+			include ('navigation.php');?>
+		
+		<?php include ('includesNavBar.php'); ?>
+		
 		<!--/. BARRE DE NAVIGATION-->
 		<br/>
 		<br/>
-		<!--  A inclure en fin de fichier -->
-		<!-- Ajouts -->
 		
-		<!-- Ajouter lot -->
-		<?php include ('modalAddRessource.php'); ?>
-		<!--/. Ajouter lot -->		
-		
-		<!-- Ajouter lot -->
-		<?php include ('modalAddLot.php'); ?>
-		<!--/. Ajouter lot -->
-		
-		<!-- Ajouter phase -->
-		<?php include ('modalAddPhase.php'); ?>
-		<!--/. Ajouter phase -->
-		
-		<!-- Ajouter sous-projet -->
-		<?php include ('modalAddSousProjet.php'); ?>
-		<!--/. Ajouter sous-projet -->
-		
-		<!-- Ajouter jalon -->
-		<?php include ('modalAddJalon.php'); ?>
-		<!--/. Ajouter jalon -->
-		
-		<!-- Ajouter tache -->
-		<?php include ('modalAddTache.php'); ?>
-		<!--/. Ajouter tache -->
-	
-		<!--Suppression -->
-		
-		<!-- Supprimer lot -->
-		<?php include ('modalDelLot.php'); ?>
-		<!--/. Supprimer lot -->
-		
-		<!-- Supprimer phase -->
-		<?php include ('modalDelPhase.php'); ?>
-		<!--/. Supprimer phase -->
-		
-		<?php include ('test_bord.php'); ?>	
+		<?php include ('test_bord.php'); ?>
 		
 		<!-- Liste Tache -->
 		<?php include ('listtache.php'); ?>

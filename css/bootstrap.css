@@ -5604,6 +5604,9 @@ a.list-group-item.active:focus .list-group-item-text {
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  min-width: 400px;
+  max-width: 600px;
+  margin-left: 25%;
 }
 
 .panel-body {
@@ -5726,6 +5729,8 @@ a.list-group-item.active:focus .list-group-item-text {
   border-bottom: 1px solid transparent;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .panel-heading > .dropdown .dropdown-toggle {
