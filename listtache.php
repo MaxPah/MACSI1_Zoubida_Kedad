@@ -1,3 +1,4 @@
+<div id="tacheResume">
 <ul class="list-group">
   <?php 
   $sqlIdProjet = ' SELECT id_projet
@@ -26,3 +27,4 @@
 		}
 ?>
 </ul>
+</div>

@@ -5515,13 +5515,16 @@ a.thumbnail.active {
   list-style: none;
 }
 
+#tacheResume {
+	margin-left: 25%;
+}
+
 .list-group {
   padding-left: 0;
   margin-bottom: 20px;
   max-width:600px;
   min-width:400px;
   color: #000000;
-  
 }
 
 .list-group-item {

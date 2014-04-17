@@ -23,14 +23,14 @@
 	
 	
 	
-	<!-- INFOS SUR LA TACHE -->
+	<!-- INFOS SUR LE LOT -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<?php $idL = $_GET['idL'];
 					
-				$sqlLot = 'SELECT nom
-								FROM lot
-								WHERE id_lot ="'.$idL.'"';
+				$sqlLot = ' SELECT nom
+							FROM lot
+							WHERE id_lot ="'.$idL.'"';
 				
 				$reqLot = mysql_query($sqlLot) or die('Erreur requete : '.mysql_error());
 				$resLot = mysql_fetch_array($reqLot) or die('Erreur result : '.mysql_error());
@@ -42,11 +42,11 @@
 		<ul class="list-group">
 		<?php
 			$sqlL = 'SELECT *
-						 FROM sousprojet
-						 WHERE id_lot ="'.$idL.'"';
+					 FROM sousprojet
+					 WHERE id_lot ="'.$idL.'"';
 			$reqL = mysql_query($sqlL) or die('Erreur requete 2 : '.mysql_error());
 			while($resL = mysql_fetch_array($reqL))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Sous Projet </i></strong></u> : ".$resL['nom']."</li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Sous Projet </i></strong></u> : <a href=\"infoSousProjet.php?idSP=".$resL['id_sousprojet']."&nameP=".$nameProject."\">".$resL['nom']."</a></li>";
 		?>
 		</ul>
 		<br/>

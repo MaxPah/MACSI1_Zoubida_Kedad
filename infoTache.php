@@ -79,8 +79,8 @@
 			$reqNoms=mysql_query($sqlNoms) or die('Erreur query 3 : '.mysql_error());
 			$resNoms= mysql_fetch_array($reqNoms) or die('Erreur result 3 : '.mysql_error());
 		
-			echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : ".$resNoms['nomP']."</li>";
-			echo "<li class=\"list-group-item\"> <u><strong><i>Sous-projet</i></strong></u> : ".$resNoms['nomSP']."</li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoPhase.php?idP=".$resTache['id_phase']."&nameP=".$nameProject."\">".$resNoms['nomP']."</a></li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Sous-projet</i></strong></u> : <a href=\"infoSousProjet.php?idSP=".$resTache['id_sousprojet']."&nameP=".$nameProject."\">".$resNoms['nomSP']."</a></li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Objectif</i></strong></u> : ".$resTache['objectif']."</li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Cout</i></strong></u> : ".$resTache['cout']."</li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>D&eacute;but au plus t&ocirc;t</i></strong></u> : ".$resTache['date_debut_tot']."</li>";

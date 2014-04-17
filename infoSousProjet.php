@@ -23,30 +23,30 @@
 	
 	
 	
-	<!-- INFOS SUR LA TACHE -->
+	<!-- INFOS SUR LE SOUS PROJET -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<?php $idSP = $_GET['idSP'];
 					
 				$sqlSousProjet = 'SELECT nom
-								FROM sousprojet
-								WHERE id_sousprojet ="'.$idSP.'"';
+								  FROM sousprojet
+								  WHERE id_sousprojet ="'.$idSP.'"';
 				
 				$reqSousProjet = mysql_query($sqlSousProjet) or die('Erreur requete : '.mysql_error());
 				$resSousProjet = mysql_fetch_array($reqSousProjet) or die('Erreur result : '.mysql_error());
 				$nomSP = $resSousProjet['nom'];
 				
-				echo "<strong>Tache de ".$nomSP."</strong>";
+				echo "<strong>Taches de ".$nomSP."</strong>";
 			?>
 		</div>
 		<ul class="list-group">
 		<?php
-			$sqlSP = 'SELECT *
-						 FROM tache
-						 WHERE id_sousprojet ="'.$idSP.'"';
+			$sqlSP = 'SELECT nom, id_tache
+					  FROM tache
+					  WHERE id_sousprojet ="'.$idSP.'"';
 			$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
 			while($resSP = mysql_fetch_array($reqSP))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : ".$resSP['nom']."</li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : <a href=\"infoTache.php?idT=".$resSP['id_tache']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
 		?>
 		</ul>
 	</div>	

@@ -23,7 +23,7 @@
 	
 	
 	
-	<!-- INFOS SUR LA TACHE -->
+	<!-- INFOS SUR LA PHASE -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<?php $idP = $_GET['idP'];
@@ -41,12 +41,12 @@
 		</div>
 		<ul class="list-group">
 		<?php
-			$sqlSP = 'SELECT *
+			$sqlSP = 'SELECT nom, id_tache
 						 FROM tache
 						 WHERE id_phase ="'.$idP.'"';
 			$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
 			while($resSP = mysql_fetch_array($reqSP))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : ".$resSP['nom']."</li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : <a href=\"infoTache.php?idT=".$resSP['id_tache']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
 		?>
 		</ul>
 		<br/>
