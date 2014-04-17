@@ -1,9 +1,8 @@
-<!--  A inclure en fin de fichier -->
 		<!-- Ajouts -->
 		
-		<!-- Ajouter lot -->
+		<!-- Ajouter ressource -->
 		<?php include ('modalAddRessource.php'); ?>
-		<!--/. Ajouter lot -->		
+		<!--/. Ajouter ressource -->		
 		
 		<!-- Ajouter lot -->
 		<?php include ('modalAddLot.php'); ?>
@@ -34,4 +33,9 @@
 		<!-- Supprimer phase -->
 		<?php include ('modalDelPhase.php'); ?>
 		<!--/. Supprimer phase -->
+		
+		<!-- Supprimer sous-projet -->
+		<?php include ('modalDelSousProjet.php'); ?>
+		<!--/. Supprimer sous-projet -->
+		
 		

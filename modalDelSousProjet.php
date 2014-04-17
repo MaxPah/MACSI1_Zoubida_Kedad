@@ -1,32 +1,33 @@
-<div class="modal fade" id="delPhase" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="delSousProjet" style="display: none;" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-		<form method="POST" action="delPhase.php">
+		<form method="POST" action="delSousProjet.php">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<p>Supprimer une phase</p>
+				<p>Supprimer un sous-projet</p>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="dPh" class="control-label">Quelle phase voulez-vous supprimer ?</label>
+					<label for="dSP" class="control-label">Quel sous-projet voulez-vous supprimer ?</label>
 					<?php
-					$sqlPhase= "	SELECT nom
-					FROM phase
-					WHERE id_projet = '$idProject'";
-					$reqPhase=mysql_query($sqlPhase);
-					echo "<select class=\"form-control\" id=\"dPh\" name=\"namePh\">";
-					while($nomPhase = mysql_fetch_array($reqPhase))
+					$sqlSP= "	SELECT s.nom
+								FROM sousprojet s, lot l
+								WHERE l.id_projet = '$idProject'
+								AND s.id_lot = l.id_lot";
+					$reqSP=mysql_query($sqlSP);
+					echo "<select class=\"form-control\" id=\"dSP\" name=\"nameSP\">";
+					while($nomSP = mysql_fetch_array($reqSP))
 					{
-						echo "<option>".$nomPhase['nom']."</option>";
+						echo "<option>".$nomSP['nom']."</option>";
 					}
 					echo "</select>";
-					?>
+					?>					
 						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<button type="submit" class="btn btn-primary" >Supprimer phase</button>
+				<button type="submit" class="btn btn-primary" >Supprimer sous-projet</button>
 			</div>
 		</form>
     </div><!-- /.modal-content -->

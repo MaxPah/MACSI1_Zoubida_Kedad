@@ -30,7 +30,6 @@
 ?>
 	<body>
 		<div id="bloc_central">
-			<!-- Créer un nouveau projet-->
 			<form method="POST" action="resume.php">
 				<?php echo "<label class=\"form-control\">".$nameLot." a bien &eacute;t&eacute; supprim&eacute; des lots</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>
