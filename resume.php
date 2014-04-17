@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-        <title>Gestion de projets</title>
+        <title>Gestion de Projets</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="description" content=""/>
 		<meta name="keywords" content=""/>
@@ -24,7 +24,7 @@
 		<?php
 			/*** Création d'un nouveau projet ***/
 			if(isset($_POST['new'])) {
-				/*$nameProject = $_POST['nameP'];*/
+				$nameProject = $_POST['nameP'];
 				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg) VALUES ("'.$nameProject.'", 0)';
 				mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
 			}
@@ -68,8 +68,6 @@
 			<a href="index.php"><button class="btn btn-success btn-xs" name="del"><span class="glyphicon glyphicon-circle-arrow-left"></span>    Retour &agrave; l'accueil</button></a>
 		</span>
 		<!--/. Retour accueil -->
-				
-		<br/>
 	
 <!-- Bootstrap core JavaScript
     ================================================== -->
