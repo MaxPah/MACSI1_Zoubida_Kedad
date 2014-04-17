@@ -93,13 +93,13 @@
 								echo "<li class=\"dropdown-header\">".$nomLotTmp['nom']."</li>";
 								
 							}
-							$sqlSousProjet= "SELECT nom
+							$sqlSousProjet= "SELECT nom,id_sousprojet
 								FROM sousprojet
 								WHERE id_lot = '$idLot'";
 							$reqSousProjet=mysql_query($sqlSousProjet);
 							
 							while($nomSousProjet = mysql_fetch_array($reqSousProjet)) {
-								echo "<li><a href=\"#\">Voir ".$nomSousProjet['nom']."</a></li>";
+								echo "<li><a href=\"infoSousProjet.php?idSP=".$nomSousProjet['id_sousprojet']."&nameP=".$nameProject."\">Voir ".$nomSousProjet['nom']."</a></li>";
 								$estSousprojet=true;
 							}
 						}
