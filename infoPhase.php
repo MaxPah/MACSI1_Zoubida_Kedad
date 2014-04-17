@@ -62,7 +62,7 @@
 						 WHERE id_phase ="'.$idP.'"';
 			$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
 			while($resSP = mysql_fetch_array($reqSP))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Jalon</i></strong></u> : ".$resSP['nom']."</li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Jalon</i></strong></u> : <a href=\"infoJalon.php?idJ=".$resSP['id_jalon']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
 		?>
 		</ul>
 	</div>	
