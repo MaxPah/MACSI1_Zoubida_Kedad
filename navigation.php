@@ -133,13 +133,13 @@
 							if($nomPhaseTmp = mysql_fetch_array($reqNomPhaseTmp)) {
 								echo "<li class=\"dropdown-header\">".$nomPhaseTmp['nom']."</li>";
 							}
-							$sqlJalon= "SELECT nom
+							$sqlJalon= "SELECT nom,id_jalon
 								FROM jalon
 								WHERE id_phase = '$idPhase'";
 							$reqJalon=mysql_query($sqlJalon);
 							
 							while($nomJalon = mysql_fetch_array($reqJalon)) {
-								echo "<li><a href=\"#\">Voir ".$nomJalon['nom']."</a></li>";
+								echo "<li><a href=\"infoJalon.php?idJ=".$nomJalon['id_jalon']."&nameP=".$nameProject."\">Voir ".$nomJalon['nom']."</a></li>";
 								echo "<li class=\"divider\"></li>";
 								}
 						}
