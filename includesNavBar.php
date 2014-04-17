@@ -26,6 +26,10 @@
 	
 		<!--Suppression -->
 		
+		<!-- Supprimer ressource -->
+		<?php include ('modalDelRessource.php'); ?>
+		<!--/. Supprimer ressource -->
+		
 		<!-- Supprimer lot -->
 		<?php include ('modalDelLot.php'); ?>
 		<!--/. Supprimer lot -->
@@ -37,5 +41,13 @@
 		<!-- Supprimer sous-projet -->
 		<?php include ('modalDelSousProjet.php'); ?>
 		<!--/. Supprimer sous-projet -->
+		
+		<!-- Supprimer jalon -->
+		<?php include ('modalDelJalon.php'); ?>
+		<!--/. Supprimer jalon -->
+		
+		<!-- Supprimer tache -->
+		<?php include ('modalDelTache.php'); ?>
+		<!--/. Supprimer tache -->
 		
 		

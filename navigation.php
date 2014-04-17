@@ -147,7 +147,7 @@
 					<li class="divider"></li>
 					<li class="dropdown-header">Action</li>
 					<li><a data-toggle="modal" href="#addJalon">Ajouter Jalon</a></li>
-					<li><a data-toggle="modal" href="#delSousProjet" >Supprimer Jalon</a></li>
+					<li><a data-toggle="modal" href="#delJalon" >Supprimer Jalon</a></li>
 				</ul>
 			</li>
 			<?php }

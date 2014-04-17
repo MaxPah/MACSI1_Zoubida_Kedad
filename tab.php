@@ -64,7 +64,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Lot </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href=\"infoLot.php?idL=".$reqp['id_lot']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoLot.php?idL=".$resp['id_lot']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>
@@ -79,7 +79,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Phase </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href=\"infoPhase.php?idP=".$reqp['id_phase']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoPhase.php?idP=".$resp['id_phase']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>
@@ -94,7 +94,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Jalon </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href=\"infoJalon.php?idJ=".$reqp['id_jalon']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoJalon.php?idJ=".$resp['id_jalon']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>

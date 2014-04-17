@@ -5,7 +5,7 @@
 <html lang="fr">
 
 	<head>
-			<title>Suppression d'une ressource</title>
+			<title>Suppression d'une tache</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 			<link rel="icon" type="image/x-icon" href="img/favicon.png"/>
@@ -23,18 +23,26 @@
 	$idProjectArray= mysql_fetch_array($reqIdProject);
 	$idProject=$idProjectArray['id_projet'];
 	
-	if(isset($_POST['nameR'])) {
-		$nameR=$_POST['nameR'];
+	if(isset($_POST['nameT'])) {
+		$nameT=$_POST['nameT'];
 		
-		$SqlDelR = ' DELETE FROM ressource 
-					 WHERE nom ="'.$nameR.'"';
-		mysql_query($SqlDelR) or die ('Erreur SQL !'.$SqlDelR.'<br />'.mysql_error());
+		$sqlIdPh = ' SELECT id_phase 
+					  FROM tache
+					  WHERE nom = "'.$nameT.'"';
+		$reqIdPh=mysql_query($sqlIdPh);
+		$resIdPh = mysql_fetch_array($reqIdPh);
+		$idPh = $resIdPh['id_phase'];
+		
+		$SqlDelT = ' DELETE FROM tache 
+					 WHERE nom ="'.$nameT.'" 
+					 AND id_phase ="'.$idPh.'"';
+		mysql_query($SqlDelT) or die ('Erreur SQL !'.$SqlDelT.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$nameR." a bien &eacute;t&eacute; supprim&eacute; des ressources</label>";
+				<?php echo "<label class=\"form-control\">".$nameT." a bien &eacute;t&eacute; supprim&eacute; des taches</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">"; ?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>

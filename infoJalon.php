@@ -23,7 +23,7 @@
 	
 	
 	
-	<!-- INFOS SUR LA TACHE -->
+	<!-- INFOS SUR LE JALON -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<?php $idJ = $_GET['idJ'];
@@ -36,7 +36,7 @@
 				$resJalon = mysql_fetch_array($reqJalon) or die('Erreur result : '.mysql_error());
 				$nomJ = $resJalon['nom'];
 				
-				echo "<strong>Phase de ".$nomJ."</strong>";
+				echo "<strong>".$nomJ."</strong>";
 			?>
 		</div>
 		<ul class="list-group">

@@ -5,7 +5,7 @@
 <html lang="fr">
 
 	<head>
-			<title>Suppression d'une ressource</title>
+			<title>Suppression d'un jalon</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 			<link rel="icon" type="image/x-icon" href="img/favicon.png"/>
@@ -23,18 +23,19 @@
 	$idProjectArray= mysql_fetch_array($reqIdProject);
 	$idProject=$idProjectArray['id_projet'];
 	
-	if(isset($_POST['nameR'])) {
-		$nameR=$_POST['nameR'];
+	if(isset($_POST['nameJ'])) {
+		$nameJ=$_POST['nameJ'];
 		
-		$SqlDelR = ' DELETE FROM ressource 
-					 WHERE nom ="'.$nameR.'"';
-		mysql_query($SqlDelR) or die ('Erreur SQL !'.$SqlDelR.'<br />'.mysql_error());
+		$SqlDelJ = ' DELETE FROM jalon 
+					 WHERE nom ="'.$nameJ.'" 
+					 AND id_projet ="'.$idProject.'"';
+		mysql_query($SqlDelJ) or die ('Erreur SQL !'.$SqlDelJ.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$nameR." a bien &eacute;t&eacute; supprim&eacute; des ressources</label>";
+				<?php echo "<label class=\"form-control\">".$nameJ." a bien &eacute;t&eacute; supprim&eacute; des jalons</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">"; ?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>
