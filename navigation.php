@@ -176,6 +176,10 @@
 					</li>
 					*/ 
 			?>
-		</ul>
+			
+			</ul>
+			<ul class="nav nav-pills navbar-right"style="margin-right:20px; margin-top:5px;">
+				<?php echo "<li class=\"active\"><a href=\"tab.php?idP=$idProject\">Recap</a></li>"; ?>
+			</ul>		
 	</div>
 </nav>

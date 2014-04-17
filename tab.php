@@ -26,7 +26,7 @@
 	<!-- INFOS SUR LE LOT -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php $idP = 9; /* LOT PHASE JALON */ 
+			<?php $idP = $_GET['idP']; /* LOT PHASE JALON */ 
 					
 				$sqlP = ' SELECT nom
 							FROM projet
