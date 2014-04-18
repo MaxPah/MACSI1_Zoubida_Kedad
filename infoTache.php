@@ -79,6 +79,8 @@
 			$reqNoms=mysql_query($sqlNoms) or die('Erreur query 3 : '.mysql_error());
 			$resNoms= mysql_fetch_array($reqNoms) or die('Erreur result 3 : '.mysql_error());
 		
+			
+			
 			echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoPhase.php?idP=".$resTache['id_phase']."&nameP=".$nameProject."\">".$resNoms['nomP']."</a></li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Sous-projet</i></strong></u> : <a href=\"infoSousProjet.php?idSP=".$resTache['id_sousprojet']."&nameP=".$nameProject."\">".$resNoms['nomSP']."</a></li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Objectif</i></strong></u> : ".$resTache['objectif']."</li>";
@@ -89,6 +91,15 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Fin au plus tard</i></strong></u> : ".$resTache['date_fin_tard']."</li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Duree</i></strong></u> : ".$resTache['duree']."</li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Journ&eacute;es homme</i></strong></u> : ".$resTache['journee_homme']."</li>";
+			if($resTache['id_livrable'] != NULL) {
+				$sqlLivrable = 'SELECT nom
+								FROM livrable
+								WHERE id_livrable = "'.$resTache['id_livrable'].'"';
+				$reqLivrable=mysql_query($sqlLivrable) or die('Erreur query 4 : '.mysql_error());
+				$resLivrable= mysql_fetch_array($reqLivrable) or die('Erreur result 4 : '.mysql_error());
+		
+				echo "<li class=\"list-group-item\"> <u><strong><i>Livrable</i></strong></u> : <a href=\"infoLivrable.php?idL=".$resTache['id_livrable']."&nameP=".$nameProject."\">".$resLivrable['nom']."</a></li>";
+			}
 		?>
 		</ul>
 	</div>
