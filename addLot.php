@@ -25,12 +25,11 @@
 	if(isset($_POST['nameL'])) {
 		$nameLot = $_POST['nameL'];
 		$reqSqlAddLot = 'INSERT INTO lot(nom,id_projet) VALUES ("'.$nameLot.'", "'.$idProject.'")';
-		mysql_query($reqSqlAddLot) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
+		mysql_query($reqSqlAddLot) or die ('Erreur SQL !'.$reqSqlAddLot.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
-			<!-- Créer un nouveau projet-->
 			<form method="POST" action="resume.php">
 				<?php echo "<label class=\"form-control\">".$nameLot." a bien &eacute;t&eacute; ajout&eacute; aux lots</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>

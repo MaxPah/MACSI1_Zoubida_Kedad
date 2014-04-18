@@ -5,7 +5,7 @@
 <html lang="fr">
 
 	<head>
-			<title>Suppression d'un lot</title>
+			<title>Suppression d'un livrable</title>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 			<link rel="icon" type="image/x-icon" href="img/favicon.png"/>
@@ -15,23 +15,24 @@
 <?php
 	if(isset($_POST['nameP'])) {
 		$nameProject=$_POST['nameP'];
+		$sqlIdProject= "SELECT id_projet
+						FROM projet
+						WHERE nom = '$nameProject'";
+		$reqIdProject=mysql_query($sqlIdProject);
+		$idProjectArray= mysql_fetch_array($reqIdProject);
+		$idProject=$idProjectArray['id_projet'];
 	}
-	$sqlIdProject= "	SELECT id_projet
-				FROM projet
-				WHERE nom = '$nameProject'";
-	$reqIdProject=mysql_query($sqlIdProject);
-	$idProjectArray= mysql_fetch_array($reqIdProject);
-	$idProject=$idProjectArray['id_projet'];
+	
 	if(isset($_POST['nameL'])) {
-		$nameLot=$_POST['nameL'];
-		$reqSqlDelLot = 'DELETE FROM lot WHERE nom ="'.$nameLot.'" and id_projet="'.$idProject.'"';
-		mysql_query($reqSqlDelLot) or die ('Erreur SQL !'.$reqSqlDelLot.'<br />'.mysql_error());
+		$nameLivrable=$_POST['nameL'];
+		$reqSqlDelLivrable = 'DELETE FROM livrable WHERE nom ="'.$nameLivrable.'" and id_projet="'.$idProject.'"';
+		mysql_query($reqSqlDelLivrable) or die ('Erreur SQL !'.$reqSqldelLivrable.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$nameLot." a bien &eacute;t&eacute; supprim&eacute; des lots</label>";
+				<?php echo "<label class=\"form-control\">".$nameLivrable." a bien &eacute;t&eacute; supprim&eacute; des livrables</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>

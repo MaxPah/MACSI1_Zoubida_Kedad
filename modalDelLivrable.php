@@ -1,14 +1,14 @@
-<div class="modal fade" id="delLot" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="delLivrable" style="display: none;" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-		<form method="POST" action="delLot.php">
+		<form method="POST" action="delLivrable.php">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<p>Supprimer un lot</p>
+				<p>Supprimer un livrable</p>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="dL" class="col-lg-2 control-label">Quel lot voulez-vous supprimer ?</label>
+					<label for="dL" class="col-lg-2 control-label">Quel livrable voulez-vous supprimer ?</label>
 					<div class="col-lg-10">
 					<?php
 						$sqlIdProject= "SELECT id_projet
@@ -17,15 +17,15 @@
 						$reqIdProject=mysql_query($sqlIdProject);
 						$idProjectArray= mysql_fetch_array($reqIdProject);
 						$idProject=$idProjectArray['id_projet'];
-					
-						$sqlLot= "	SELECT nom
-									FROM lot
-									WHERE id_projet = '$idProject'";
-						$reqLot=mysql_query($sqlLot);
+						
+						$sqlLivrable= "	SELECT nom
+										FROM livrable
+										WHERE id_projet = '$idProject'";
+						$reqLivrable=mysql_query($sqlLivrable);
 						echo "<select class=\"form-control\" id=\"dL\" name=\"nameL\">";
-						while($nomLot = mysql_fetch_array($reqLot))
+						while($nomLivrable = mysql_fetch_array($reqLivrable))
 						{
-							echo "<option>".$nomLot['nom']."</option>";
+							echo "<option>".$nomLivrable['nom']."</option>";
 						}
 						echo "</select>";
 					?>
@@ -35,7 +35,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<button type="submit" class="btn btn-primary" >Supprimer lot</button>
+				<button type="submit" class="btn btn-primary" >Supprimer Livrable</button>
 			</div>
 		</form>
     </div><!-- /.modal-content -->

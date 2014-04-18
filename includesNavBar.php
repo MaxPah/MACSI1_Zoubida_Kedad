@@ -23,6 +23,10 @@
 		<!-- Ajouter tache -->
 		<?php include ('modalAddTache.php'); ?>
 		<!--/. Ajouter tache -->
+		
+		<!-- Ajouter livrable -->
+		<?php include ('modalAddLivrable.php'); ?>
+		<!--/. Ajouter livrable -->
 	
 		<!--Suppression -->
 		
