@@ -36,20 +36,19 @@
 				$resLivrable = mysql_fetch_array($reqLivrable) or die('Erreur result : '.mysql_error());
 				$nomLivrable = $resLivrable['nom'];
 				
-				echo "<strong>Sous Projet de ".$nomLivrable."</strong>";
+				echo "<strong>Tache de ".$nomLivrable."</strong>";
 			?>
 		</div>
 		<ul class="list-group">
 		<?php
-			$sqlL = 'SELECT *
-					 FROM sousprojet
-					 WHERE id_lot ="'.$idL.'"';
-			$reqL = mysql_query($sqlL) or die('Erreur requete 2 : '.mysql_error());
-			while($resL = mysql_fetch_array($reqL))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Sous Projet </i></strong></u> : <a href=\"infoSousProjet.php?idSP=".$resL['id_sousprojet']."&nameP=".$nameProject."\">".$resL['nom']."</a></li>";
+			$sqlSP = 'SELECT *
+						 FROM tache
+						 WHERE id_livrable ="'.$idL.'"';
+			$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
+			while($resSP = mysql_fetch_array($reqSP))					
+			echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : <a href=\"infoTache.php?idJ=".$resSP['id_tache']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
 		?>
 		</ul>
-		<br/>
 	</div>
 	</body>
 

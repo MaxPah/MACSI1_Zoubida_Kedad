@@ -162,20 +162,27 @@
 				</ul>
 			</li>
 			<?php } ?>
-			<?php
-					/*
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Livrables  <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Voir Livrables</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Action</li>
-							<li><a href="#">Ajouter Livrable</a></li>
-							<li><a href="#">Supprimer Livrable</a></li>
-						</ul>
-					</li>
-					*/ 
-			?>
+			
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Livrables  <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<?php
+						$sqlLivrable= "	SELECT nom,id_livrable
+							FROM livrable
+							WHERE id_projet = '$idProject'";
+						$reqLivrable=mysql_query($sqlLivrable);
+						
+						while($nomLivrable = mysql_fetch_array($reqLivrable)) {
+							echo "<li><a href=\"infoLivrable.php?idL=".$nomLivrable['id_livrable']."&nameP=".$nameProject."\">Voir ".$nomLivrable['nom']."</a></li>";
+						}
+					?>	
+					<li class="divider"></li>
+					<li class="dropdown-header">Action</li>
+					<li><a data-toggle="modal" href="#addLivrable">Ajouter Livrable</a></li>
+					<li><a data-toggle="modal" href="#delLivrable" >Supprimer Livrable</a></li>
+				</ul>
+			</li>
+			
 			
 			</ul>
 			<ul class="nav nav-pills navbar-right"style="margin-right:20px; margin-top:5px;">

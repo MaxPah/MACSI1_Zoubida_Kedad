@@ -25,7 +25,7 @@
 	
 	if(isset($_POST['nameL'])) {
 		$nameLivrable = $_POST['nameL'];
-		$reqSqlAddLivrable = 'INSERT INTO livrable(nom) VALUES ("'.$nameLivrable.'", "'.$idProject.'")';
+		$reqSqlAddLivrable = 'INSERT INTO livrable(nom,id_projet) VALUES ("'.$nameLivrable.'", "'.$idProject.'")';
 		mysql_query($reqSqlAddLivrable) or die ('Erreur SQL !'.$reqSqlAddLivrable.'<br />'.mysql_error());
 	}
 ?>
