@@ -21,6 +21,21 @@
 		
 	<?php include ('includesNavBar.php'); ?>
 	
+	<?php 
+		if(isset($_POST['youlo'])) {
+		 $idL = $_POST['idl'];
+		$idT = $_POST['idt'];
+			$sql = 'SELECT id_tache
+					FROM tache 
+					WHERE id_tache="'.$idT.'"';
+					
+				$req = mysql_query($sql) or die('Erreur requete : '.mysql_error());
+				$result = mysql_fetch_array($req);
+		$reqSql = 'INSERT INTO tache(id_livrable) VALUES ("'.$idL.'")
+					WHERE id_tache = "'.$result['id_tache'].'"';
+		mysql_query($reqSql) or die ('Erreur SQL'.mysql_error());
+		}
+		?>
 	
 	
 	<!-- INFOS SUR LE LOT -->
@@ -39,6 +54,33 @@
 				echo "<strong>Tache de ".$nomLivrable."</strong>";
 			?>
 		</div>
+		<ul class="list-group">
+
+		<li class=\"list-group-item\">
+		<strong>Affecter une nouvelle tache &agrave; ce livrable :  </strong>
+		<br/><br/>
+			<?php
+			echo" <form method=\"POST\" action=\"infoLivrable.php?idL=".$idL."&nameP=".$nameProject."\">";
+		
+				$sqlNameT = "SELECT nom,id_tache
+								   FROM tache";
+				$reqNameT = mysql_query($sqlNameT);
+				echo "<select class=\"form-control\" name=\"nameT\">";
+				while($resultNameT = mysql_fetch_array($reqNameT))
+				{
+					echo "<option>".$resultNameT['nom']."</option>";
+				}
+				echo "</select>";
+			?>
+			<br/>
+			<input type="hidden" name="idl" value="<?php echo $idL;?>">			
+			<input type="hidden" name="idt" value="<?php echo $resultNameT['id_tache'];?>">			
+			<button class="btn btn-primary btn-sm" name="youlo" type="submit"><span class="glyphicon glyphicon-plus"></span>Affecter cette tache</button>				
+			<br/><br/>
+		</form>
+			
+		</li>
+		
 		<ul class="list-group">
 		<?php
 			$sqlSP = 'SELECT *
