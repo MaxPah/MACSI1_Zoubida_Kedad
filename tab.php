@@ -25,6 +25,7 @@
 				$reqP = mysql_query($sqlP) or die('Erreur requete : '.mysql_error());
 				$resP = mysql_fetch_array($reqP) or die('Erreur result : '.mysql_error());
 				$nameProject = $resP['nom'];
+				$nomP = $nameProject;
 				
 	 include ('navigation.php');?>
 		
@@ -129,7 +130,51 @@
 			}
 			echo "</li>";
 		?>
+		<?php
+		/* Taches effectuees */
 		
+		$tachefaites=0;
+						$sqlp = 'SELECT t.nom,t.id_tache
+					 FROM tache t, sousprojet sp, lot l
+					 WHERE l.id_projet ="'.$idP.'"
+					 AND t.id_sousprojet = sp.id_sousprojet
+					 AND sp.id_lot = l.id_lot
+					 AND t.date_fin_tard < CURDATE()';
+			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
+			
+			echo "<li class=\"list-group-item\"> <u><strong><i>Taches &eacute;ffectu&eacute;es </i></strong></u> : ";
+			while($resp = mysql_fetch_array($reqp))					
+			{	$tachefaites++;
+				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
+			}
+			echo "</li>";
+		?>
+		<?php
+		/* Taches à faire */
+		
+		$tacheafaire=0;
+						$sqlp = 'SELECT t.nom,t.id_tache
+					 FROM tache t, sousprojet sp, lot l
+					 WHERE l.id_projet ="'.$idP.'"
+					 AND t.id_sousprojet = sp.id_sousprojet
+					 AND sp.id_lot = l.id_lot
+					 AND t.date_fin_tard > CURDATE()';
+			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
+			
+			echo "<li class=\"list-group-item\"> <u><strong><i>Taches planifi&eacute;es </i></strong></u> : ";
+			while($resp = mysql_fetch_array($reqp))					
+			{	$tacheafaire++;
+				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
+			}
+			echo "</li>";
+		?>
+		<?php
+		/* Taches Totales */
+			$tachetotal = $tachefaites + $tacheafaire;
+			echo "<li class=\"list-group-item\"> <u><strong><i>Taux taches </i></strong></u> : ";
+			echo "Il y a ".$tachefaites." taches effectu&eacute;es sur ".$tachetotal." taches pr&eacute;vues. ";
+			echo "</li>";
+		?>		
 		</ul>
 		<br/>
 	</div>
