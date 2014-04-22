@@ -25,7 +25,10 @@
 			/*** Création d'un nouveau projet ***/
 			if(isset($_POST['new'])) {
 				$nameProject = $_POST['nameP'];
-				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg) VALUES ("'.$nameProject.'", 0)';
+				$date = $_POST['dateP'];
+				$env = $_POST['envP'];
+				$desc = $_POST['descP'];
+				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg,description,datedeb,datefin) VALUES ("'.$nameProject.'", "'.$env.'","'.$desc.'","'.date("Y-m-d").'","'.$date.'")';
 				mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
 			}
 			/***Création nouveau projet ***/

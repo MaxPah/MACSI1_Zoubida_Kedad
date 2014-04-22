@@ -16,8 +16,17 @@
 	</head>
 
 	<body>
-	
-	<?php $nameProject = "MACSI 3"; include ('navigation.php');?>
+<?php $idP = $_GET['idP']; /* LOT PHASE JALON */ 
+					
+				$sqlP = ' SELECT nom
+							FROM projet
+							WHERE id_projet ="'.$idP.'"';
+				
+				$reqP = mysql_query($sqlP) or die('Erreur requete : '.mysql_error());
+				$resP = mysql_fetch_array($reqP) or die('Erreur result : '.mysql_error());
+				$nameProject = $resP['nom'];
+				
+	 include ('navigation.php');?>
 		
 	<?php include ('includesNavBar.php'); ?>
 	
@@ -26,17 +35,8 @@
 	<!-- INFOS SUR LE LOT -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php $idP = $_GET['idP']; /* LOT PHASE JALON */ 
-					
-				$sqlP = ' SELECT nom
-							FROM projet
-							WHERE id_projet ="'.$idP.'"';
-				
-				$reqP = mysql_query($sqlP) or die('Erreur requete : '.mysql_error());
-				$resP = mysql_fetch_array($reqP) or die('Erreur result : '.mysql_error());
-				$nomP = $resP['nom'];
-				
-				echo "<strong>Infos de ".$nomP."</strong>";
+			<?php
+				echo "<strong>Infos de ".$nameProject."</strong>";
 			?>
 		</div>
 		<ul class="list-group">
@@ -76,7 +76,7 @@
 				$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
 				while($resp = mysql_fetch_array($reqp))					
 				{
-					$moy = $resp['this']*100 / $a ;
+					$moy = 100 - $resp['this']*100 / $a ;
 					$moy =number_format($moy);
 					echo "<li class=\"list-group-item\"> <u><strong><i>Fin du projet dans  </i></strong></u> : ".$resp['this']."  jours (approx)</li>";
 					echo "<li class=\"list-group-item\"> <u><strong><i>Projet effectu&eacute; &agrave;  </i></strong></u> : ".$moy." % (approx)</li>";
