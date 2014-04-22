@@ -139,7 +139,7 @@
 					 WHERE l.id_projet ="'.$idP.'"
 					 AND t.id_sousprojet = sp.id_sousprojet
 					 AND sp.id_lot = l.id_lot
-					 AND t.date_fin_tard < CURDATE()';
+					 AND t.date_fin_tard <= CURDATE()';
 			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
 			
 			echo "<li class=\"list-group-item\"> <u><strong><i>Taches &eacute;ffectu&eacute;es </i></strong></u> : ";
