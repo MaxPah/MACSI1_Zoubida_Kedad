@@ -52,40 +52,10 @@
 			while($resp = mysql_fetch_array($reqp))					
 			{
 				echo "<li class=\"list-group-item\"> <u><strong><i>Enveloppe budg&eacute;taire pr&eacute;visionnelle</i></strong></u> : ".$resp['enveloppe_budg']."</li>";
-				echo "<li class=\"list-group-item\"> <u><strong><i>D&eacute;scription </i></strong></u> : ".$resp['description']."</li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>Description </i></strong></u> : ".$resp['description']."</li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Date de fin pr&eacute;visionnelle </i></strong></u> : ".$resp['datefin']."</li>";
 			}
 		?>
-		<?php
-			$sqlp = 'SELECT datefin,datedeb
-						 FROM projet
-						 WHERE id_projet ="'.$idP.'"';
-				$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
-				while($resp = mysql_fetch_array($reqp))					
-					{
-					$datefin = $resp['datefin'];
-					$datedeb = $resp['datedeb'];
-					}
-				$datejour =date('Y-m-d');
-				
-				$sqlp2 = 'SELECT DATEDIFF(\''.$datefin.'\',\''.$datedeb.'\') as deb';
-				$reqp2 = mysql_query($sqlp2) or die('Erreur requete 2 : '.mysql_error());
-				while($resp2 = mysql_fetch_array($reqp2))					
-					$a = $resp2['deb'];
-					
-				$sqlp = 'SELECT DATEDIFF(\''.$datefin.'\',\''.$datejour.'\') as this';
-				$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
-				while($resp = mysql_fetch_array($reqp))					
-				{
-					$moy = 100 - $resp['this']*100 / $a ;
-					$moy =number_format($moy);
-					echo "<li class=\"list-group-item\"> <u><strong><i>Fin du projet dans  </i></strong></u> : ".$resp['this']."  jours (approx)</li>";
-					echo "<li class=\"list-group-item\"> <u><strong><i>Projet effectu&eacute; &agrave;  </i></strong></u> : ".$moy." % (approx)</li>";
-				}
-		
-		?>
-		
-		
 		<?php
 		/* LOT */
 			$sqlp = 'SELECT *
@@ -142,7 +112,7 @@
 					 AND t.date_fin_tard <= CURDATE()';
 			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
 			
-			echo "<li class=\"list-group-item\"> <u><strong><i>Taches &eacute;ffectu&eacute;es </i></strong></u> : ";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Taches effectu&eacute;es </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{	$tachefaites++;
 				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
@@ -150,7 +120,7 @@
 			echo "</li>";
 		?>
 		<?php
-		/* Taches � faire */
+		/* Taches � faire */
 		
 		$tacheafaire=0;
 						$sqlp = 'SELECT t.nom,t.id_tache
@@ -171,10 +141,31 @@
 		<?php
 		/* Taches Totales */
 			$tachetotal = $tachefaites + $tacheafaire;
+			$moy = $tacheafaire / $tachetotal * 100 ;
+			$moy =number_format($moy);
+					
 			echo "<li class=\"list-group-item\"> <u><strong><i>Taux taches </i></strong></u> : ";
 			echo "Il y a ".$tachefaites." taches effectu&eacute;es sur ".$tachetotal." taches pr&eacute;vues. ";
 			echo "</li>";
-		?>		
+			echo "<li class=\"list-group-item\"> <u><strong><i>Projet effectu&eacute;é &agrave;  </i></strong></u> : ".$moy."% </li>";
+		?>
+		<?php
+		/* Ressources utilisées */
+				$sqlp = 'SELECT *
+			FROM ressource r, 
+			 WHERE l.id_projet ="'.$idP.'"
+			 AND t.id_sousprojet = sp.id_sousprojet
+			 AND sp.id_lot = l.id_lot
+			 AND t.date_fin_tard > CURDATE()';
+			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
+			
+			echo "<li class=\"list-group-item\"> <u><strong><i>Taches planifi&eacute;es </i></strong></u> : ";
+			while($resp = mysql_fetch_array($reqp))					
+			{	$tacheafaire++;
+				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
+			}
+			echo "</li>";
+		?>
 		</ul>
 		<br/>
 	</div>

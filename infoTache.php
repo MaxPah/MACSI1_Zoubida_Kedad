@@ -17,7 +17,14 @@
 
 	<body>
 	
-	<?php $nameProject = $_GET['nameP']; include ('navigation.php');?>
+	<?php 	$nameProject = $_GET['nameP']; include ('navigation.php');
+			$sqlIdProject= "SELECT id_projet
+							FROM projet
+							WHERE nom = '$nameProject'";
+			$reqIdProject=mysql_query($sqlIdProject);
+			$idProjectArray= mysql_fetch_array($reqIdProject);
+			$idProject=$idProjectArray['id_projet'];
+	?>
 		
 	<?php include ('includesNavBar.php'); ?>
 	
@@ -36,7 +43,7 @@
 		$duree = $_POST['duree'];
 		$taux = $_POST['taux'];
 		$idress= $result['idress'];
-		$reqSql = 'INSERT INTO tacheressource(id_tache,id_ressource,duree,taux_affectation) VALUES ("'.$idTache.'","'.$idress.'","'.$duree.'", "'.$taux.'")';
+		$reqSql = 'INSERT INTO tacheressource(id_tache,id_ressource,duree,taux_affectation,id_projet) VALUES ("'.$idTache.'","'.$idress.'","'.$duree.'", "'.$taux.'","'.$idProject.'")';
 		mysql_query($reqSql) or die ('Erreur SQL'.mysql_error());
 		}
 		?>
