@@ -40,7 +40,7 @@
 	
 	function recupereInfosGantt(){
 	var info=new Array();
-		var monFichier="testtab.php";
+	var monFichier="testtab.php";
 		donnees = file(monFichier);
 		var lignes=donnees.split("/");
 		for(var i=0;i<4;i++) {
@@ -48,12 +48,12 @@
 				
 					tmp={
 					name: data[0],
-					desc: data[1],
+					/*desc: data[1],*/
 					values: [{
 						from: data[3],
 						to: data[4],
 						label: data[2],
-						customClass: "ganttOrange"
+						customClass: "ganttBlue"
 						}]
 					};
 				info[i]=tmp;
