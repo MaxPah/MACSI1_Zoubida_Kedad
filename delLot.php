@@ -16,16 +16,16 @@
 	if(isset($_POST['nameP'])) {
 		$nameProject=$_POST['nameP'];
 	}
-	$sqlIdProject= "	SELECT id_projet
-				FROM projet
-				WHERE nom = '$nameProject'";
+	$sqlIdProject= "SELECT id_projet
+					FROM projet
+					WHERE nom = '$nameProject'";
 	$reqIdProject=mysql_query($sqlIdProject);
 	$idProjectArray= mysql_fetch_array($reqIdProject);
 	$idProject=$idProjectArray['id_projet'];
 	if(isset($_POST['nameL'])) {
 		$nameLot=$_POST['nameL'];
 		$reqSqlDelLot = 'DELETE FROM lot WHERE nom ="'.$nameLot.'" and id_projet="'.$idProject.'"';
-		mysql_query($reqSqlDelLot) or die ('Erreur SQL !'.$reqSqlDelLot.'<br />'.mysql_error());
+		mysql_query($reqSqlDelLot) or die ('Erreur SQL !'.$reqSqlDelLot.'<br/>'.mysql_error());
 	}
 ?>
 	<body>

@@ -31,14 +31,14 @@
 	
 	<!-- /*****************************************************-->
 		<?php 
-		if(isset($_POST['youlo'])) {
+		if(isset($_POST['ajout_ress'])) {
 		$nameR = $_POST['nameR'];
 			$sql = 'SELECT id_ressource as idress 
 								   FROM ressource 
 								   WHERE nom="'.$nameR.'"';
 					
-				$req = mysql_query($sql) or die('Erreur requete : '.mysql_error());
-				$result = mysql_fetch_array($req) or die('Erreur result : '.mysql_error());
+				$req = mysql_query($sql) or die('Erreur requete -1 : '.mysql_error());
+				$result = mysql_fetch_array($req) or die('Erreur result -1 : '.mysql_error());
 		$idTache=$_POST['idtache'];
 		$duree = $_POST['duree'];
 		$taux = $_POST['taux'];
@@ -49,9 +49,24 @@
 		?>
 		<!-- /*****************************************************-->
 	
+	<!-- /*****************************************************-->
+		<?php 
+		if(isset($_POST['ajout_dep'])) {
+		$nameTD = $_POST['nameTD'];
+			$sql = 'SELECT id_tache
+					FROM tache 
+					WHERE nom="'.$nameTD.'"';
+					
+				$req = mysql_query($sql) or die('Erreur requete -2 : '.mysql_error());
+				$result = mysql_fetch_array($req) or die('Erreur result -2 : '.mysql_error());
+		$idTache=$_POST['idtache'];
+		$reqSql = 'UPDATE tache SET id_tache_dep="'.$result['id_tache'].'" WHERE id_tache="'.$idTache.'"';
+		mysql_query($reqSql) or die ('Erreur SQL'.mysql_error());
+		}
+		?>
+		<!-- /*****************************************************-->
 	
 	
-		
 	<!-- INFOS SUR LA TACHE -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -84,9 +99,7 @@
 						AND t.id_tache ="'.$idTache.'"';
 					
 			$reqNoms=mysql_query($sqlNoms) or die('Erreur query 3 : '.mysql_error());
-			$resNoms= mysql_fetch_array($reqNoms) or die('Erreur result 3 : '.mysql_error());
-		
-			
+			$resNoms= mysql_fetch_array($reqNoms) or die('Erreur result 3 : '.mysql_error());		
 			
 			echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoPhase.php?idP=".$resTache['id_phase']."&nameP=".$nameProject."\">".$resNoms['nomP']."</a></li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Sous-projet</i></strong></u> : <a href=\"infoSousProjet.php?idSP=".$resTache['id_sousprojet']."&nameP=".$nameProject."\">".$resNoms['nomSP']."</a></li>";
@@ -98,6 +111,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Fin au plus tard</i></strong></u> : ".$resTache['date_fin_tard']."</li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Duree</i></strong></u> : ".$resTache['duree']."</li>";
 			echo "<li class=\"list-group-item\"> <u><strong><i>Journ&eacute;es homme</i></strong></u> : ".$resTache['journee_homme']."</li>";
+			/* On affiche le livrable et la tache dont celle-ci dépend uniquement si ceux-ci existent */
 			if($resTache['id_livrable'] != NULL) {
 				$sqlLivrable = 'SELECT nom
 								FROM livrable
@@ -107,7 +121,43 @@
 		
 				echo "<li class=\"list-group-item\"> <u><strong><i>Livrable</i></strong></u> : <a href=\"infoLivrable.php?idL=".$resTache['id_livrable']."&nameP=".$nameProject."\">".$resLivrable['nom']."</a></li>";
 			}
-		?>
+			/* Affiche tache dep ou ajoute tache dep */
+			if($resTache['id_tache_dep'] != NULL) {
+				$sqlDep = ' SELECT nom
+							FROM tache
+							WHERE id_tache = "'.$resTache['id_tache_dep'].'"';
+				$reqDep=mysql_query($sqlDep) or die('Erreur query 5 : '.mysql_error());
+				$resDep= mysql_fetch_array($reqDep) or die('Erreur result 5 : '.mysql_error());
+		
+				echo "<li class=\"list-group-item\"> <u><strong><i>D&eacute;pend de</i></strong></u> : <a href=\"infoTache.php?idT=".$resTache['id_tache_dep']."&nameP=".$nameProject."\">".$resDep['nom']."</a></li>";
+			}
+			else {
+			
+			echo " <li class=\"list-group-item\">
+					<strong>Ajouter une d&eacute;pendance: </strong>
+					<br/><br/>
+					<form method=\"POST\" action=\"infoTache.php?idT=".$idTache."&nameP=".$nameProject."\">";
+		
+					$sqlNameTache = "SELECT nom
+									 FROM tache
+									 WHERE id_tache != ".$idTache;
+					$reqNameTache = mysql_query($sqlNameTache);
+					echo "<select class=\"form-control\" name=\"nameTD\">";
+					while($resultNameTache = mysql_fetch_array($reqNameTache))
+					{
+						echo "<option>".$resultNameTache['nom']."</option>";
+					}
+					echo "</select>
+							<br/>
+						<input type=\"hidden\" name=\"idtache\" value=\"".$idTache."\">			
+						<button class=\"btn btn-primary btn-sm\" name=\"ajout_dep\" type=\"submit\"><span class=\"glyphicon glyphicon-plus\"></span>Ajouter cette d&eacute;pendance</button>				
+						<br/><br/>
+						</form>
+			
+						</li>";
+			}
+			?>
+		
 		</ul>
 	</div>
 	
@@ -135,8 +185,8 @@
 			<?php
 			echo" <form method=\"POST\" action=\"infoTache.php?idT=".$idTache."&nameP=".$nameProject."\">";
 		
-				$sqlNameRess = "SELECT nom,id_ressource as idress 
-								   FROM ressource";
+				$sqlNameRess = "SELECT nom
+								FROM ressource";
 				$reqNameRess = mysql_query($sqlNameRess);
 				echo "<select class=\"form-control\" name=\"nameR\">";
 				while($resultNameRess = mysql_fetch_array($reqNameRess))
@@ -149,7 +199,7 @@
 			<input type="text" placeholder="Duree" size="10" name="duree">
 			<input type="text" placeholder="Taux d'affectation" size="15" name="taux">			
 			<input type="hidden" name="idtache" value="<?php echo $idTache;?>">			
-			<button class="btn btn-primary btn-sm" name="youlo" type="submit"><span class="glyphicon glyphicon-plus"></span>Affecter cette ressource</button>				
+			<button class="btn btn-primary btn-sm" name="ajout_ress" type="submit"><span class="glyphicon glyphicon-plus"></span>Affecter cette ressource</button>				
 			<br/><br/>
 		</form>
 			
