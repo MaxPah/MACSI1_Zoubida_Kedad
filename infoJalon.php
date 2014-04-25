@@ -41,13 +41,15 @@
 		</div>
 		<ul class="list-group">
 		<?php
-			$sqlJ = 'SELECT date,evenement
-						 FROM jalon
-						 WHERE id_jalon ="'.$idJ.'"';
+			$sqlJ = 'SELECT j.date,j.evenement, p.nom,p.id_phase
+						 FROM jalon j, phase p
+						 WHERE id_jalon ="'.$idJ.'"
+						 AND p.id_phase = j.id_phase';
 			$reqJ = mysql_query($sqlJ) or die('Erreur requete 2 : '.mysql_error());
 			while($resJ = mysql_fetch_array($reqJ))					
 			{
-				echo "<li class=\"list-group-item\"> <u><strong><i>date </i></strong></u> : ".$resJ['date']."</li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoPhase.php?idP=".$resJ['id_phase']."&nameP=".$nameProject."\">".$resJ['nom']."</a></li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>Date </i></strong></u> : ".$resJ['date']."</li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Evenement </i></strong></u> : ".$resJ['evenement']."</li>";
 			}
 		?>

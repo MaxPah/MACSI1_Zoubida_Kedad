@@ -129,7 +129,7 @@
 		</div>
 		<ul class="list-group">
 
-		<li class=\"list-group-item\">
+		<li class="list-group-item">
 		<strong>Affecter une nouvelle ressource &agrave; cette t&acirc;che :  </strong>
 		<br/><br/>
 			<?php
@@ -155,7 +155,7 @@
 			
 		</li>
 			<?php 
-			$sqlTR = 'SELECT r.nom, r.cout, r.qualification, tr.taux_affectation as ta, tr.duree
+			$sqlTR = 'SELECT r.nom, r.cout, r.qualification, tr.taux_affectation as ta, tr.duree, r.type
 					  FROM ressource r, tacheressource tr
 					  WHERE tr.id_tache ="'.$idTache.'"
 					  AND r.id_ressource = tr.id_ressource';
@@ -164,10 +164,11 @@
 			while($resTR = mysql_fetch_array($reqTR)) 
 			{
 				echo "<li class=\"list-group-item\">
+					  <span class=\"badge\">Type : ".$resTR['type']."</span>
 					  <span class=\"badge\">Cout : ".$resTR['cout']."</span>
 					  <span class=\"badge\">Duree : ".$resTR['duree']."</span>
 					  <span class=\"badge\">Taux d'affectation : ".$resTR['ta']."</span>
-					   <u><strong><i>Nom</i></strong></u> : ".$resTR['nom']."
+					  <u><strong><i>Nom</i></strong></u> : ".$resTR['nom']."
 					  <br/>
 					  <u><strong><i>Qualification</i></strong></u> : ".$resTR['qualification']."
 					  </li>";

@@ -41,6 +41,17 @@
 		</div>
 		<ul class="list-group">
 		<?php
+			$sqlSP = 'SELECT l.nom,l.id_lot
+					  FROM lot l, sousprojet sp
+					  WHERE l.id_lot =sp.id_lot
+					  AND sp.id_sousprojet ="'.$idSP.'"';
+			$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
+			while($resSP = mysql_fetch_array($reqSP))					
+			echo "<li class=\"list-group-item\"> <u><strong><i>Lot</i></strong></u> : <a href=\"infoLot.php?idL=".$resSP['id_lot']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
+		?>
+		</ul>
+		<ul class="list-group">
+		<?php
 			$sqlSP = 'SELECT nom, id_tache
 					  FROM tache
 					  WHERE id_sousprojet ="'.$idSP.'"';
