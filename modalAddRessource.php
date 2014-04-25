@@ -17,8 +17,15 @@
 						<br/>
 						<label for="nSP" class="control-label">Co&ucirc;t de la ressource</label>
 						<input type="text" class="form-control" id="nL" name="nameCout" placeholder="Tapez le cout">
-						
-						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
+						<br/>
+						<label for="nSP" class="control-label">Type de la ressource</label>
+						<select class="form-control" id="lPh" name="nameType">
+							<option>materielle</option>
+							<option>humaine</option>
+							<option>logicielle</option>
+						</select>
+
+					<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 					
 				</div>
 			</div>

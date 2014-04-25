@@ -17,12 +17,14 @@
 		$nameProject = $_POST['nameP'];
 		$nameQual = $_POST['nameQual'];
 		$nameCout = $_POST['nameCout'];
-		$reqSqlAddRess = 'INSERT INTO ressource(nom,qualification,cout) VALUES ("'.$nameRess.'", "'.$nameQual.'", "'.$nameCout.'")';
+		$nameType = $_POST['nameType'];
+
+		$reqSqlAddRess = 'INSERT INTO ressource(nom,qualification,cout, type) VALUES ("'.$nameRess.'", "'.$nameQual.'", "'.$nameCout.'", "'.$nameType.'")';
 		mysql_query($reqSqlAddRess) or die ('Erreur SQL !'.mysql_error());
 ?>
 	<body>
 		<div id="bloc_central">
-			<!-- Cr�er un nouveau projet-->
+			<!-- Créer un nouveau projet-->
 			<form method="POST" action="resume.php">
 				<?php echo "<label class=\"form-control\">".$nameRess." a bien &eacute;t&eacute; ajout&eacute; aux ressources</label>";
 				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>
