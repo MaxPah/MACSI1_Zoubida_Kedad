@@ -46,7 +46,6 @@ html {
 body {
   margin: 0;
   color:#888888;
-  background:url(../images/fond.jpg);
 }
 
 a {
@@ -5956,7 +5955,7 @@ button.close {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  left: -500px;
   z-index: 1040;
   display: none;
   overflow: auto;

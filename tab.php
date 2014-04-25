@@ -141,29 +141,31 @@
 		<?php
 		/* Taches Totales */
 			$tachetotal = $tachefaites + $tacheafaire;
-			$moy = $tacheafaire / $tachetotal * 100 ;
+			if ($tachetotal == 0)
+				$moy = 0;
+			else $moy = $tachefaites / $tachetotal * 100 ;
+			
 			$moy =number_format($moy);
-					
 			echo "<li class=\"list-group-item\"> <u><strong><i>Taux taches </i></strong></u> : ";
-			echo "Il y a ".$tachefaites." taches effectu&eacute;es sur ".$tachetotal." taches pr&eacute;vues. ";
+				echo "Il y a ".$tachefaites." taches effectu&eacute;es sur ".$tachetotal." taches pr&eacute;vues. <br/><br/>  ";
+				echo "<div class='progress progress-striped active'>
+					<div class='progress-bar' role='progressbar' aria-valuenow='".$moy."' aria-valuemin='0' aria-valuemax='100' style='width: ".$moy."%;'>
+						Projet effectu&eacute;é &agrave; ".$moy."% 
+					</div>
+				</div>";
 			echo "</li>";
-			echo "<li class=\"list-group-item\"> <u><strong><i>Projet effectu&eacute;é &agrave;  </i></strong></u> : ".$moy."% </li>";
 		?>
 		<?php
 		/* Ressources utilisées */
-				$sqlp = 'SELECT *
-			FROM ressource r, 
-			 WHERE l.id_projet ="'.$idP.'"
-			 AND t.id_sousprojet = sp.id_sousprojet
-			 AND sp.id_lot = l.id_lot
-			 AND t.date_fin_tard > CURDATE()';
+				$sqlp = 'SELECT tr.taux_affectation,r.nom
+			FROM tacheressource tr, ressource r
+			WHERE id_projet ="'.$idP.'"
+			AND r.id_ressource = tr.id_ressource
+			';
 			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
-			
-			echo "<li class=\"list-group-item\"> <u><strong><i>Taches planifi&eacute;es </i></strong></u> : ";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Ressources utilis&eacute;es </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
-			{	$tacheafaire++;
-				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
-			}
+				echo $resp['nom']." ".$resp['taux_affectation']."%  <span class='glyphicon glyphicon-minus'></span>  ";
 			echo "</li>";
 		?>
 		</ul>

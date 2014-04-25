@@ -44,12 +44,12 @@
 			else if(isset($_GET['nameP']))
 				$nameProject = $_GET['nameP']; 
 
+			echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";
 			include ('navigation.php');?>
 		
 		<?php include ('includesNavBar.php'); ?>
 		
 		<!--/. BARRE DE NAVIGATION-->
-		<br/>
 		<br/>
 		
 		<?php include ('test_bord.php'); ?>
@@ -57,8 +57,7 @@
 		<!-- Liste Tache -->
 		<?php include ('listtache.php'); ?>
 		<!--/. Liste Tache -->
-		
-		
+				
 		<!-- Supprimer projet -->
 		<span class="supprProj">
 			<a data-toggle="modal" href="#ValidSupprProjet" ><button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-trash"></span>    Supprimer ce projet</button></a>
@@ -70,12 +69,6 @@
 		<span class="retourIndex">
 			<a href="index.php"><button class="btn btn-success btn-xs" name="del"><span class="glyphicon glyphicon-circle-arrow-left"></span>    Retour &agrave; l'accueil</button></a>
 		</span>
-		<!--/. Retour accueil -->
-	
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    
-		
+		<!--/. Retour accueil -->		
 	</body>
 </html>

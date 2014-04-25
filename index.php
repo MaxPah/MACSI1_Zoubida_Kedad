@@ -27,7 +27,7 @@
 					{
 						echo "<option>".$resultNameProject['nom']."</option>";
 					}
-					echo "</select>";
+					echo "</select>";					
 				?>
 				<br/>
 				<button class="btn btn-primary" name="old" type="submit"><span class="glyphicon glyphicon-circle-arrow-down"></span>    Choisir ce projet</button>				
@@ -44,35 +44,5 @@
 				<button class="btn btn-success" name= "new" type="submit"><span class="glyphicon glyphicon-plus"></span>    Lancer un nouveau projet</button>	<br/><br/>
 			</form>
 		</div>		
-	<?php
-		
-	/*	if(isset($_POST['nouveau']))
-		{
-			$sql = "INSERT INTO projet(nom) VALUES()";
-			mysql_query($sql);	
-			
-			$sql = "SELECT id_projet 
-					FROM projet
-					WHERE nom = $_POST['intituleProjet']";
-			$req = mysql_query($sql); 
-			
-			$result = mysql_fetch_array($req);
-			header('Location: resume.php?id=$result["id_projet"]');
-		}
-		
-		else if(isset($_POST['existant']))
-		{
-			$sql = "SELECT id_projet 
-					FROM projet
-					WHERE nom = $_POST['nom_projet']";
-			$req = mysql_query($sql); 
-			
-			$result = mysql_fetch_array($req);
-			header('Location: resume.php?id=$result["id_projet"]');
-		}
-		*/
-	?> 
-	
 	</body>
-
 </html>

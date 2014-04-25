@@ -1,7 +1,4 @@
-<link href="css/style.css" type="text/css" rel="stylesheet">
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="http://taitems.github.com/UX-Lab/core/css/prettify.css" rel="stylesheet" type="text/css">
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+
 <style type="text/css">
 	.contain {
 		width: 800px;
@@ -10,30 +7,20 @@
 	table th:first-child {
 		width: 150px;
 	}
-	<!--  /* Bootstrap 3.0 re-reset */
-	  .fn-gantt *,
-	  .fn-gantt *:after,
-	  .fn-gantt *:before {
-		-webkit-box-sizing: content-box;
-		   -moz-box-sizing: content-box;
-				box-sizing: content-box;
-	  }-->
 </style>
 		<div class="contain">
-				<div class="gantt"></div> 
-			<br/>
-					
+			<div class="gantt"></div> 				
 		</div>
-		<!--
-<div class="contain">
-	<div class="gantt"></div>
-	<div id="testgantt"></div>
-</div>-->
-<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.fn.gantt.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	
+	<script src="js/jquery.min.js"></script> <!-- Gantt -->
+	<script src="js/jquery.fn.gantt.js"></script> <!-- Rien -->
+	<!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
 	<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
-		
+	
+	<link href="css/style.css" type="text/css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="http://taitems.github.com/UX-Lab/core/css/prettify.css" rel="stylesheet" type="text/css">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
 
 <script type="text/javascript">
 	$(function() {	
@@ -56,7 +43,7 @@
 		var monFichier="testtab.php";
 		donnees = file(monFichier);
 		var lignes=donnees.split("/");
-		for(var i=0;i<2;i++) {
+		for(var i=0;i<4;i++) {
 				var data = lignes[i].split("*");
 				
 					tmp={

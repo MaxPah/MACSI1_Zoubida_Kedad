@@ -1,8 +1,16 @@
 <?php 
 	include("connexion.php");
 ?>
+
 <?php
-	$idProject="9";
+	/*$sqlIdProject= "SELECT id_projet
+							FROM projet
+							WHERE nom = '$nameProject'";
+			$reqIdProject=mysql_query($sqlIdProject);
+			$idProjectArray= mysql_fetch_array($reqIdProject);
+			$idProject=$idProjectArray['id_projet'];*/
+			$idProject=9;
+		
 	$sqlLot= "SELECT nom, id_lot
 			FROM lot
 			WHERE id_projet='$idProject'";
@@ -35,7 +43,7 @@ while ($resLot=mysql_fetch_array($reqLot)) {
 			$nomTache=$resTache['nom'];
 			$debutTache=$resTache['date_debut_tot'];
 			$finTache=$resTache['date_fin_tard'];
-			echo $nomLot;echo"*";
+			echo $nomLot." - ".$nomSousprojet."*";
 			echo $nomSousprojet;echo"*";
 			echo $nomTache;echo"*";
 			echo $debutTache;echo"*";
