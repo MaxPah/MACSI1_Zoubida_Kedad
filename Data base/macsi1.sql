@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le : Mar 22 Avril 2014 à 02:11
+-- Généré le : Ven 25 Avril 2014 à 14:33
 -- Version du serveur: 5.5.16
 -- Version de PHP: 5.3.8
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `phase` (
   `id_projet` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_phase`),
   KEY `id_projet` (`id_projet`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `phase`
@@ -112,7 +112,8 @@ CREATE TABLE IF NOT EXISTS `phase` (
 INSERT INTO `phase` (`id_phase`, `nom`, `charge`, `id_projet`) VALUES
 (1, 'Phase 1', 1000, 9),
 (2, 'Phase 2', 30, 9),
-(3, 'Phase test 1', 123, 10);
+(3, 'Phase test 1', 123, 10),
+(4, 'Phase 1', 50, 15);
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `projet` (
   `datedeb` date NOT NULL,
   `datefin` date NOT NULL,
   PRIMARY KEY (`id_projet`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Contenu de la table `projet`
@@ -139,7 +140,8 @@ INSERT INTO `projet` (`id_projet`, `nom`, `enveloppe_budg`, `description`, `date
 (8, 'Macsi 2', 1, '', '2014-04-08', '2014-04-26'),
 (9, 'Macsi 3', 50000, 'ProjetTest', '2014-04-18', '2014-04-24'),
 (10, 'Test suppressions', 7000000, 'test suppr', '2014-04-01', '2014-06-21'),
-(14, 'Projet 1', 65000, 'Ceci est un projet test', '2014-04-21', '2014-04-30');
+(14, 'Projet 1', 65000, 'Ceci est un projet test', '2014-04-21', '2014-04-30'),
+(15, 'Projet 2', 2000, 'grtvzfreoi', '2014-04-24', '2014-04-25');
 
 -- --------------------------------------------------------
 
@@ -152,17 +154,19 @@ CREATE TABLE IF NOT EXISTS `ressource` (
   `nom` varchar(20) DEFAULT NULL,
   `qualification` varchar(20) DEFAULT NULL,
   `cout` int(11) DEFAULT NULL,
+  `type` text NOT NULL,
   PRIMARY KEY (`id_ressource`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `ressource`
 --
 
-INSERT INTO `ressource` (`id_ressource`, `nom`, `qualification`, `cout`) VALUES
-(1, 'Maxime', 'Chef de projet', 2000),
-(2, 'Syrine', 'Secretaire', 2000),
-(3, 'Parapluie', 'Proteger de la pluie', 10);
+INSERT INTO `ressource` (`id_ressource`, `nom`, `qualification`, `cout`, `type`) VALUES
+(1, 'Maxime', 'Chef de projet', 2000, 'humaine'),
+(2, 'Syrine', 'Secretaire', 2000, 'humaine'),
+(3, 'Parapluie', 'Proteger de la pluie', 10, 'materielle'),
+(4, 'Pierre', 'Chef de projet', 2000, 'humaine');
 
 -- --------------------------------------------------------
 
@@ -213,15 +217,18 @@ CREATE TABLE IF NOT EXISTS `tache` (
   KEY `id_phase` (`id_phase`),
   KEY `id_sousprojet` (`id_sousprojet`),
   KEY `tache_ibfk_3` (`id_livrable`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `tache`
 --
 
 INSERT INTO `tache` (`id_tache`, `nom`, `cout`, `date_debut_tot`, `date_debut_tard`, `date_fin_tot`, `date_fin_tard`, `duree`, `objectif`, `journee_homme`, `id_phase`, `id_sousprojet`, `id_livrable`) VALUES
-(8, 'tache1', 200, '2014-12-31', '2015-12-31', '2014-01-31', '2014-01-01', 30, 'Etre la tache 1', '10', 1, 1, 2),
-(9, 'Tache2', 10, '2014-04-13', '2014-04-26', '2014-04-27', '2014-04-25', 10, 'Etre la tache 2', '2', 1, 1, 2);
+(8, 'tache1', 200, '2014-04-21', '2014-04-22', '2014-04-25', '2014-05-01', 30, 'Etre la tache 1', '10', 1, 1, 2),
+(9, 'Tache2', 10, '2014-04-13', '2014-04-26', '2014-04-27', '2014-04-25', 10, 'Etre la tache 2', '2', 1, 1, 2),
+(10, 'tache 3', 500, '2014-04-20', '2014-04-20', '2014-04-21', '2014-04-21', 2, 'Etre la tache 3', '2', 1, 1, NULL),
+(11, 'tache 4', 30, '2014-04-22', '2014-04-22', '2014-04-27', '2014-04-28', 5, 'Etre la tache 4', '30', 2, 2, NULL),
+(12, 'tache 5', 60, '2014-07-22', '2014-07-22', '2014-08-24', '2014-08-24', 0, 'Etre la tache 5', '0', 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -234,31 +241,19 @@ CREATE TABLE IF NOT EXISTS `tacheressource` (
   `id_ressource` int(11) NOT NULL DEFAULT '0',
   `duree` int(11) DEFAULT NULL,
   `taux_affectation` int(11) DEFAULT NULL,
+  `id_projet` int(11) NOT NULL,
   PRIMARY KEY (`id_tache`,`id_ressource`),
-  KEY `id_ressource` (`id_ressource`)
+  KEY `id_ressource` (`id_ressource`),
+  KEY `tacheressource_ibfk_3` (`id_projet`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `tacheressource`
 --
 
-INSERT INTO `tacheressource` (`id_tache`, `id_ressource`, `duree`, `taux_affectation`) VALUES
-(8, 3, 10, 100),
-(9, 1, 50, 25),
-(9, 2, 10, 33);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `tachetache`
---
-
-CREATE TABLE IF NOT EXISTS `tachetache` (
-  `id_tache_base` int(11) NOT NULL,
-  `id_tache_ref` int(11) NOT NULL,
-  PRIMARY KEY (`id_tache_base`,`id_tache_ref`),
-  KEY `id_tache_ref` (`id_tache_ref`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `tacheressource` (`id_tache`, `id_ressource`, `duree`, `taux_affectation`, `id_projet`) VALUES
+(8, 1, 2, 20, 9),
+(8, 3, 2, 100, 9);
 
 --
 -- Contraintes pour les tables exportées
@@ -299,23 +294,17 @@ ALTER TABLE `sousprojet`
 -- Contraintes pour la table `tache`
 --
 ALTER TABLE `tache`
-  ADD CONSTRAINT `tache_ibfk_3` FOREIGN KEY (`id_livrable`) REFERENCES `livrable` (`id_livrable`) ON UPDATE CASCADE,
   ADD CONSTRAINT `tache_ibfk_1` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tache_ibfk_2` FOREIGN KEY (`id_sousprojet`) REFERENCES `sousprojet` (`id_sousprojet`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tache_ibfk_2` FOREIGN KEY (`id_sousprojet`) REFERENCES `sousprojet` (`id_sousprojet`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tache_ibfk_3` FOREIGN KEY (`id_livrable`) REFERENCES `livrable` (`id_livrable`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `tacheressource`
 --
 ALTER TABLE `tacheressource`
+  ADD CONSTRAINT `tacheressource_ibfk_3` FOREIGN KEY (`id_projet`) REFERENCES `projet` (`id_projet`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tacheressource_ibfk_1` FOREIGN KEY (`id_tache`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tacheressource_ibfk_2` FOREIGN KEY (`id_ressource`) REFERENCES `ressource` (`id_ressource`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `tachetache`
---
-ALTER TABLE `tachetache`
-  ADD CONSTRAINT `tachetache_ibfk_1` FOREIGN KEY (`id_tache_base`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tachetache_ibfk_2` FOREIGN KEY (`id_tache_ref`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
