@@ -1,5 +1,5 @@
 <div class="modal fade" id="delLot" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style='margin-right :80%;'>
     <div class="modal-content">
 		<form method="POST" action="delLot.php">
 			<div class="modal-header">
