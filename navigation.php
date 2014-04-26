@@ -96,7 +96,7 @@
 							$reqSousProjet=mysql_query($sqlSousProjet);
 							
 							while($nomSousProjet = mysql_fetch_array($reqSousProjet)) {
-								echo "<li><a href=\"infoSousProjet.php?idSP=".$nomSousProjet['id_sousprojet'].">Voir ".$nomSousProjet['nom']."</a></li>";
+								echo "<li><a href='infoSousProjet.php?idSP=".$nomSousProjet['id_sousprojet']."'>Voir ".$nomSousProjet['nom']."</a></li>";
 								$estSousprojet=true;
 							}
 						}
@@ -136,7 +136,7 @@
 							$reqJalon=mysql_query($sqlJalon);
 							
 							while($nomJalon = mysql_fetch_array($reqJalon)) {
-								echo "<li><a href=\"infoJalon.php?idJ=".$nomJalon['id_jalon'].">Voir ".$nomJalon['nom']."</a></li>";
+								echo "<li><a href='infoJalon.php?idJ=".$nomJalon['id_jalon']."'>Voir ".$nomJalon['nom']."</a></li>";
 								echo "<li class=\"divider\"></li>";
 								}
 						}

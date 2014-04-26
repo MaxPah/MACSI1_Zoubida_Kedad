@@ -47,7 +47,7 @@
 					  AND sp.id_sousprojet ="'.$idSP.'"';
 			$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
 			while($resSP = mysql_fetch_array($reqSP))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Lot</i></strong></u> : <a href=\"infoLot.php?idL=".$resSP['id_lot']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Lot</i></strong></u> : <a href='infoLot.php?idL=".$resSP['id_lot']."'>".$resSP['nom']."</a></li>";
 		?>
 		</ul>
 		<ul class="list-group">
@@ -57,7 +57,7 @@
 					  WHERE id_sousprojet ="'.$idSP.'"';
 			$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
 			while($resSP = mysql_fetch_array($reqSP))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : <a href=\"infoTache.php?idT=".$resSP['id_tache']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : <a href='infoTache.php?idT=".$resSP['id_tache']."'>".$resSP['nom']."</a></li>";
 		?>
 		</ul>
 	</div>	

@@ -32,7 +32,7 @@
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
 				<?php echo "<label class=\"form-control\">".$nameSousProjet." a bien &eacute;t&eacute; ajout&eacute; aux sous-projets</label>";
-				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$_POST['nameP']."\">";?>
+				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$_SESSION['nameP']."\">";?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>
 			</form>
