@@ -61,23 +61,14 @@
 		
 		<!--/. BARRE DE NAVIGATION-->
 		<br/>
-<<<<<<< HEAD
 		
 		<!-- Gantt -->
 		<?php include ('test_bord.php'); ?>
-=======
->>>>>>> 07c656724b5571994eda50eab6fc42ad03758e0a
 				
 		<!-- Liste Tache -->
 		<?php include ('listtache.php'); ?>
 		<!--/. Liste Tache -->
-<<<<<<< HEAD
-=======
 
-
-		<?php include ('test_bord.php'); ?>
->>>>>>> 07c656724b5571994eda50eab6fc42ad03758e0a
-		
 		<!-- Supprimer projet -->
 		<span class="supprProj">
 			<a data-toggle="modal" href="#ValidSupprProjet" ><button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-trash"></span>    Supprimer ce projet</button></a>
