@@ -5978,11 +5978,11 @@ button.close {
 }
 
 .modal-dialog {
-  position: absolue;
   z-index: 1050;
   width: auto;
- /* margin: 10px;*/
-  margin-left: 10px;
+  position:fixed;
+  margin-left:10%;
+
 }
 
 .modal-content {
