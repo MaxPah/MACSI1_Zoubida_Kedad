@@ -9,8 +9,6 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="nPh" class="control-label">Nom de la phase</label>
-					
-					
 						<input type="text" class="form-control" id="nPh" name="namePh" placeholder="Tapez le nom de la phase">
 						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 					

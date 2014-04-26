@@ -30,21 +30,31 @@
 				$desc = $_POST['descP'];
 				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg,description,datedeb,datefin) VALUES ("'.$nameProject.'", "'.$env.'","'.$desc.'","'.date("Y-m-d").'","'.$date.'")';
 				mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
-			}
-			/***Création nouveau projet ***/
-			/*else if(isset($_POST['old'])) {
-				$nameProject = $_POST['nameP'];
-			}*/
+				}
+
+
+		
 		?>
 		<!-- BARRE DE NAVIGATION-->
 		
 		<?php 
+			
 			if(isset($_POST['nameP']))
 				$nameProject = $_POST['nameP']; 
 			else if(isset($_GET['nameP']))
 				$nameProject = $_GET['nameP']; 
+				
+				
+			$sqlP = "SELECT nom,id_projet
+					FROM projet
+					WHERE nom ='$nameProject'";
+							
+			$reqP=mysql_query($sqlP) or die('Erreur query 2 : '.mysql_error());			
+			while ($resP= mysql_fetch_array($reqP)) {
+				$_SESSION['nameP'] = $resP['nom'];
+				$_SESSION['idProject'] = $resP['id_projet'];
+				}
 
-			echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";
 			include ('navigation.php');?>
 		
 		<?php include ('includesNavBar.php'); ?>
@@ -52,12 +62,13 @@
 		<!--/. BARRE DE NAVIGATION-->
 		<br/>
 		
+		<!-- Gantt -->
 		<?php include ('test_bord.php'); ?>
-		
+				
 		<!-- Liste Tache -->
 		<?php include ('listtache.php'); ?>
 		<!--/. Liste Tache -->
-				
+		
 		<!-- Supprimer projet -->
 		<span class="supprProj">
 			<a data-toggle="modal" href="#ValidSupprProjet" ><button class="btn btn-danger btn-xs" name="del" type="submit"><span class="glyphicon glyphicon-trash"></span>    Supprimer ce projet</button></a>

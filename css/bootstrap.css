@@ -5515,7 +5515,6 @@ a.thumbnail.active {
 }
 
 #tacheResume {
-	margin-left: 25%;
 }
 
 .list-group {
@@ -5979,10 +5978,11 @@ button.close {
 }
 
 .modal-dialog {
-  position: relative;
+  position: absolue;
   z-index: 1050;
   width: auto;
-  margin: 10px;
+ /* margin: 10px;*/
+  margin-left: 10px;
 }
 
 .modal-content {
