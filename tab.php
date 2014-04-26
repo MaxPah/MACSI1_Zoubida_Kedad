@@ -16,7 +16,17 @@
 	</head>
 
 	<body>
-<?php 				
+<?php $idP = $_GET['idP']; /* LOT PHASE JALON */ 
+					
+				$sqlP = ' SELECT nom
+							FROM projet
+							WHERE id_projet ="'.$idP.'"';
+				
+				$reqP = mysql_query($sqlP) or die('Erreur requete : '.mysql_error());
+				$resP = mysql_fetch_array($reqP) or die('Erreur result : '.mysql_error());
+				$nameProject = $resP['nom'];
+				$nomP = $nameProject;
+				
 	 include ('navigation.php');?>
 		
 	<?php include ('includesNavBar.php'); ?>
@@ -56,7 +66,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Lot </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href=\"infoLot.php?idL=".$resp['id_lot']."&nameP=".$nameProject."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoLot.php?idL=".$resp['id_lot']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>
@@ -71,7 +81,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Phase </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href=\"infoPhase.php?idP=".$resp['id_phase']."&nameP=".$nameProject."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoPhase.php?idP=".$resp['id_phase']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>
@@ -86,7 +96,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Jalon </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href=\"infoJalon.php?idJ=".$resp['id_jalon']."&nameP=".$nameProject."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoJalon.php?idJ=".$resp['id_jalon']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>
@@ -105,7 +115,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Taches effectu&eacute;es </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{	$tachefaites++;
-				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nameProject."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>
@@ -124,7 +134,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Taches planifi&eacute;es </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{	$tacheafaire++;
-				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nameProject."\">".$resp['nom']."</a> , ";
+				echo "<a href=\"infoTache.php?idT=".$resp['id_tache']."&nameP=".$nomP."\">".$resp['nom']."</a> , ";
 			}
 			echo "</li>";
 		?>

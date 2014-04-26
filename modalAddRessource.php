@@ -1,5 +1,5 @@
 <div class="modal fade" id="addRessource" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog" style='margin-right :80%;'>
+  <div class="modal-dialog">
     <div class="modal-content">
 		<form method="POST" action="addRessource.php">
 			<div class="modal-header">

@@ -1,5 +1,6 @@
 // jQuery Gantt Chart
 // ==================
+
 // Basic usage:
 
 //      $(".selector").gantt({

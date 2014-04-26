@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <?php 
-		session_start(); 
-		$dbconn = mysql_connect("localhost", "root", "");
-		$db = mysql_select_db("macsi1", $dbconn);
+	include("connexion.php");
 ?>
 <html lang="fr">
 
@@ -21,18 +19,15 @@
 		<!-- Lancer un projet existant-->
 			<form method="POST" action="resume.php">
 				<?php
-					
-					$sqlNameProject = "SELECT id_projet,nom 
+					$sqlNameProject = "SELECT nom 
 										FROM projet";
 					$reqNameProject = mysql_query($sqlNameProject);
 					echo "<select class=\"form-control\" name=\"nameP\">";
 					while($resultNameProject = mysql_fetch_array($reqNameProject))
 					{
 						echo "<option>".$resultNameProject['nom']."</option>";
-						
 					}
-					echo "</select>";	
-						
+					echo "</select>";					
 				?>
 				<br/>
 				<button class="btn btn-primary" name="old" type="submit"><span class="glyphicon glyphicon-circle-arrow-down"></span>    Choisir ce projet</button>				

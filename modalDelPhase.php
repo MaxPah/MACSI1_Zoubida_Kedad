@@ -1,5 +1,5 @@
 <div class="modal fade" id="delPhase" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog" style='margin-right :80%;'>
+  <div class="modal-dialog">
     <div class="modal-content">
 		<form method="POST" action="delPhase.php">
 			<div class="modal-header">
@@ -8,7 +8,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="dPh" class="control-label">Quelle phase voulez-vous supprimer ?</label>
+					<label for="dPh" class="col-lg-2 control-label">Quelle phase voulez-vous supprimer ?</label>
 					<div class="col-lg-10">
 					<?php
 					$sqlPhase= "	SELECT nom

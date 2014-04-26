@@ -1,5 +1,5 @@
 <div class="modal fade" id="addPhase" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog" style='margin-right :80%;'>
+  <div class="modal-dialog">
     <div class="modal-content">
 		<form method="POST" action="addPhase.php">
 			<div class="modal-header">
@@ -9,6 +9,8 @@
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="nPh" class="control-label">Nom de la phase</label>
+					
+					
 						<input type="text" class="form-control" id="nPh" name="namePh" placeholder="Tapez le nom de la phase">
 						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 					

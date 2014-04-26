@@ -5,11 +5,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<?php 
-					$nameProject = $_SESSION['nameP'];
-					$idP = $_SESSION['idProject'];
-					echo "<a class=\"navbar-brand\" href=\"resume.php?nameP=".$nameProject."\">".$nameProject."</a>"; 
-				?>
+				<?php echo "<a class=\"navbar-brand\" href=\"resume.php?nameP=".$nameProject."\">".$nameProject."</a>"; ?>
 			</div>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ressources  <b class="caret"></b></a>
@@ -190,7 +186,7 @@
 			
 			</ul>
 			<ul class="nav nav-pills navbar-right"style="margin-right:20px; margin-top:5px;">
-				<?php echo "<li class=\"active\"><a href=\"tab.php?nameP=$nameProject\">Recap</a></li>"; ?>
+				<?php echo "<li class=\"active\"><a href=\"tab.php?idP=$idProject\">Recap</a></li>"; ?>
 			</ul>		
 	</div>
 </nav>
