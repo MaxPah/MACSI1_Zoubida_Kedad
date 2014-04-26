@@ -25,37 +25,40 @@
 	$nomSousprojet="SP 1";
 	$resTache['nom']="tache 1";
 	$i=0;
-while ($resLot=mysql_fetch_array($reqLot)) {
-	$idLot=$resLot['id_lot'];
-	$nomLot=$resLot['nom'];
-	$sqlSousprojet= "SELECT nom, id_sousprojet
-		FROM sousprojet
-		WHERE id_lot='$idLot'";
-	$reqSousprojet= mysql_query($sqlSousprojet);
-	while ($resSousprojet=mysql_fetch_array($reqSousprojet)) {
-		$idSousprojet=$resSousprojet['id_sousprojet'];
-		$nomSousprojet=$resSousprojet['nom'];
-		$sqlTache= "SELECT nom, date_debut_tot,date_fin_tard,id_phase
-			FROM tache
-			WHERE id_sousprojet='$idSousprojet'";
-		$reqTache=mysql_query($sqlTache);
-		while ($resTache=mysql_fetch_array($reqTache)) {
-			$nomTache=$resTache['nom'];
-			$debutTache=$resTache['date_debut_tot'];
-			$finTache=$resTache['date_fin_tard'];
-			echo $nomLot." - ".$nomSousprojet."*";
-			echo $nomSousprojet;echo"*";
-			echo $nomTache;echo"*";
-			echo $debutTache;echo"*";
-			echo $finTache;echo"/";
-			$tableau[$i]=array(
-				'nomLot' => $nomLot,
-				'nomSousprojet' => $nomSousprojet,
-				'nomTache' => $nomTache,
-				'de' => $debutTache,
-				'a' => $finTache
-			);
-			$i=$i+1;
+			while ($resLot= mysql_fetch_array($reqLot)) {
+		$idLot=$resLot['id_lot'];
+		$nomLot=$resLot['nom'];
+		$sqlSousprojet= "SELECT nom, id_sousprojet
+			FROM sousprojet
+			WHERE id_lot='$idLot'";
+		$reqSousprojet= mysql_query($sqlSousprojet);
+		while ($resSousprojet=mysql_fetch_array($reqSousprojet)) {
+			$idSousprojet=$resSousprojet['id_sousprojet'];
+			$nomSousprojet=$resSousprojet['nom'];
+			$sqlTache= "SELECT *
+				FROM tache
+				WHERE id_sousprojet='$idSousprojet'";
+			$reqTache=mysql_query($sqlTache);
+			while ($resTache=mysql_fetch_array($reqTache)) {
+				$nomTache=$resTache['nom'];
+				$debutTache=$resTache['date_debut_tot'];
+				$finTache=$resTache['date_fin_tard'];
+				
+				echo $nomLot." - ".$nomSousprojet." - ".$nomTache."*";
+				echo $nomSousprojet;echo"*";
+				echo $nomTache;echo"*";
+				echo $debutTache;echo"*";
+				echo $finTache;echo"/";
+				
+				$tableau[$i]=array(
+					'nomLot' => $nomLot,
+					'nomSousprojet' => $nomSousprojet,
+					'nomTache' => $nomTache,
+					'de' => $debutTache,
+					'a' => $finTache
+				);
+				$i=$i+1;
+
 		}
 	}
 }

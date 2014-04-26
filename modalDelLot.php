@@ -8,7 +8,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="dL" class="col-lg-2 control-label">Quel lot voulez-vous supprimer ?</label>
+					<label for="dL" class="control-label">Quel lot voulez-vous supprimer ?</label>
 					<div class="col-lg-10">
 					<?php
 						$sqlIdProject= "SELECT id_projet

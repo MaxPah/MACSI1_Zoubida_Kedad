@@ -42,7 +42,21 @@
 			if(isset($_POST['nameP']))
 				$nameProject = $_POST['nameP']; 
 			else if(isset($_GET['nameP']))
-				$nameProject = $_GET['nameP']; 
+				$nameProject = $_GET['nameP'];
+				else $nameProject = $_SESSION['nameP'];
+				
+				
+							$sqlP = "SELECT nom,id_projet
+					FROM projet
+					WHERE nom ='$nameProject'";
+							
+			$reqP=mysql_query($sqlP) or die('Erreur query 2 : '.mysql_error());			
+			while ($resP= mysql_fetch_array($reqP)) {
+				$_SESSION['nameP'] = $resP['nom'];
+				$_SESSION['idProject'] = $resP['id_projet'];
+				}
+
+				
 
 			echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";
 			include ('navigation.php');?>
@@ -52,11 +66,14 @@
 		<!--/. BARRE DE NAVIGATION-->
 		<br/>
 		
-		<?php include ('test_bord.php'); ?>
+	
 		
 		<!-- Liste Tache -->
 		<?php include ('listtache.php'); ?>
 		<!--/. Liste Tache -->
+		
+		<!-- Gantt -->
+		<?php include ('test_bord.php'); ?>		
 				
 		<!-- Supprimer projet -->
 		<span class="supprProj">

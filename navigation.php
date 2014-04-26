@@ -5,7 +5,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<?php echo "<a class=\"navbar-brand\" href=\"resume.php?nameP=".$nameProject."\">".$nameProject."</a>"; ?>
+				<?php echo "<a href='resume.php' class=\"navbar-brand\">".$_SESSION['nameP']."</a>"; ?>
 			</div>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ressources  <b class="caret"></b></a>
@@ -21,19 +21,16 @@
 					<?php
 						$estLot=false; //variable qui permet de voir si on a des lots existants
 						$estSousprojet=false; //variable qui permet de voir si on a des sousprojets existants
-						$sqlIdProject= "SELECT id_projet
-										FROM projet
-										WHERE nom = '$nameProject'";
-						$reqIdProject=mysql_query($sqlIdProject);
-						$idProjectArray= mysql_fetch_array($reqIdProject);
-						$idProject=$idProjectArray['id_projet'];
+						
+						
+						$idProject= $_SESSION['idProject'];
 						$sqlLot= "  SELECT nom,id_lot
 									FROM lot
 									WHERE id_projet = '$idProject'";
 						$reqLot=mysql_query($sqlLot);
 						
 						while($nomLot = mysql_fetch_array($reqLot)) {
-							echo "<li><a href=\"infoLot.php?idL=".$nomLot['id_lot']."&nameP=".$nameProject."\">Voir ".$nomLot['nom']."</a></li>";
+							echo "<li><a href=\"infoLot.php?idL=".$nomLot['id_lot'].">Voir ".$nomLot['nom']."</a></li>";
 							$estLot=true;
 						}
 					?>
@@ -60,7 +57,7 @@
 						$reqPhase=mysql_query($sqlPhase);
 						
 						while($nomPhase = mysql_fetch_array($reqPhase)) {
-							echo "<li><a href=\"infoPhase.php?idP=".$nomPhase['id_phase']."&nameP=".$nameProject."\">Voir ".$nomPhase['nom']."</a></li>";
+							echo "<li><a href=\"infoPhase.php?idP=".$nomPhase['id_phase'].">Voir ".$nomPhase['nom']."</a></li>";
 							$estPhase=true;
 						}
 					?>
@@ -99,7 +96,7 @@
 							$reqSousProjet=mysql_query($sqlSousProjet);
 							
 							while($nomSousProjet = mysql_fetch_array($reqSousProjet)) {
-								echo "<li><a href=\"infoSousProjet.php?idSP=".$nomSousProjet['id_sousprojet']."&nameP=".$nameProject."\">Voir ".$nomSousProjet['nom']."</a></li>";
+								echo "<li><a href=\"infoSousProjet.php?idSP=".$nomSousProjet['id_sousprojet'].">Voir ".$nomSousProjet['nom']."</a></li>";
 								$estSousprojet=true;
 							}
 						}
@@ -139,7 +136,7 @@
 							$reqJalon=mysql_query($sqlJalon);
 							
 							while($nomJalon = mysql_fetch_array($reqJalon)) {
-								echo "<li><a href=\"infoJalon.php?idJ=".$nomJalon['id_jalon']."&nameP=".$nameProject."\">Voir ".$nomJalon['nom']."</a></li>";
+								echo "<li><a href=\"infoJalon.php?idJ=".$nomJalon['id_jalon'].">Voir ".$nomJalon['nom']."</a></li>";
 								echo "<li class=\"divider\"></li>";
 								}
 						}
@@ -173,7 +170,7 @@
 						$reqLivrable=mysql_query($sqlLivrable);
 						
 						while($nomLivrable = mysql_fetch_array($reqLivrable)) {
-							echo "<li><a href=\"infoLivrable.php?idL=".$nomLivrable['id_livrable']."&nameP=".$nameProject."\">Voir ".$nomLivrable['nom']."</a></li>";
+							echo "<li><a href=\"infoLivrable.php?idL=".$nomLivrable['id_livrable'].">Voir ".$nomLivrable['nom']."</a></li>";
 						}
 					?>	
 					<li class="divider"></li>
@@ -186,7 +183,7 @@
 			
 			</ul>
 			<ul class="nav nav-pills navbar-right"style="margin-right:20px; margin-top:5px;">
-				<?php echo "<li class=\"active\"><a href=\"tab.php?idP=$idProject\">Recap</a></li>"; ?>
+				<?php echo "<li class=\"active\"><a href=\"tab.php\">Recap</a></li>"; ?>
 			</ul>		
 	</div>
 </nav>

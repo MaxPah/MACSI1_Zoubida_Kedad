@@ -17,7 +17,7 @@
 
 	<body>
 	
-	<?php $nameProject = $_GET['nameP']; include ('navigation.php');?>
+	<?php $nameProject = $_SESSION['nameP']; include ('navigation.php');?>
 		
 	<?php include ('includesNavBar.php'); ?>
 	
