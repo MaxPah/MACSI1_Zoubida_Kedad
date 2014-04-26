@@ -1,5 +1,5 @@
 <div class="modal fade" id="ValidSupprProjet" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style='margin-right :80%;'>
     <div class="modal-content">
 		<form method="POST" action="delProjet.php">
 			<div class="modal-header">
