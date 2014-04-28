@@ -14,11 +14,9 @@
 	
 	<script src="js/jquery.min.js"></script> <!-- Tout Marche -->
 	<script src="js/jquery.fn.gantt.js"></script> <!-- Modal Marche -->
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> <!-- Tout Marche -->
 	<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script> <!-- Tout Marche -->
 	
 	<link href="css/style.css" type="text/css" rel="stylesheet"> <!-- Rien Marche -->
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"> <!-- Gantt Marche-->
 	<link href="http://taitems.github.com/UX-Lab/core/css/prettify.css" rel="stylesheet" type="text/css"> <!-- Gantt Marche-->
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1"> <!-- Gantt -->
 

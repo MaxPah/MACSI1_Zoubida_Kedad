@@ -30,7 +30,7 @@
 						$reqLot=mysql_query($sqlLot);
 						
 						while($nomLot = mysql_fetch_array($reqLot)) {
-							echo "<li><a href=\"infoLot.php?idL=".$nomLot['id_lot'].">Voir ".$nomLot['nom']."</a></li>";
+							echo "<li><a href='infoLot.php?idL=".$nomLot['id_lot']."'>Voir ".$nomLot['nom']."</a></li>";
 							$estLot=true;
 						}
 					?>
@@ -57,7 +57,7 @@
 						$reqPhase=mysql_query($sqlPhase);
 						
 						while($nomPhase = mysql_fetch_array($reqPhase)) {
-							echo "<li><a href=\"infoPhase.php?idP=".$nomPhase['id_phase'].">Voir ".$nomPhase['nom']."</a></li>";
+							echo "<li><a href='infoPhase.php?idP=".$nomPhase['id_phase']."'>Voir ".$nomPhase['nom']."</a></li>";
 							$estPhase=true;
 						}
 					?>
@@ -170,7 +170,7 @@
 						$reqLivrable=mysql_query($sqlLivrable);
 						
 						while($nomLivrable = mysql_fetch_array($reqLivrable)) {
-							echo "<li><a href=\"infoLivrable.php?idL=".$nomLivrable['id_livrable'].">Voir ".$nomLivrable['nom']."</a></li>";
+							echo "<li><a href='infoLivrable.php?idL=".$nomLivrable['id_livrable']."'>Voir ".$nomLivrable['nom']."</a></li>";
 						}
 					?>	
 					<li class="divider"></li>
