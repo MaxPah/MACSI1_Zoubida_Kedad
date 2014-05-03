@@ -781,7 +781,7 @@
                                     .click(function () {
                                         core.navigateTo(element, 'now');
                                     }))
-                                .append($('<button type="button" class="nav-link nav-prev-week"/>')
+                               /* .append($('<button type="button" class="nav-link nav-prev-week"/>')
                                     .html('&lt;&lt;')
                                     .click(function () {
                                         if (settings.scale === 'hours') {
@@ -793,8 +793,8 @@
                                         } else if (settings.scale === 'months') {
                                             core.navigateTo(element, tools.getCellSize() * 6);
                                         }
-                                    }))
-                                .append($('<button type="button" class="nav-link nav-prev-day"/>')
+                                    }))*/
+                                /*.append($('<button type="button" class="nav-link nav-prev-day"/>')
                                     .html('&lt;')
                                     .click(function () {
                                         if (settings.scale === 'hours') {
@@ -806,7 +806,7 @@
                                         } else if (settings.scale === 'months') {
                                             core.navigateTo(element, tools.getCellSize() * 3);
                                         }
-                                    })))
+                                    }))*/)
                             .append($('<div class="nav-slider-content" />')
                                     .append($('<div class="nav-slider-bar" />')
                                             .append($('<a class="nav-slider-button" />')
@@ -823,7 +823,7 @@
                                                 })
                                             )
                                         )
-                            .append($('<div class="nav-slider-right" />')
+                           /* .append($('<div class="nav-slider-right" />')
                                 .append($('<button type="button" class="nav-link nav-next-day"/>')
                                     .html('&gt;')
                                     .click(function () {
@@ -860,7 +860,7 @@
                                     .click(function () {
                                         core.zoomInOut(element, 1);
                                     }))
-                                    )
+                                    )*/
                                 );
                     $(document).mouseup(function () {
                         element.scrollNavigation.scrollerMouseDown = false;
