@@ -49,7 +49,7 @@
 					values: [{
 						from: data[3],
 						to: data[4],
-						label: '<a href="infoTache.php?nameT='+data[2]+'">'+data[2]+'</a>',
+						label: '<a href="infoTache.php?idT='+data[5]+'">'+data[2]+'</a>',
 						customClass: "ganttBlue"
 						}]
 					};

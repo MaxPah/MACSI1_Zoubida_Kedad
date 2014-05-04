@@ -71,8 +71,9 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<?php 
-				$idTache = $_GET['idT'];
-				if ($idTache != null) {
+				if($_GET['idT'] != null)
+					$idTache = $_GET['idT'];
+
 					$sqlNomTache = 'SELECT nom
 									FROM tache
 									WHERE id_tache ="'.$idTache.'"';
@@ -80,17 +81,7 @@
 					$reqNomTache = mysql_query($sqlNomTache) or die('Erreur requete : '.mysql_error());
 					$resNomTache = mysql_fetch_array($reqNomTache) or die('Erreur result 1 : '.mysql_error());
 					$nomTache = $resNomTache['nom'];
-				}
-				if(isset($_GET['nameT'])) {			// Uniquement via le gantt
-					$nomTache = $_GET['nameT'];
-					$sqlIdTache = 'SELECT id_tache
-									FROM tache
-									WHERE nom ="'.$nomTache.'"';
-				
-					$reqIdTache = mysql_query($sqlIdTache) or die('Erreur requete : '.mysql_error());
-					$resIdTache = mysql_fetch_array($reqIdTache) or die('Erreur result 2 : '.mysql_error());
-					$idTache = $resIdTache['id_tache'];
-				}
+			
 				echo "<strong>".$nomTache."</strong>";
 			?>
 		</div>

@@ -35,19 +35,22 @@
 				$nomTache=$resTache['nom'];
 				$debutTache=$resTache['date_debut_tot'];
 				$finTache=$resTache['date_fin_tard'];
+				$idTache = $resTache['id_tache'];
 				
 				echo $nomLot." - ".$nomSousprojet." - ".$nomTache."*";
 				echo $nomSousprojet;echo"*";
 				echo $nomTache;echo"*";
 				echo $debutTache;echo"*";
-				echo $finTache;echo"/";
+				echo $finTache;echo"*";
+				echo $idTache;echo"/";
 				
 				$tableau[$i]=array(
 					'nomLot' => $nomLot,
 					'nomSousprojet' => $nomSousprojet,
 					'nomTache' => $nomTache,
 					'de' => $debutTache,
-					'a' => $finTache
+					'a' => $finTache,
+					'id' => $idTache
 				);
 				$i=$i+1;
 
