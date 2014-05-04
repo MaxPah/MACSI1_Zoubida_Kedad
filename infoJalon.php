@@ -48,7 +48,7 @@
 			$reqJ = mysql_query($sqlJ) or die('Erreur requete 2 : '.mysql_error());
 			while($resJ = mysql_fetch_array($reqJ))					
 			{
-				echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoPhase.php?idP=".$resJ['id_phase']."&nameP=".$nameProject."\">".$resJ['nom']."</a></li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoPhase.php?idP=".$resJ['id_phase']."\">".$resJ['nom']."</a></li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Date </i></strong></u> : ".$resJ['date']."</li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Evenement </i></strong></u> : ".$resJ['evenement']."</li>";
 			}

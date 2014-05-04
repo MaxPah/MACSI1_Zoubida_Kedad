@@ -31,10 +31,6 @@
 				$reqSqlAddProject = 'INSERT INTO projet(nom,enveloppe_budg,description,datedeb,datefin) VALUES ("'.$nameProject.'", "'.$env.'","'.$desc.'","'.date("Y-m-d").'","'.$date.'")';
 				mysql_query($reqSqlAddProject) or die ('Erreur SQL !'.$reqSqlAddProject.'<br />'.mysql_error());
 			}
-			/***Création nouveau projet ***/
-			/*else if(isset($_POST['old'])) {
-				$nameProject = $_POST['nameP'];
-			}*/
 		?>
 		<!-- BARRE DE NAVIGATION-->
 		
@@ -43,12 +39,11 @@
 				$nameProject = $_POST['nameP']; 
 			else if(isset($_GET['nameP']))
 				$nameProject = $_GET['nameP'];
-				else $nameProject = $_SESSION['nameP'];
+			else $nameProject = $_SESSION['nameP'];
 				
-				
-							$sqlP = "SELECT nom,id_projet
-					FROM projet
-					WHERE nom ='$nameProject'";
+			$sqlP = "SELECT nom,id_projet
+					 FROM projet
+					 WHERE nom ='$nameProject'";
 							
 			$reqP=mysql_query($sqlP) or die('Erreur query 2 : '.mysql_error());			
 			while ($resP= mysql_fetch_array($reqP)) {
@@ -56,21 +51,12 @@
 				$_SESSION['idProject'] = $resP['id_projet'];
 				}
 
-				
-
-			echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";
-			include ('navigation.php');?>
+		include ('navigation.php');?>
 		
 		<?php include ('includesNavBar.php'); ?>
 		
 		<!--/. BARRE DE NAVIGATION-->
 		<br/>
-		
-	
-		
-		<!-- Liste Tache -->
-		<?php include ('listtache.php'); ?>
-		<!--/. Liste Tache -->
 		
 		<!-- Gantt -->
 		<?php include ('test_bord.php'); ?>		

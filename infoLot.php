@@ -46,7 +46,7 @@
 					 WHERE id_lot ="'.$idL.'"';
 			$reqL = mysql_query($sqlL) or die('Erreur requete 2 : '.mysql_error());
 			while($resL = mysql_fetch_array($reqL))					
-			echo "<li class=\"list-group-item\"> <u><strong><i>Sous Projet </i></strong></u> : <a href=\"infoSousProjet.php?idSP=".$resL['id_sousprojet']."&nameP=".$nameProject."\">".$resL['nom']."</a></li>";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Sous Projet </i></strong></u> : <a href=\"infoSousProjet.php?idSP=".$resL['id_sousprojet']."\">".$resL['nom']."</a></li>";
 		?>
 		</ul>
 		<br/>

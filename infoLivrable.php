@@ -56,7 +56,7 @@
 			<strong>Affecter une nouvelle tache &agrave; ce livrable :  </strong>
 			<br/><br/>
 				<?php
-				echo" <form method=\"POST\" action=\"infoLivrable.php?idL=".$idL."&nameP=".$nameProject."\">";
+				echo" <form method=\"POST\" action=\"infoLivrable.php?idL=".$idL."\">";
 			
 					$sqlNameT = "SELECT nom,id_tache
 									   FROM tache";
@@ -82,7 +82,7 @@
 						WHERE id_livrable ="'.$idL.'"';
 				$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
 				while($resSP = mysql_fetch_array($reqSP))					
-				echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : <a href=\"infoTache.php?idT=".$resSP['id_tache']."&nameP=".$nameProject."\">".$resSP['nom']."</a></li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>Tache</i></strong></u> : <a href=\"infoTache.php?idT=".$resSP['id_tache']."\">".$resSP['nom']."</a></li>";
 			?>
 		
 		</ul>

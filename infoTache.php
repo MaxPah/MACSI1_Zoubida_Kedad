@@ -29,7 +29,7 @@
 	<?php include ('includesNavBar.php'); ?>
 	
 	
-	<!-- /*****************************************************-->
+	<!-- /************************ APRES AVOIR AJOUTE UNE RESSOURCE *****************************-->
 		<?php 
 		if(isset($_POST['ajout_ress'])) {
 		$nameR = $_POST['nameR'];
@@ -49,7 +49,7 @@
 		?>
 		<!-- /*****************************************************-->
 	
-	<!-- /*****************************************************-->
+	<!-- /************************ APRES AVOIR AFFECTE UNE DEPENDANCE DE TACHE **********************-->
 		<?php 
 		if(isset($_POST['ajout_dep'])) {
 		$nameTD = $_POST['nameTD'];
@@ -70,16 +70,27 @@
 	<!-- INFOS SUR LA TACHE -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php $idTache = $_GET['idT'];
-					
-				$sqlNomTache = 'SELECT nom
-								FROM tache
-								WHERE id_tache ="'.$idTache.'"';
+			<?php 
+				$idTache = $_GET['idT'];
+				if ($idTache != null) {
+					$sqlNomTache = 'SELECT nom
+									FROM tache
+									WHERE id_tache ="'.$idTache.'"';
 				
-				$reqNomTache = mysql_query($sqlNomTache) or die('Erreur requete : '.mysql_error());
-				$resNomTache = mysql_fetch_array($reqNomTache) or die('Erreur result : '.mysql_error());
-				$nomTache = $resNomTache['nom'];
+					$reqNomTache = mysql_query($sqlNomTache) or die('Erreur requete : '.mysql_error());
+					$resNomTache = mysql_fetch_array($reqNomTache) or die('Erreur result 1 : '.mysql_error());
+					$nomTache = $resNomTache['nom'];
+				}
+				if(isset($_GET['nameT'])) {			// Uniquement via le gantt
+					$nomTache = $_GET['nameT'];
+					$sqlIdTache = 'SELECT id_tache
+									FROM tache
+									WHERE nom ="'.$nomTache.'"';
 				
+					$reqIdTache = mysql_query($sqlIdTache) or die('Erreur requete : '.mysql_error());
+					$resIdTache = mysql_fetch_array($reqIdTache) or die('Erreur result 2 : '.mysql_error());
+					$idTache = $resIdTache['id_tache'];
+				}
 				echo "<strong>".$nomTache."</strong>";
 			?>
 		</div>
@@ -119,7 +130,7 @@
 				$reqLivrable=mysql_query($sqlLivrable) or die('Erreur query 4 : '.mysql_error());
 				$resLivrable= mysql_fetch_array($reqLivrable) or die('Erreur result 4 : '.mysql_error());
 		
-				echo "<li class=\"list-group-item\"> <u><strong><i>Livrable</i></strong></u> : <a href=\"infoLivrable.php?idL=".$resTache['id_livrable']."&nameP=".$nameProject."\">".$resLivrable['nom']."</a></li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>Livrable</i></strong></u> : <a href=\"infoLivrable.php?idL=".$resTache['id_livrable']."\">".$resLivrable['nom']."</a></li>";
 			}
 			/* Affiche tache dep ou ajoute tache dep */
 			if($resTache['id_tache_dep'] != NULL) {
@@ -129,7 +140,7 @@
 				$reqDep=mysql_query($sqlDep) or die('Erreur query 5 : '.mysql_error());
 				$resDep= mysql_fetch_array($reqDep) or die('Erreur result 5 : '.mysql_error());
 		
-				echo "<li class=\"list-group-item\"> <u><strong><i>D&eacute;pend de</i></strong></u> : <a href=\"infoTache.php?idT=".$resTache['id_tache_dep']."&nameP=".$nameProject."\">".$resDep['nom']."</a></li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>D&eacute;pend de</i></strong></u> : <a href=\"infoTache.php?idT=".$resTache['id_tache_dep']."\">".$resDep['nom']."</a></li>";
 			}
 			else {
 			
@@ -164,8 +175,7 @@
 	<!-- RESSOURCES AFFECTÉES A LA TACHE -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php $idTache = $_GET['idT'];
-					
+			<?php 	
 				$sqlNomTache = 'SELECT nom
 								FROM tache
 								WHERE id_tache ="'.$idTache.'"';

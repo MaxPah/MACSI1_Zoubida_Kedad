@@ -30,8 +30,7 @@
 			source: info,
 			navigate: "scroll",
 			maxScale: "hours",
-			itemsPerPage: 13,
-			
+			itemsPerPage: 7,
 		});
 	});
 	
@@ -41,7 +40,7 @@
 		var monFichier="testtab.php";
 		donnees = file(monFichier);
 		var lignes=donnees.split("/");
-		for(var i=0;i<4;i++) {
+		for(var i=0;i<lignes.length-1;i++) {
 				var data = lignes[i].split("*");
 				
 					tmp={
@@ -50,7 +49,7 @@
 					values: [{
 						from: data[3],
 						to: data[4],
-						label: data[2],
+						label: '<a href="infoTache.php?nameT='+data[2]+'">'+data[2]+'</a>',
 						customClass: "ganttBlue"
 						}]
 					};

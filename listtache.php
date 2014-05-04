@@ -28,7 +28,7 @@
 				<li class=\"list-group-item\">";
 						echo "<span class=\"badge\">Phase : ".$resTache['nomP']."</span>";
 						echo "<span class=\"badge\">Sous Projet : ".$resTache['nomSP']."</span>";
-						echo "<a href=\"infoTache.php?idT=".$resTache['id_tache']."&nameP=".$nameProject."\">".$resTache['nomTache']."</a>
+						echo "<a href=\"infoTache.php?idT=".$resTache['id_tache']."\">".$resTache['nomTache']."</a>
 				</li>";
 				}
 		?>
