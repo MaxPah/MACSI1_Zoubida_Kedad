@@ -78,7 +78,7 @@
 									FROM tache
 									WHERE id_tache ="'.$idTache.'"';
 				
-					$reqNomTache = mysql_query($sqlNomTache) or die('Erreur requete : '.mysql_error());
+					$reqNomTache = mysql_query($sqlNomTache) or die('Erreur requete 1 : '.mysql_error());
 					$resNomTache = mysql_fetch_array($reqNomTache) or die('Erreur result 1 : '.mysql_error());
 					$nomTache = $resNomTache['nom'];
 			
@@ -184,7 +184,7 @@
 		<strong>Affecter une nouvelle ressource &agrave; cette t&acirc;che :  </strong>
 		<br/><br/>
 			<?php
-			echo" <form method=\"POST\" action=\"infoTache.php?idT=".$idTache."&nameP=".$nameProject."\">";
+			echo" <form method=\"POST\" action=\"infoTache.php?idT=".$idTache."\">";
 		
 				$sqlNameRess = "SELECT nom
 								FROM ressource";

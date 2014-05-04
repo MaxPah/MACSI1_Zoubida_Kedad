@@ -11,7 +11,7 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ressources  <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 				<?php
-					echo "<li><a href='infoRess.php?idP=".$_SESSION['idProject']."'>Voir Ressources</a></li>";
+					echo "<li><a href='infoRess.php'>Voir Ressources</a></li>";
 				?>
 					<li class="divider"></li>
 					<li class="dropdown-header">Action</li>
