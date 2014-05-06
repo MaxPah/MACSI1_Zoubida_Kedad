@@ -49,6 +49,13 @@
 		$reqSqlAddTache = " INSERT INTO tache(nom, cout, date_debut_tot, date_debut_tard, date_fin_tot, date_fin_tard, duree, objectif, journee_homme, id_phase, id_sousprojet)
 							VALUES ('$nameTache', '$coutTache', '$ddtoTache', '$ddtaTache', '$dftoTache', '$dftaTache', '$dureeTache', '$objTache', '$jhTache', '$idPhase', '$idSousProj')";
 		mysql_query($reqSqlAddTache) or die ('Erreur SQL !'.$reqSqlAddTache.'<br />'.mysql_error());
+		
+		$reqCoutPhase = " UPDATE phase SET charge = charge + '$coutTache' 
+						WHERE id_phase ='$idPhase'";
+		mysql_query($reqCoutPhase) or die ('Erreur SQL !'.$reqCoutPhase.'<br />'.mysql_error());
+		
+		
+		
 	}
 ?>
 	<body>

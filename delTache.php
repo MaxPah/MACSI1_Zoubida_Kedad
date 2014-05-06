@@ -26,12 +26,17 @@
 	if(isset($_POST['nameT'])) {
 		$nameT=$_POST['nameT'];
 		
-		$sqlIdPh = ' SELECT id_phase 
+		$sqlIdPh = ' SELECT id_phase,cout 
 					  FROM tache
 					  WHERE nom = "'.$nameT.'"';
 		$reqIdPh=mysql_query($sqlIdPh);
 		$resIdPh = mysql_fetch_array($reqIdPh);
 		$idPh = $resIdPh['id_phase'];
+		$coutPh = $resIdPh['cout'];
+		
+			$reqCoutPhase = " UPDATE phase SET charge = charge - '$coutPh' 
+						WHERE id_phase ='$idPh'";
+		mysql_query($reqCoutPhase) or die ('Erreur SQL !'.$reqCoutPhase.'<br />'.mysql_error());
 		
 		$SqlDelT = ' DELETE FROM tache 
 					 WHERE nom ="'.$nameT.'" 

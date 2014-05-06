@@ -13,21 +13,10 @@
 			<link rel="stylesheet" href="gs.css" type="text/css" media="screen"/> 
 	</head>
 <?php
-	if(isset($_POST['chargePh'])) {
-	$chargePh=$_POST['chargePh'];
-	}
-	if(isset($_POST['nameP'])) {
-		$nameProject=$_POST['nameP'];
-	}
-	$sqlIdProject= "	SELECT id_projet
-				FROM projet
-				WHERE nom = '$nameProject'";
-	$reqIdProject=mysql_query($sqlIdProject);
-	$idProjectArray= mysql_fetch_array($reqIdProject);
-	$idProject=$idProjectArray['id_projet'];
+	$idProject=$_SESSION['idProject'];
 	if(isset($_POST['namePh'])) {
 		$namePhase = $_POST['namePh'];
-		$SqlAddPhase = 'INSERT INTO phase(nom,id_projet,charge) VALUES ("'.$namePhase.'", "'.$idProject.'","'.$chargePh.'")';
+		$SqlAddPhase = 'INSERT INTO phase(nom,id_projet) VALUES ("'.$namePhase.'", "'.$idProject.'")';
 		mysql_query($SqlAddPhase) or die ('Erreur SQL !'.$SqlAddPhase.'<br />'.mysql_error());
 	}
 ?>
