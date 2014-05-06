@@ -20,9 +20,16 @@
 	$idP = $_SESSION['idProject']; 
 	$nameProject = $_SESSION['nameP']; 
 				
-	 include ('navigation.php');?>
-		
-	<?php include ('includesNavBar.php'); ?>
+	include ('navigation.php');
+	include ('includesNavBar.php'); 
+	/*
+	Modal add phase => virer charge
+	Calculer la charge et UPDATE addphase.php = 0
+	Dans addtache des qu'on met tache il faut faire un UPDATE phase += cout
+	Calcul du cout general dans recap
+	LIVRABLE => Ajouter une description dans les infos livrable (BD faite)
+	Afficher infos du jalon avec les livrables dedans*/
+	?>
 	
 	
 	

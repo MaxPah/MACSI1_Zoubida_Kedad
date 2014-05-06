@@ -37,7 +37,7 @@
 	
 	function recupereInfosGantt(){
 	var info=new Array();
-		var monFichier="testtab.php";
+		var monFichier="infosgantt.php";
 		donnees = file(monFichier);
 		var lignes=donnees.split("/");
 		for(var i=0;i<lignes.length-1;i++) {

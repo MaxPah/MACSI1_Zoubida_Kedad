@@ -187,7 +187,7 @@
 			
 			</ul>
 			<ul class="nav nav-pills navbar-right"style="margin-right:20px; margin-top:5px;">
-				<?php echo "<li class=\"active\"><a href=\"tab.php\">Recap</a></li>"; ?>
+				<?php echo "<li class=\"active\"><a href=\"bord.php\">Recap</a></li>"; ?>
 			</ul>		
 	</div>
 </nav>

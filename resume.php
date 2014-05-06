@@ -59,7 +59,7 @@
 		<br/>
 		
 		<!-- Gantt -->
-		<?php include ('test_bord.php'); ?>		
+		<?php include ('gantt.php'); ?>		
 				
 		<!-- Supprimer projet -->
 		<span class="supprProj">
