@@ -22,6 +22,7 @@
 				
 	include ('navigation.php');
 	include ('includesNavBar.php'); 
+	include ('cout.php');
 	?>
 	
 	

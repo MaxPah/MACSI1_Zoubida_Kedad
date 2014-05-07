@@ -46,9 +46,6 @@
 					<label for="nSP" class="control-label">Nom de la nouvelle t&acirc;che</label>
 						<input type="text" class="form-control" id="nT" name="nameT" placeholder="Tapez le nom de la t&acirc;che">
 					<br/>	
-					<label for="nSP" class="control-label">Co&ucirc;t de la t&acirc;che</label>
-						<input type="text" class="form-control" id="nCout" name="coutT" placeholder="Tapez le co&ucirc;t de la t&acirc;che">
-					<br/>
 					<label for="nSP" class="control-label">Date de d&eacute;but au plus t&ocirc;t de la t&acirc;che</label>
 						<input type="date" class="form-control" id="nDDTO" name="ddtoT">
 					<br/>
