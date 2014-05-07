@@ -22,13 +22,6 @@
 				
 	include ('navigation.php');
 	include ('includesNavBar.php'); 
-	/*
-	Modal add phase => virer charge
-	Calculer la charge et UPDATE addphase.php = 0
-	Dans addtache des qu'on met tache il faut faire un UPDATE phase += cout
-	Calcul du cout general dans recap
-	LIVRABLE => Ajouter une description dans les infos livrable (BD faite)
-	Afficher infos du jalon avec les livrables dedans*/
 	?>
 	
 	
@@ -41,17 +34,23 @@
 			?>
 		</div>
 		<ul class="list-group">
-		
-		
 		<?php
 		/* BASE */
+		$sqlEnv = "SELECT SUM(charge) as env
+				FROM phase
+				WHERE id_projet=".$_SESSION['idProject'];
+		$reqEnv = mysql_query($sqlEnv)or die('Erreur requete reqEnv : '.mysql_error());
+		while($resEnv = mysql_fetch_array($reqEnv))
+			$env = $resEnv['env'];
+		
+		
 			$sqlp = 'SELECT *
 					 FROM projet
 					 WHERE id_projet ="'.$idP.'"';
 			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
 			while($resp = mysql_fetch_array($reqp))					
-			{
-				echo "<li class=\"list-group-item\"> <u><strong><i>Enveloppe budg&eacute;taire pr&eacute;visionnelle</i></strong></u> : ".$resp['enveloppe_budg']."</li>";
+			{	$reste = $resp['enveloppe_budg'] - $env;
+				echo "<li class=\"list-group-item\"> <u><strong><i>Enveloppe budg&eacute;taire</i></strong></u> : ".$env."€, (<strong><u><i>Pr&eacute;visionnel</i></u></strong> : ".$resp['enveloppe_budg']."€, <strong><u><i>Disponible</i></u></strong> : ".$reste."€) </li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Description </i></strong></u> : ".$resp['description']."</li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Date de fin pr&eacute;visionnelle </i></strong></u> : ".$resp['datefin']."</li>";
 			}

@@ -15,12 +15,6 @@
 						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 					
 				</div>
-				<div class="form-group">
-					<label for="cPh" class="control-label">Charge de la phase</label>
-					
-						<input type="text" class="form-control" id="cPh" name="chargePh" placeholder="Entrer la charge de la phase">
-					
-				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>

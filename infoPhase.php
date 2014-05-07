@@ -28,7 +28,7 @@
 		<div class="panel-heading">
 			<?php $idP = $_GET['idP'];
 					
-				$sqlPhase = 'SELECT nom
+				$sqlPhase = 'SELECT *
 								FROM phase
 								WHERE id_phase ="'.$idP.'"';
 				
@@ -39,6 +39,12 @@
 				echo "<strong>Tache de ".$nomP."</strong>";
 			?>
 		</div>
+		<ul class="list-group">
+		<?php
+			
+			echo "<li class=\"list-group-item\"> <u><strong><i>Charge</i></strong></u> : ".$resPhase['charge']."</a></li>";
+		?>
+		</ul>
 		<ul class="list-group">
 		<?php
 			$sqlSP = 'SELECT nom, id_tache

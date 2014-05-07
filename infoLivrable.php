@@ -39,7 +39,7 @@
 			<?php $idL = $_GET['idL'];
 				$idnom= 
 					
-				$sqlLivrable = ' SELECT nom
+				$sqlLivrable = ' SELECT *
 							FROM livrable
 							WHERE id_livrable ="'.$idL.'"';
 				
@@ -47,12 +47,27 @@
 				$resLivrable = mysql_fetch_array($reqLivrable) or die('Erreur result : '.mysql_error());
 				$nomLivrable = $resLivrable['nom'];
 				
-				echo "<strong>Tache de ".$nomLivrable."</strong>";
+				echo "<strong>Infos de ".$nomLivrable."</strong>";
 			?>
 		</div>
+		
 		<ul class="list-group">
-
-		<li class=\"list-group-item\">
+			<li class="list-group-item">
+				<?php echo "<u><strong><i>Description</i></strong></u> : ".$resLivrable['description']; ?>
+			</li>
+		</ul>
+		<ul class="list-group"> 
+			<?php // Jalons
+				$sqlSP = "SELECT nom,id_jalon
+						FROM jalon
+						WHERE id_jalon =".$resLivrable['id_jalon'];
+				$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
+				while($resSP = mysql_fetch_array($reqSP))					
+				echo "<li class=\"list-group-item\"> <u><strong><i>Jalon</i></strong></u> : <a href=\"infoJalon.php?idJ=".$resSP['id_jalon']."\">".$resSP['nom']."</a></li>";
+			?>
+		</ul>
+		<ul class="list-group">
+		<li class="list-group-item">
 			<strong>Affecter une nouvelle tache &agrave; ce livrable :  </strong>
 			<br/><br/>
 				<?php
@@ -76,7 +91,7 @@
 		</li>
 		</ul>
 		<ul class="list-group">
-			<?php
+			<?php 
 				$sqlSP = 'SELECT id_tache,nom
 						FROM tache
 						WHERE id_livrable ="'.$idL.'"';

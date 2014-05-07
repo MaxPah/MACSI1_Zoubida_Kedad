@@ -36,7 +36,7 @@
 				$resJalon = mysql_fetch_array($reqJalon) or die('Erreur result : '.mysql_error());
 				$nomJ = $resJalon['nom'];
 				
-				echo "<strong>".$nomJ."</strong>";
+				echo "<strong>Infos de ".$nomJ."</strong>";
 			?>
 		</div>
 		<ul class="list-group">
@@ -51,6 +51,26 @@
 				echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoPhase.php?idP=".$resJ['id_phase']."\">".$resJ['nom']."</a></li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Date </i></strong></u> : ".$resJ['date']."</li>";
 				echo "<li class=\"list-group-item\"> <u><strong><i>Evenement </i></strong></u> : ".$resJ['evenement']."</li>";
+			}
+		?>
+		</ul>
+	</div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<?php 
+				echo "<strong>Livrables de ".$nomJ."</strong>";
+			?>
+		</div>
+		<ul class="list-group">
+		<?php
+			$sqlJ = 'SELECT nom,id_livrable
+					FROM livrable 
+					WHERE id_jalon = '.$idJ;
+			$reqJ = mysql_query($sqlJ) or die('Erreur requete 2 : '.mysql_error());
+			while($resJ = mysql_fetch_array($reqJ))					
+			{
+				echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoLivrable.php?idL=".$resJ['id_livrable']."\">".$resJ['nom']."</a></li>";
 			}
 		?>
 		</ul>
