@@ -23,10 +23,7 @@
 							<option>materielle</option>
 							<option>humaine</option>
 							<option>logicielle</option>
-						</select>
-
-					<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
-					
+						</select>	
 				</div>
 			</div>
 			<div class="modal-footer">

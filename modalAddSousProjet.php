@@ -24,7 +24,6 @@
 					<br/>
 					<label for="nSP" class="control-label">Nom du sous-projet</label>
 						<input type="text" class="form-control" id="nSP" name="nameSP" placeholder="Tapez le nom du sous-projet">
-						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 				</div>
 			</div>
 			<div class="modal-footer">

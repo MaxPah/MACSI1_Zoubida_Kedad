@@ -7,7 +7,7 @@
 				<p>Supprimer le projet</p>
 			</div>					
 			<div class="modal-body">
-				<label id="validSuppr">Voulez vous vraiment supprimer ce projet ? (attention ce choix est définitif)</label>	
+				<label id="validSuppr">Voulez vous vraiment supprimer ce projet ? (Attention ce choix est définitif)</label>	
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>

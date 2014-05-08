@@ -11,7 +11,6 @@
 					<label for="nL" class="control-label">Nom du lot</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="nL" name="nameL" placeholder="Tapez le nom du lot">
-						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 					</div>
 				</div>
 			</div>

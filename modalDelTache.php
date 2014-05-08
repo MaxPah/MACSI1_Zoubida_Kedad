@@ -21,8 +21,7 @@
 						echo "<option>".$nomSP['nom']."-".$nomSP['id_tache']."</option>";
 					}
 					echo "</select>";
-					?>					
-						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
+					?>
 				</div>
 			</div>
 			<div class="modal-footer">

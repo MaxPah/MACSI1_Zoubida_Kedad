@@ -14,7 +14,7 @@
 	</head>
 <?php
 		$nameRess = $_POST['nameRess'];
-		$nameProject = $_POST['nameP'];
+		$nameProject = $_SESSION['nameP'];
 		$nameQual = $_POST['nameQual'];
 		$nameCout = $_POST['nameCout'];
 		$nameType = $_POST['nameType'];

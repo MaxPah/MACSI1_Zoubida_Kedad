@@ -12,8 +12,6 @@
 						<label for="nSP" class="control-label">Nom du livrable</label>
 						<input type="text" class="form-control" id="nL" name="nameL" placeholder="Tapez le nom du nouveau livrable">
 						<br/>
-						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
-					
 				</div>
 			</div>
 			<div class="modal-footer">

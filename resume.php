@@ -24,7 +24,7 @@
 		<?php
 			/*** Création d'un nouveau projet ***/
 			if(isset($_POST['new'])) {
-				$nameProject = $_POST['nameP'];
+				$nameProject = $_SESSION['nameP'];
 				$date = $_POST['dateP'];
 				$env = $_POST['envP'];
 				$desc = $_POST['descP'];

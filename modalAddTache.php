@@ -32,7 +32,7 @@
 						$sqlSP= "		SELECT s.nom
 										FROM sousprojet s, lot l
 										WHERE s.id_lot= l.id_lot 
-										AND l.id_projet = '$idProject'";
+										AND l.id_projet = ".$_SESSION['idProject'];
 										
 						$reqSP=mysql_query($sqlSP);
 						
@@ -66,8 +66,6 @@
 					<br/>
 					<label for="nSP" class="control-label">Nombre de journ&eacute;es hommes n&eacute;cessaires pour cette t&acirc;che</label>
 						<input type="text" class="form-control" id="nJH" name="jhT" placeholder="Entrez le nombre de journ&eacute;es hommes n&eacute;cessaires">
-					
-					<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 				</div>
 			</div>
 			<div class="modal-footer">

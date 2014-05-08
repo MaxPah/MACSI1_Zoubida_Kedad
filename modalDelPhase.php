@@ -22,7 +22,6 @@
 					}
 					echo "</select>";
 					?>
-						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 					</div>
 				</div>
 			</div>
