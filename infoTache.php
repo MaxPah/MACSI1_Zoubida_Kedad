@@ -140,9 +140,11 @@
 					<br/><br/>
 					<form method=\"POST\" action=\"infoTache.php?idT=".$idTache."&nameP=".$nameProject."\">";
 		
-					$sqlNameTache = "SELECT nom
-									 FROM tache
-									 WHERE id_tache != ".$idTache;
+					$sqlNameTache = "SELECT t.nom
+									 FROM tache t,phase p
+									 WHERE id_tache != ".$idTache."
+									 AND p.id_phase = t.id_phase
+									AND p.id_projet=".$_SESSION['idProject'];
 					$reqNameTache = mysql_query($sqlNameTache);
 					echo "<select class=\"form-control\" name=\"nameTD\">";
 					while($resultNameTache = mysql_fetch_array($reqNameTache))
@@ -209,7 +211,8 @@
 			$sqlTR = 'SELECT r.nom, r.cout, r.qualification, tr.taux_affectation as ta, tr.duree, r.type
 					  FROM ressource r, tacheressource tr
 					  WHERE tr.id_tache ="'.$idTache.'"
-					  AND r.id_ressource = tr.id_ressource';
+					  AND r.id_ressource = tr.id_ressource
+					  AND tr.id_projet='.$_SESSION['idProject'];
 					  
 			$reqTR = mysql_query($sqlTR) or die('Erreur requete 2 : '.mysql_error());
 			while($resTR = mysql_fetch_array($reqTR)) 

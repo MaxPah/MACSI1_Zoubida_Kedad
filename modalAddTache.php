@@ -14,7 +14,7 @@
 						
 						$sqlPhase= "	SELECT nom
 										FROM phase
-										WHERE id_projet = '$idProject'";
+										WHERE id_projet = ".$_SESSION['idProject'];
 										
 						$reqPhase=mysql_query($sqlPhase);
 						
