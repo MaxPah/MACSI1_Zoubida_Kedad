@@ -38,3 +38,6 @@
 				
 				<!-- Supprimer tache -->
 				<?php include ('modalDelTache.php'); ?>
+				
+				<!-- Supprimer livrable -->
+				<?php include ('modalDelLivrable.php'); ?>

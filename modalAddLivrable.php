@@ -12,6 +12,9 @@
 						<label for="nSP" class="control-label">Nom du livrable</label>
 						<input type="text" class="form-control" id="nL" name="nameL" placeholder="Tapez le nom du nouveau livrable">
 						<br/>
+						<label for="nSP" class="control-label">Description du livrable</label>
+						<input type="text" class="form-control" id="nL" name="descL" placeholder="Tapez la description du nouveau livrable">
+						<br/>
 				</div>
 			</div>
 			<div class="modal-footer">

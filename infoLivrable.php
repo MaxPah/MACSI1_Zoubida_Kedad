@@ -23,7 +23,7 @@
 	
 	<?php 
 		if(isset($_POST['youlo'])) {
-		 $idL = $_POST['idl'];
+		 $idL = $_POST['idL'];
 		$idT = $_POST['nameT'];
 			
 		$reqSql = 'UPDATE tache set id_livrable ="'.$idL.'"
@@ -36,16 +36,16 @@
 	<!-- INFOS SUR LE LOT -->
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<?php $idL = $_GET['idL'];
-				$idnom= 
-					
-				$sqlLivrable = ' SELECT *
+			<?php 	
+				$idL = $_GET['idL'];
+				$sqlLivrable = " SELECT *
 							FROM livrable
-							WHERE id_livrable ="'.$idL.'"';
+							WHERE id_livrable =".$idL;
 				
 				$reqLivrable = mysql_query($sqlLivrable) or die('Erreur requete : '.mysql_error());
 				$resLivrable = mysql_fetch_array($reqLivrable) or die('Erreur result : '.mysql_error());
 				$nomLivrable = $resLivrable['nom'];
+				$id_jalon = $resLivrable['id_jalon'];
 				
 				echo "<strong>Infos de ".$nomLivrable."</strong>";
 			?>
@@ -58,12 +58,14 @@
 		</ul>
 		<ul class="list-group"> 
 			<?php // Jalons
+			if($resLivrable['id_jalon'] != null){
 				$sqlSP = "SELECT nom,id_jalon
-						FROM jalon
+						FROM jalon j
 						WHERE id_jalon =".$resLivrable['id_jalon'];
-				$reqSP = mysql_query($sqlSP) or die('Erreur requete 2 : '.mysql_error());
+				$reqSP = mysql_query($sqlSP) or die('Erreur ICI requete 2 : '.mysql_error());
 				while($resSP = mysql_fetch_array($reqSP))					
 				echo "<li class=\"list-group-item\"> <u><strong><i>Jalon</i></strong></u> : <a href=\"infoJalon.php?idJ=".$resSP['id_jalon']."\">".$resSP['nom']."</a></li>";
+			}
 			?>
 		</ul>
 		<ul class="list-group">
@@ -73,8 +75,10 @@
 				<?php
 				echo" <form method=\"POST\" action=\"infoLivrable.php?idL=".$idL."\">";
 			
-					$sqlNameT = "SELECT nom,id_tache
-									   FROM tache";
+					$sqlNameT = "SELECT t.nom,t.id_tache
+									   FROM tache t, phase p 
+									   WHERE t.id_phase = p.id_phase
+									   AND p.id_projet=".$_SESSION['idProject'];
 					$reqNameT = mysql_query($sqlNameT);
 					echo "<select class=\"form-control\" name=\"nameT\">";
 					while($resultNameT = mysql_fetch_array($reqNameT))
