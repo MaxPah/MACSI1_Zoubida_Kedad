@@ -10,13 +10,13 @@
 				<div class="form-group">
 					<label for="dSP" class="control-label">Quelle ressource voulez-vous supprimer ?</label>
 					<?php
-					$sqlSP= "	SELECT nom
+					$sqlSP= "	SELECT nom,id_ressource
 								FROM ressource";
 					$reqSP=mysql_query($sqlSP);
-					echo "<select class=\"form-control\" id=\"dSP\" name=\"nameR\">";
+					echo "<select class=\"form-control\" id=\"dSP\" name=\"idR\">";
 					while($nomSP = mysql_fetch_array($reqSP))
 					{
-						echo "<option>".$nomSP['nom']."</option>";
+						echo "<option>".$nomSP['nom']."-".$nomSP['id_ressource']."</option>";
 					}
 					echo "</select>";
 					?>					

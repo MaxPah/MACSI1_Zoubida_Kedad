@@ -61,7 +61,8 @@
 		<?php /**  Ressources Humaines **/ 
 			$sqlR = 'SELECT nom,id_ressource, cout, qualification
 					 FROM ressource
-					 WHERE type="humaine"';
+					 WHERE type="humaine"
+					 ';
 			$reqR = mysql_query($sqlR) or die('Erreur requete 2 : '.mysql_error());
 			echo "<li class=\"list-group-item\"> <u><strong><i>Humaines</i></strong></u> : ";
 			while($resR = mysql_fetch_array($reqR))	{	
@@ -72,10 +73,11 @@
 					  <u>Qualification</u> : ".$resR['qualification']."
 					   <br/>
 					   <u>Affectations</u> : ";
-				$sqlRT = '	SELECT nom, t.id_tache as idT
+				$sqlRT = "	SELECT nom, t.id_tache as idT
 					 		FROM tache t, tacheressource tr
-					 		WHERE tr.id_ressource = "'.$resR['id_ressource'].'"
-					 		AND tr.id_tache = t.id_tache';
+					 		WHERE tr.id_ressource = ".$resR['id_ressource']."
+					 		AND tr.id_tache = t.id_tache
+							AND tr.id_projet =".$_SESSION['idProject'];
 				$reqRT = mysql_query($sqlRT) or die('Erreur requete 2 : '.mysql_error());
 				while($resRT = mysql_fetch_array($reqRT))
 					echo "<a href=\"infoTache.php?idT=".$resRT['idT']."\">".$resRT['nom']."</a>, ";
@@ -102,7 +104,8 @@
 				$sqlRT = '	SELECT nom, t.id_tache as idT
 					 		FROM tache t, tacheressource tr
 					 		WHERE tr.id_ressource = "'.$resR['id_ressource'].'"
-					 		AND tr.id_tache = t.id_tache';
+					 		AND tr.id_tache = t.id_tache
+							AND tr.id_projet ='.$_SESSION['idProject'];
 				$reqRT = mysql_query($sqlRT) or die('Erreur requete 2 : '.mysql_error());
 				while($resRT = mysql_fetch_array($reqRT))
 					echo "<a href=\"infoTache.php?idT=".$resRT['idT']."\">".$resRT['nom']."</a>, ";
@@ -129,7 +132,8 @@
 				$sqlRT = '	SELECT nom, t.id_tache as idT
 					 		FROM tache t, tacheressource tr
 					 		WHERE tr.id_ressource = "'.$resR['id_ressource'].'"
-					 		AND tr.id_tache = t.id_tache';
+					 		AND tr.id_tache = t.id_tache
+							AND tr.id_projet ='.$_SESSION['idProject'];
 				$reqRT = mysql_query($sqlRT) or die('Erreur requete 2 : '.mysql_error());
 				while($resRT = mysql_fetch_array($reqRT))
 					echo "<a href=\"infoTache.php?idT=".$resRT['idT']."\">".$resRT['nom']."</a>, ";

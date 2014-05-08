@@ -13,22 +13,13 @@
 			<link rel="stylesheet" href="gs.css" type="text/css" media="screen"/> 
 	</head>
 <?php
-	if(isset($_POST['nameP'])) {
-		$nameProject=$_POST['nameP'];
-	}
-	$sqlIdProject= "SELECT id_projet
-				    FROM projet
-				    WHERE nom = '$nameProject'";
-	$reqIdProject=mysql_query($sqlIdProject);
-	$idProjectArray= mysql_fetch_array($reqIdProject);
-	$idProject=$idProjectArray['id_projet'];
 	
-	if(isset($_POST['nameT'])) {
-		$nameT=$_POST['nameT'];
+	if(isset($_POST['idT'])) {
+		$valLot=explode('-',$_POST['idT']);
 		
 		$sqlIdPh = ' SELECT id_phase,cout 
 					  FROM tache
-					  WHERE nom = "'.$nameT.'"';
+					  WHERE id_tache = "'.$valLot[1].'"';
 		$reqIdPh=mysql_query($sqlIdPh);
 		$resIdPh = mysql_fetch_array($reqIdPh);
 		$idPh = $resIdPh['id_phase'];
@@ -39,7 +30,7 @@
 		mysql_query($reqCoutPhase) or die ('Erreur SQL !'.$reqCoutPhase.'<br />'.mysql_error());
 		
 		$SqlDelT = ' DELETE FROM tache 
-					 WHERE nom ="'.$nameT.'" 
+					 WHERE id_tache ="'.$valLot[1].'" 
 					 AND id_phase ="'.$idPh.'"';
 		mysql_query($SqlDelT) or die ('Erreur SQL !'.$SqlDelT.'<br />'.mysql_error());
 	}
@@ -47,8 +38,8 @@
 	<body>
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$nameT." a bien &eacute;t&eacute; supprim&eacute; des taches</label>";
-				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">"; ?>
+				<?php echo "<label class=\"form-control\">".$valLot[0]." a bien &eacute;t&eacute; supprim&eacute; des taches</label>";
+				?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>
 			</form>

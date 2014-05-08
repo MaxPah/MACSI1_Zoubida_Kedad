@@ -13,27 +13,17 @@
 			<link rel="stylesheet" href="gs.css" type="text/css" media="screen"/> 
 	</head>
 <?php
-	if(isset($_POST['nameP'])) {
-		$nameProject=$_POST['nameP'];
-		$sqlIdProject= "SELECT id_projet
-						FROM projet
-						WHERE nom = '$nameProject'";
-		$reqIdProject=mysql_query($sqlIdProject);
-		$idProjectArray= mysql_fetch_array($reqIdProject);
-		$idProject=$idProjectArray['id_projet'];
-	}
-	
-	if(isset($_POST['nameL'])) {
-		$nameLivrable=$_POST['nameL'];
-		$reqSqlDelLivrable = 'DELETE FROM livrable WHERE nom ="'.$nameLivrable.'" and id_projet="'.$idProject.'"';
+	if(isset($_POST['idL'])) {
+	$valLot=explode('-',$_POST['idL']);
+		$reqSqlDelLivrable = "DELETE FROM livrable WHERE id_livrable =".$valLot[1]." and id_projet=".$_SESSION['idProject'];
 		mysql_query($reqSqlDelLivrable) or die ('Erreur SQL !'.$reqSqldelLivrable.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$nameLivrable." a bien &eacute;t&eacute; supprim&eacute; des livrables</label>";
-				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>
+				<?php echo "<label class=\"form-control\">".$valLot[0]." a bien &eacute;t&eacute; supprim&eacute; des livrables</label>";
+				?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>
 			</form>

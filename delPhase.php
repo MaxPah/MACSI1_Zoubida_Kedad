@@ -13,26 +13,18 @@
 			<link rel="stylesheet" href="gs.css" type="text/css" media="screen"/> 
 	</head>
 <?php
-	if(isset($_POST['nameP'])) {
-		$nameProject=$_POST['nameP'];
-	}
-	$sqlIdProject= "	SELECT id_projet
-				FROM projet
-				WHERE nom = '$nameProject'";
-	$reqIdProject=mysql_query($sqlIdProject);
-	$idProjectArray= mysql_fetch_array($reqIdProject);
-	$idProject=$idProjectArray['id_projet'];
-	if(isset($_POST['namePh'])) {
-		$namePhase=$_POST['namePh'];
-		$SqlDelPhase = 'DELETE FROM phase WHERE nom ="'.$namePhase.'" and id_projet="'.$idProject.'"';
+	
+	if(isset($_POST['idPh'])) {
+		$valLot=explode('-',$_POST['idPh']);
+		$SqlDelPhase = "DELETE FROM phase WHERE id_phase =".$valLot[1];
 		mysql_query($SqlDelPhase) or die ('Erreur SQL !'.$SqlDelPhase.'<br />'.mysql_error());
 	}
 ?>
 	<body>
 		<div id="bloc_central">
 			<form method="POST" action="resume.php">
-				<?php echo "<label class=\"form-control\">".$namePhase." a bien &eacute;t&eacute; supprim&eacute; des phases</label>";
-				echo "<input type = \"hidden\" name=\"nameP\" value=\"".$nameProject."\">";?>
+				<?php echo "<label class=\"form-control\">".$valLot[0]." a bien &eacute;t&eacute; supprim&eacute; des phases</label>";
+				?>
 				<br/>	
 				<button class="btn btn-success" name ="old" type="submit" class="btn btn-primary" >Retourner au menu principal</button>
 			</form>

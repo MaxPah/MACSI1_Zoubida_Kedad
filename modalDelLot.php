@@ -11,21 +11,14 @@
 					<label for="dL" class="control-label">Quel lot voulez-vous supprimer ?</label>
 					<div class="col-lg-10">
 					<?php
-						$sqlIdProject= "SELECT id_projet
-										FROM projet
-										WHERE nom = '$nameProject'";
-						$reqIdProject=mysql_query($sqlIdProject);
-						$idProjectArray= mysql_fetch_array($reqIdProject);
-						$idProject=$idProjectArray['id_projet'];
-					
-						$sqlLot= "	SELECT nom
+						$sqlLot= "	SELECT nom,id_lot
 									FROM lot
-									WHERE id_projet = '$idProject'";
+									WHERE id_projet =".$_SESSION['idProject'] ;
 						$reqLot=mysql_query($sqlLot);
-						echo "<select class=\"form-control\" id=\"dL\" name=\"nameL\">";
+						echo "<select class=\"form-control\" id=\"dL\" name=\"idL\">";
 						while($nomLot = mysql_fetch_array($reqLot))
 						{
-							echo "<option>".$nomLot['nom']."</option>";
+							echo "<option>".$nomLot['nom']."-".$nomLot['id_lot']."</option>";
 						}
 						echo "</select>";
 					?>

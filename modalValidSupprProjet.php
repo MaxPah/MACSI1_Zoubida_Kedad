@@ -8,7 +8,6 @@
 			</div>					
 			<div class="modal-body">
 				<label id="validSuppr">Voulez vous vraiment supprimer ce projet ? (attention ce choix est définitif)</label>	
-				<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>

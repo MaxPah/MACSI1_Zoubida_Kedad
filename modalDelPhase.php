@@ -11,14 +11,14 @@
 					<label for="dPh" class="col-lg-2 control-label">Quelle phase voulez-vous supprimer ?</label>
 					<div class="col-lg-10">
 					<?php
-					$sqlPhase= "	SELECT nom
+					$sqlPhase= "	SELECT nom,id_phase
 					FROM phase
 					WHERE id_projet = '$idProject'";
 					$reqPhase=mysql_query($sqlPhase);
-					echo "<select class=\"form-control\" id=\"dPh\" name=\"namePh\">";
+					echo "<select class=\"form-control\" id=\"dPh\" name=\"idPh\">";
 					while($nomPhase = mysql_fetch_array($reqPhase))
 					{
-						echo "<option>".$nomPhase['nom']."</option>";
+						echo "<option>".$nomPhase['nom']."-".$nomPhase['id_phase']."</option>";
 					}
 					echo "</select>";
 					?>

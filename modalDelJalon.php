@@ -10,18 +10,17 @@
 				<div class="form-group">
 					<label for="dSP" class="control-label">Quel jalon voulez-vous supprimer ?</label>
 					<?php
-						$sqlSP= "	SELECT nom
+						$sqlSP= "	SELECT nom,id_jalon
 									FROM jalon
-									WHERE id_projet = '$idProject'";
+									WHERE id_projet = ".$_SESSION['idProject'];
 						$reqSP=mysql_query($sqlSP);
-						echo "<select class=\"form-control\" id=\"dSP\" name=\"nameJ\">";
+						echo "<select class=\"form-control\" id=\"dSP\" name=\"idJ\">";
 						while($nomSP = mysql_fetch_array($reqSP))
 						{
-							echo "<option>".$nomSP['nom']."</option>";
+							echo "<option>".$nomSP['nom']."-".$nomSP['id_jalon']."</option>";
 						}
 						echo "</select>";
 					?>					
-						<input type = "hidden" name="nameP" value="<?php echo $nameProject;?>">
 				</div>
 			</div>
 			<div class="modal-footer">

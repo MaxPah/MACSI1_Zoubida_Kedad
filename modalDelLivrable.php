@@ -11,21 +11,15 @@
 					<label for="dL" class="col-lg-2 control-label">Quel livrable voulez-vous supprimer ?</label>
 					<div class="col-lg-10">
 					<?php
-						$sqlIdProject= "SELECT id_projet
-										FROM projet
-										WHERE nom = '$nameProject'";
-						$reqIdProject=mysql_query($sqlIdProject);
-						$idProjectArray= mysql_fetch_array($reqIdProject);
-						$idProject=$idProjectArray['id_projet'];
-						
-						$sqlLivrable= "	SELECT nom
+												
+						$sqlLivrable= "	SELECT nom,id_livrable
 										FROM livrable
-										WHERE id_projet = '$idProject'";
+										WHERE id_projet = ".$_SESSION['idProject'];
 						$reqLivrable=mysql_query($sqlLivrable);
-						echo "<select class=\"form-control\" id=\"dL\" name=\"nameL\">";
+						echo "<select class=\"form-control\" id=\"dL\" name=\"idL\">";
 						while($nomLivrable = mysql_fetch_array($reqLivrable))
 						{
-							echo "<option>".$nomLivrable['nom']."</option>";
+							echo "<option>".$nomLivrable['nom']."-".$nomLivrable['id_livrable']."</option>";
 						}
 						echo "</select>";
 					?>

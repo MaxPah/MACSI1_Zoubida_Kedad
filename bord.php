@@ -37,6 +37,7 @@
 		<ul class="list-group">
 		<?php
 		/* BASE */
+		
 		$sqlEnv = "SELECT SUM(charge) as env
 				FROM phase
 				WHERE id_projet=".$_SESSION['idProject'];

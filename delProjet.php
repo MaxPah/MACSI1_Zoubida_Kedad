@@ -19,27 +19,14 @@
 	<?php
 		if(isset($_POST['del']))
 		{
-			$nameProject = $_POST['nameP'];
-			
-			$sqlIdProject = "SELECT id_projet
-							 FROM projet
-							 WHERE nom = '$nameProject'";
-							 
-			$reqIdProject = mysql_query($sqlIdProject) 
-								or die ('Erreur SQL !'.$sqlIdProject.'<br />'.mysql_error());
-			
-			$idProjectArray = mysql_fetch_array($reqIdProject);
-			
-			$idProject = $idProjectArray['id_projet'];	
-
 			$reqSqlDelProj = "DELETE FROM projet 
-							  WHERE id_projet='$idProject'";
+							  WHERE id_projet=".$_SESSION['idProject'];
 							  
 			mysql_query($reqSqlDelProj) 
 					or die ('Erreur SQL !'.$reqSqlDelProj.'<br />'.mysql_error());
 		}
 		
-		echo "<label class=\"form-control\">Le projet ".$nameProject." a bien &eacute;t&eacute; supprim&eacute;</label><br/><br/><br/>";
+		echo "<label class=\"form-control\">Le projet ".$_SESSION['nameP']." a bien &eacute;t&eacute; supprim&eacute;</label><br/><br/><br/>";
 		echo "<form action=\"index.php\">";
 		echo "<button class=\"btn btn-success\" type=\"submit\" class=\"btn btn-primary\" >Retourner &agrave; l'accueil</button>";
 		echo "</form>";

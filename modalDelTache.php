@@ -10,15 +10,15 @@
 				<div class="form-group">
 					<label for="dSP" class="control-label">Quelle tache voulez-vous supprimer ?</label>
 					<?php
-					$sqlSP= "	SELECT t.nom
+					$sqlSP= "	SELECT t.nom,t.id_tache
 								FROM tache t, phase p
 								WHERE p.id_projet = '$idProject'
 								AND t.id_phase = p.id_phase";
 					$reqSP=mysql_query($sqlSP);
-					echo "<select class=\"form-control\" id=\"dSP\" name=\"nameT\">";
+					echo "<select class=\"form-control\" id=\"dSP\" name=\"idT\">";
 					while($nomSP = mysql_fetch_array($reqSP))
 					{
-						echo "<option>".$nomSP['nom']."</option>";
+						echo "<option>".$nomSP['nom']."-".$nomSP['id_tache']."</option>";
 					}
 					echo "</select>";
 					?>					

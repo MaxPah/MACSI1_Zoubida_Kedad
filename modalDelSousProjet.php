@@ -10,15 +10,15 @@
 				<div class="form-group">
 					<label for="dSP" class="control-label">Quel sous-projet voulez-vous supprimer ?</label>
 					<?php
-					$sqlSP= "	SELECT s.nom
+					$sqlSP= "	SELECT s.nom,s.id_sousprojet
 								FROM sousprojet s, lot l
 								WHERE l.id_projet = '$idProject'
 								AND s.id_lot = l.id_lot";
 					$reqSP=mysql_query($sqlSP);
-					echo "<select class=\"form-control\" id=\"dSP\" name=\"nameSP\">";
+					echo "<select class=\"form-control\" id=\"dSP\" name=\"idSP\">";
 					while($nomSP = mysql_fetch_array($reqSP))
 					{
-						echo "<option>".$nomSP['nom']."</option>";
+						echo "<option>".$nomSP['nom']."-".$nomSP['id_sousprojet']."</option>";
 					}
 					echo "</select>";
 					?>					
