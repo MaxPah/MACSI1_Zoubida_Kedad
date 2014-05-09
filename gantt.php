@@ -30,7 +30,7 @@
 			source: info,
 			navigate: "scroll",
 			maxScale: "hours",
-			itemsPerPage: 7,
+			itemsPerPage: 25,
 		});
 	});
 	
