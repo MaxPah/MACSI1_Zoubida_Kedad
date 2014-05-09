@@ -3,10 +3,6 @@
 			$idProject=$_SESSION['idProject'];
 			$nameProject=$_SESSION['nameP'];
 		
-		
-		
-			
-		
 		$sqlCoutTache = "SELECT tr.id_tache, sum( r.cout * tr.taux_affectation * 0.01 ) as couttache
 		FROM ressource r, tacheressource tr
 		WHERE r.id_ressource = tr.id_ressource
