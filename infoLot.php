@@ -36,7 +36,7 @@
 				$resLot = mysql_fetch_array($reqLot) or die('Erreur result : '.mysql_error());
 				$nomL = $resLot['nom'];
 				
-				echo "<strong>Sous Projet de ".$nomL."</strong>";
+				echo "<strong>Sous-projets de ".$nomL."</strong>";
 			?>
 		</div>
 		<ul class="list-group">

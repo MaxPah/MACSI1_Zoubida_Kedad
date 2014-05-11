@@ -21,7 +21,14 @@
 		
 	<?php include ('includesNavBar.php'); ?>
 	
-	
+	<?php 
+		if(isset($_POST['valid'])) {
+		$val=explode('-',$_POST['nameT']);
+		 $idJ = $_GET['idJ'];			
+		$reqSql = "UPDATE livrable SET id_jalon ='".$idJ."' WHERE id_livrable = '".$val[1]."'";
+		mysql_query($reqSql) or die ('Erreur SQL'.mysql_error());
+		}
+		?>
 	
 	<!-- INFOS SUR LE JALON -->
 	<div class="panel panel-default">
@@ -62,6 +69,31 @@
 				echo "<strong>Livrables de ".$nomJ."</strong>";
 			?>
 		</div>
+			<ul class="list-group">
+			<li class="list-group-item">
+			<strong>Lier un nouveau livrable a ce jalon :  </strong>
+			<br/><br/>
+				<?php
+				echo" <form method=\"POST\" action=\"infoJalon.php?idJ=".$idJ."\">";
+			
+					$sqlNameT = "SELECT l.nom as N,l.id_livrable
+									   FROM livrable l
+									   WHERE l.id_projet=".$_SESSION['idProject']."
+									   AND l.id_jalon IS NULL";
+					$reqNameT = mysql_query($sqlNameT);
+					echo "<select class=\"form-control\" name='nameT'>";
+					while($resultNameT = mysql_fetch_array($reqNameT))
+					{
+						echo "<option>".$resultNameT['N']."-".$resultNameT['id_livrable']."</option>";
+					}
+					echo "</select>";
+				?>
+				<br/>
+				<button class="btn btn-primary btn-sm" name="valid" type="submit"><span class="glyphicon glyphicon-plus"></span>Ajouter ce livrable</button>				
+			<br/><br/>
+				</form>
+		</li>
+		</ul>
 		<ul class="list-group">
 		<?php
 			$sqlJ = 'SELECT nom,id_livrable

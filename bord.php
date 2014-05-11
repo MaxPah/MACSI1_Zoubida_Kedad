@@ -67,7 +67,22 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Lot </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href='infoLot.php?idL=".$resp['id_lot']."'>".$resp['nom']."</a> , ";
+				echo "<a href='infoLot.php?idL=".$resp['id_lot']."'>".$resp['nom']."</a>, ";
+			}
+			echo "</li>";
+		?>
+		<?php
+		/* Sous projets */
+			$sqlp = 'SELECT s.nom, s.id_sousprojet
+					 FROM sousprojet s, lot l
+					 WHERE l.id_projet ="'.$idP.'"
+					 AND s.id_lot = l.id_lot';
+			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
+			
+			echo "<li class=\"list-group-item\"> <u><strong><i>Sous-projets </i></strong></u> : ";
+			while($resp = mysql_fetch_array($reqp))					
+			{
+				echo "<a href='infoSousProjet.php?idSP=".$resp['id_sousprojet']."'>".$resp['nom']."</a>, ";
 			}
 			echo "</li>";
 		?>
@@ -79,10 +94,10 @@
 					 WHERE id_projet ="'.$idP.'"';
 			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
 			
-			echo "<li class=\"list-group-item\"> <u><strong><i>Phase </i></strong></u> : ";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Phases </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href='infoPhase.php?idP=".$resp['id_phase']."'>".$resp['nom']."</a> , ";
+				echo "<a href='infoPhase.php?idP=".$resp['id_phase']."'>".$resp['nom']."</a>, ";
 			}
 			echo "</li>";
 		?>
@@ -94,10 +109,10 @@
 					 WHERE id_projet ="'.$idP.'"';
 			$reqp = mysql_query($sqlp) or die('Erreur requete 2 : '.mysql_error());
 			
-			echo "<li class=\"list-group-item\"> <u><strong><i>Jalon </i></strong></u> : ";
+			echo "<li class=\"list-group-item\"> <u><strong><i>Jalons </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{
-				echo "<a href='infoJalon.php?idJ=".$resp['id_jalon']."'>".$resp['nom']."</a> , ";
+				echo "<a href='infoJalon.php?idJ=".$resp['id_jalon']."'>".$resp['nom']."</a>, ";
 			}
 			echo "</li>";
 		?>
@@ -116,7 +131,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Taches effectu&eacute;es </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{	$tachefaites++;
-				echo "<a href='infoTache.php?idT=".$resp['id_tache']."'>".$resp['nom']."</a> , ";
+				echo "<a href='infoTache.php?idT=".$resp['id_tache']."'>".$resp['nom']."</a>, ";
 			}
 			echo "</li>";
 		?>
@@ -135,7 +150,7 @@
 			echo "<li class=\"list-group-item\"> <u><strong><i>Taches planifi&eacute;es </i></strong></u> : ";
 			while($resp = mysql_fetch_array($reqp))					
 			{	$tacheafaire++;
-				echo "<a href='infoTache.php?idT=".$resp['id_tache']."'>".$resp['nom']."</a> , ";
+				echo "<a href='infoTache.php?idT=".$resp['id_tache']."'>".$resp['nom']."</a>, ";
 			}
 			echo "</li>";
 		?>
@@ -151,7 +166,7 @@
 				echo "Il y a ".$tachefaites." taches effectu&eacute;es sur ".$tachetotal." taches pr&eacute;vues. <br/><br/>  ";
 				echo "<div class='progress progress-striped active'>
 					<div class='progress-bar' role='progressbar' aria-valuenow='".$moy."' aria-valuemin='0' aria-valuemax='100' style='width: ".$moy."%;'>
-						Projet effectu&eacute;é &agrave; ".$moy."% 
+						Projet effectu&eacute; &agrave; ".$moy."% 
 					</div>
 				</div>";
 			echo "</li>";

@@ -141,7 +141,6 @@
 							
 							while($nomJalon = mysql_fetch_array($reqJalon)) {
 								echo "<li><a href='infoJalon.php?idJ=".$nomJalon['id_jalon']."'>Voir ".$nomJalon['nom']."</a></li>";
-								echo "<li class=\"divider\"></li>";
 								}
 						}
 					?>

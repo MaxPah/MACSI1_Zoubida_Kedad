@@ -22,12 +22,10 @@
 	<?php include ('includesNavBar.php'); ?>
 	
 	<?php 
-		if(isset($_POST['youlo'])) {
-		 $idL = $_POST['idL'];
-		$idT = $_POST['nameT'];
-			
-		$reqSql = 'UPDATE tache set id_livrable ="'.$idL.'"
-					WHERE nom = "'.$idT.'"';
+		if(isset($_POST['valid'])) {
+		$val=explode('-',$_POST['nameT']);
+		 $idL = $_GET['idL'];			
+		$reqSql = "UPDATE tache SET id_livrable ='".$idL."' WHERE id_tache = '".$val[1]."'";
 		mysql_query($reqSql) or die ('Erreur SQL'.mysql_error());
 		}
 		?>
@@ -75,21 +73,20 @@
 				<?php
 				echo" <form method=\"POST\" action=\"infoLivrable.php?idL=".$idL."\">";
 			
-					$sqlNameT = "SELECT t.nom,t.id_tache
+					$sqlNameT = "SELECT t.nom as N,t.id_tache
 									   FROM tache t, phase p 
 									   WHERE t.id_phase = p.id_phase
 									   AND p.id_projet=".$_SESSION['idProject'];
 					$reqNameT = mysql_query($sqlNameT);
-					echo "<select class=\"form-control\" name=\"nameT\">";
+					echo "<select class=\"form-control\" name='nameT'>";
 					while($resultNameT = mysql_fetch_array($reqNameT))
 					{
-						echo "<option>".$resultNameT['nom']."</option>";
+						echo "<option>".$resultNameT['N']."-".$resultNameT['id_tache']."</option>";
 					}
 					echo "</select>";
 				?>
 				<br/>
-				<input type="hidden" name="idl" value="<?php echo $idL;?>">			
-				<button class="btn btn-primary btn-sm" name="youlo" type="submit"><span class="glyphicon glyphicon-plus"></span>Affecter cette tache</button>				
+				<button class="btn btn-primary btn-sm" name="valid" type="submit"><span class="glyphicon glyphicon-plus"></span>Affecter cette tache</button>				
 			<br/><br/>
 				</form>
 		</li>
