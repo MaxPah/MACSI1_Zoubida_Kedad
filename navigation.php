@@ -161,7 +161,9 @@
 					<li><a data-toggle="modal" href="#delTache" >Supprimer Tache</a></li>
 				</ul>
 			</li>
-			<?php } ?>
+			<?php } 
+				if($estPhase && $estSousprojet) {
+			?>
 			
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Livrables  <b class="caret"></b></a>
@@ -182,7 +184,7 @@
 					<li><a data-toggle="modal" href="#delLivrable" >Supprimer Livrable</a></li>
 				</ul>
 			</li>
-			
+			<?php } ?>
 			
 			</ul>
 			<ul class="nav nav-pills navbar-right"style="margin-right:20px; margin-top:5px;">

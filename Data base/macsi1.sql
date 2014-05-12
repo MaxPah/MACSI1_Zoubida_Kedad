@@ -360,8 +360,8 @@ ALTER TABLE `sousprojet`
 ALTER TABLE `tache`
   ADD CONSTRAINT `tache_ibfk_1` FOREIGN KEY (`id_phase`) REFERENCES `phase` (`id_phase`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tache_ibfk_2` FOREIGN KEY (`id_sousprojet`) REFERENCES `sousprojet` (`id_sousprojet`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tache_ibfk_3` FOREIGN KEY (`id_livrable`) REFERENCES `livrable` (`id_livrable`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tache_ibfk_5` FOREIGN KEY (`id_tache_dep`) REFERENCES `tache` (`id_tache`);
+  ADD CONSTRAINT `tache_ibfk_3` FOREIGN KEY (`id_livrable`) REFERENCES `livrable` (`id_livrable`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tache_ibfk_5` FOREIGN KEY (`id_tache_dep`) REFERENCES `tache` (`id_tache`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `tacheressource`

@@ -102,7 +102,7 @@
 			$reqJ = mysql_query($sqlJ) or die('Erreur requete 2 : '.mysql_error());
 			while($resJ = mysql_fetch_array($reqJ))					
 			{
-				echo "<li class=\"list-group-item\"> <u><strong><i>Phase</i></strong></u> : <a href=\"infoLivrable.php?idL=".$resJ['id_livrable']."\">".$resJ['nom']."</a></li>";
+				echo "<li class=\"list-group-item\"> <u><strong><i>Livrable</i></strong></u> : <a href=\"infoLivrable.php?idL=".$resJ['id_livrable']."\">".$resJ['nom']."</a></li>";
 			}
 		?>
 		</ul>
